@@ -1,0 +1,167 @@
+# Pic'Bird — plateforme de mini-jeux web
+
+Pic'Bird est un site web regroupant plusieurs petits jeux dans un même « parcours » :
+le joueur progresse de jeu en jeu. Pour débloquer le jeu suivant, il faut réussir
+suffisamment bien le jeu en cours (score à atteindre). Le premier jeu livé est
+**Catch Bird**, un safari photo d'oiseaux ; d'autres jeux viendront s'ajouter au fur
+et à mesure.
+
+Ce document décrit le projet, son organisation et les étapes prévues. Il vit dans
+`src/`, le dossier qui contiendra le code de la plateforme.
+
+---
+
+## 1. Concept général
+
+- **Un hub, plusieurs jeux.** Le site ouvre sur un menu (hub) listant les jeux du
+  parcours. Chaque jeu est verrouillé ou débloqué selon la progression du joueur.
+- **Progression par paliers.** Chaque jeu définit un seuil de réussite (score cible).
+  Tant que le joueur n'atteint pas le seuil, le jeu suivant reste verrouillé.
+  Réussir un jeu débloque le suivant et enregistre la progression.
+- **Sauvegarde locale.** La progression (jeux débloqués, meilleurs scores, photos
+  prises) est persistée dans le navigateur (`localStorage`) pour reprendre la partie
+  plus tard.
+- **Un seul socle technique.** Tous les jeux tournent sur la même page web (canvas
+  2D, HTML/CSS/JS vanilla, aucun framework) afin de garder le projet léger et
+  maintenable.
+
+### Parcours prévu
+
+| # | Jeu | Statut | Idée |
+|---|-----|--------|------|
+| 1 | Catch Bird (safari photo) | fait | Photographier des oiseaux sans les effrayer |
+| 2 | à définir | à venir | Un deuxième mini-jeu dans le même univers |
+| 3 | à définir | à venir | Un troisième mini-jeu, débloqué après le 2 |
+| … | … | … | D'autres jeux s'ajoutent au fil du projet |
+
+Le mécanisme de déblocage est générique : il suffit d'ajouter une entrée dans la
+liste des jeux pour que le hub la gère (verrouillée tant que le précédent n'est pas
+réussi).
+
+---
+
+## 2. Le premier jeu : Catch Bird
+
+Catch Bird est un **safari photo** : des oiseaux évoluent dans une vallée (monde
+ouvert de 2600×1700 unités, cycle jour/nuit) et le joueur doit les photographier
+sans les effrayer.
+
+### Contrôles
+
+- **Souris** : viser
+- **Molette** : zoom (focale de 50 mm à téléobjectif)
+- **W / S** (ou ↑ / ↓) : mise au point manuelle
+- **A** : autofocus sur l'oiseau visé
+- **Clic** ou **Espace** : prendre la photo
+- **G** puis clic au sol : poser des graines pour attirer les oiseaux (stock limité, régénération lente)
+- **Tab** : ouvrir la galerie des photos prises
+
+### Mécaniques
+
+- **Effroi** : de trop grands mouvements de souris effraient les oiseaux à proximité, qui s'envolent.
+- **9 espèces** d'oiseaux, de commune (moineau) à très rare (buse, martin-pêcheur), chacune avec sa probabilité d'apparition, sa taille et sa vitesse.
+- **9 poses** (perché, chante, en vol, en fuite…) avec des multiplicateurs de score différents.
+- **Cycle jour/nuit** influençant l'ambiance visuelle.
+
+### Score d'une photo
+
+Le score (jusqu'à ~100 pts × rareté × pose) se décompose en :
+
+- **Cadrage** (38 %) : l'oiseau doit être bien centré et d'une taille adaptée dans le cadre ;
+- **Mise au point** (34 %) : distance de focus vs distance réelle de l'oiseau ;
+- **Netteté / flou de mouvement** (28 %) : pénalisé si l'oiseau bouge vite.
+
+Les photos sont sauvegardées dans une galerie avec leur score détaillé, et le
+meilleur score est affiché comme record.
+
+### Fichiers actuels (à la racine, à migrer dans `src/`)
+
+- `index.html` — structure de la page, HUD, écrans (démarrage, galerie, modal photo)
+- `style.css` — mise en page et habillage
+- `game.js` — toute la logique du jeu (monde, oiseaux, caméra, photo, score)
+
+---
+
+## 3. Organisation du code dans `src/`
+
+Le code de la plateforme sera organisé ainsi (le jeu Catch Bird y sera déplacé) :
+
+```
+src/
+├── README.md            ← ce fichier
+├── index.html           ← page d'accueil / hub des jeux
+├── css/
+│   └── style.css        ← styles communs (hub + jeux)
+└── js/
+    ├── main.js          ← routeur : hub, progression, sauvegarde localStorage
+    ├── progression.js   ← seuils de déblocage, jeux verrouillés/débloqués
+    └── games/
+        └── catch-bird/  ← un sous-dossier par jeu
+            ├── index.html
+            ├── game.js
+            └── style.css
+```
+
+Chaque jeu expose une petite interface commune (démarrer, score courant, seuil de
+réussite, « réussi ? ») pour que le hub puisse :
+
+1. afficher l'état du parcours (verrouillé / en cours / réussi) ;
+2. décider du déblocage du jeu suivant quand le seuil est atteint.
+
+---
+
+## 4. Étapes du projet
+
+### Étape 1 — Premier jeu jouable (faite)
+- Catch Bird fonctionnel à la racine du repo : monde, oiseaux, photo, score, galerie.
+
+### Étape 2 — Structure de la plateforme (en cours)
+- Créer `src/` et y déplacer le code du premier jeu.
+- Écrire le README du projet (ce document).
+- Mettre en place le hub : page d'accueil listant les jeux avec leur état.
+
+### Étape 3 — Système de progression
+- Définir les seuils de réussite par jeu.
+- Débloquer le jeu suivant quand le seuil est atteint ; persister dans `localStorage`.
+- Afficher la progression dans le hub (parcours verrouillé → réussi).
+
+### Étape 4 — Deuxième jeu
+- Concevoir et implémenter un deuxième mini-jeu dans le même univers.
+- Le rendre déblocable après Catch Bird.
+
+### Étape 5 — Jeux suivants et polish
+- Ajouter d'autres jeux au parcours.
+- Améliorations : écran de victoire entre les jeux, récapitulatif des scores,
+  éventuels sons, page « à propos ».
+
+### Étape 6 — Utilisable par un agent
+- Exposer une interface utilisable par un agent (ligne de commande ou API/MCP) en
+  parallèle de l'interface web, par exemple pour lancer une partie, lire le score
+  ou la progression sans ouvrir de navigateur.
+
+### Étape 7 — Rapport
+- Rédiger `report.md` à la racine : réflexion sur le processus de travail
+  (facilités, difficultés, organisation du groupe).
+
+---
+
+## 5. Contraintes du cours (mini-projet)
+
+Ce projet suit les consignes du README à la racine du repo :
+
+- **Projet de groupe** (2-3 personnes), petit mais non trivial : au moins une
+  vingtaine de fichiers de code et une cinquantaine de commits sur les 2 semaines.
+- **Visible sur Git** : le code et les informations de développement sont commités
+  régulièrement. Le hook Vibe (`.vibe/`) enregistre les événements de session dans
+  `events/` — ce dossier ne doit **pas** être supprimé ni ignoré par git.
+- **Utilisable par un agent** : l'application doit être au moins partiellement
+  pilotable par un agent (CLI parallèle à l'interface web, ou serveur MCP, ou skill).
+- **Utilisation de Vibe** pour le développement (le hook ne fonctionne qu'avec Vibe).
+
+### Timeline
+
+- **Mercredi 18** : fork du template, invitation des membres du groupe et de
+  l'enseignant, premier lancement de Vibe « trusté » avec vérification des événements
+  dans `events/`.
+- **Vendredi 20** : premier commit d'un README avec un plan initial du projet.
+- **Jusqu'à lundi 30** : travail sur le mini-projet + rédaction de `report.md`.
