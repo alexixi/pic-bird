@@ -62,8 +62,9 @@ function obbCorners(o) {
 }
 
 // Test de collision OBB vs OBB (séparation d'axes).
-// Renvoie { nx, ny, depth } : axe de séparation minimal, orienté de a
-// vers b, avec la profondeur de pénétration — ou null sans contact.
+// Renvoie { nx, ny, depth } : axe minimal de séparation, orienté dans le
+// sens où déplacer `a` pour le sortir de `b`, avec la profondeur —
+// ou null sans contact.
 function satCollide(a, b) {
   const A = obbCorners(a), B = obbCorners(b);
   const axes = [];
@@ -80,15 +81,15 @@ function satCollide(a, b) {
     let minA = Infinity, maxA = -Infinity, minB = Infinity, maxB = -Infinity;
     for (const p of A) { const d = p.x * ax.x + p.y * ax.y; if (d < minA) minA = d; if (d > maxA) maxA = d; }
     for (const p of B) { const d = p.x * ax.x + p.y * ax.y; if (d < minB) minB = d; if (d > maxB) maxB = d; }
-    const overlap = Math.min(maxA, maxB) - Math.max(minA, minB);
-    if (overlap <= 0) return null;
-    if (overlap < minDepth) { minDepth = overlap; axis = ax; }
+    if (maxA <= minB || maxB <= minA) return null; // séparées (ou simples contacts) sur cet axe
+    const d1 = maxA - minB; // pousse a dans le sens -ax
+    const d2 = maxB - minA; // pousse a dans le sens +ax
+    const depth = Math.min(d1, d2);
+    if (depth < minDepth) {
+      minDepth = depth;
+      axis = d1 < d2 ? { x: -ax.x, y: -ax.y } : { x: ax.x, y: ax.y };
+    }
   }
-  let cax = 0, cay = 0, cbx = 0, cby = 0;
-  for (const p of A) { cax += p.x; cay += p.y; }
-  for (const p of B) { cbx += p.x; cby += p.y; }
-  const dot = (cbx - cax) * axis.x + (cby - cay) * axis.y;
-  if (dot < 0) axis = { x: -axis.x, y: -axis.y };
   return { nx: axis.x, ny: axis.y, depth: minDepth };
 }
 
@@ -110,13 +111,17 @@ function collideStatic(car, level) {
     .concat((level.blocks || []).map((b) => ({ x: b.x + b.w / 2, y: b.y + b.h / 2, angle: b.angle || 0, L: b.w, W: b.h })))
     .concat(level.parked.map((p) => ({ x: p.x, y: p.y, angle: p.angle, L: p.w, W: p.h })));
   let impact = 0;
-  for (const o of obstacles) {
-    const c = satCollide(car, o);
-    if (c) {
-      // l'axe va de la voiture vers l'obstacle : on repousse la voiture à l'opposé
-      car.x -= c.nx * c.depth;
-      car.y -= c.ny * c.depth;
-      impact = Math.max(impact, Math.abs(car.speed));
+  // deux passes pour faire converger la résolution quand plusieurs
+  // obstacles se touchent (mur + bordure, etc.)
+  for (let pass = 0; pass < 2; pass++) {
+    for (const o of obstacles) {
+      const c = satCollide(car, o);
+      if (c) {
+        // l'axe indique le sens où sortir la voiture de l'obstacle
+        car.x += c.nx * c.depth;
+        car.y += c.ny * c.depth;
+        impact = Math.max(impact, Math.abs(car.speed));
+      }
     }
   }
   return impact;
