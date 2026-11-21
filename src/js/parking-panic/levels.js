@@ -6,19 +6,28 @@
    Angles en radians, 0 = vers la droite (+x), sens horaire (y vers
    le bas, comme sur un canvas 2D).
 
+   Deux archétypes de niveaux :
+   - parkingWorld : un grand parking asphalté, bordé de bordures
+     bloquantes ; on y circule librement à l'intérieur.
+   - streetWorld  : une rue entre un trottoir/bâtiments (nord) et un
+     mur (sud) ; la voiture ne peut pas sortir de la route. Les
+     places sont en créneau dans la bande de stationnement au bord
+     de la chaussée.
+
    Chaque niveau :
    - world   : dimensions du monde (murs aux bords)
+   - ground  : couleur du sol
+   - blocks  : rectangles bloquants { x, y, w, h, kind } (coin haut-gauche)
+   - roads   : bandes d'asphalte (repère des voies)
+   - decor   : arbres, lampadaires, passages piétons
    - car     : clé dans CAR_SPECS (la voiture à garer)
    - start   : position et cap de départ du joueur
-   - roads   : bandes d'asphalte foncé (décor + repère des voies)
-   - decor   : rectangles de décor (trottoirs, etc.)
-   - spots   : places de parking dessinées ; target = index de la
-               place à réussir (contour vert). w = longueur de la place
-               (le long de l'axe local x, donc du cap de la voiture
-               garée), h = largeur de la place.
+   - spots   : places de parking ; target = index de la place à
+               réussir (contour vert). w = longueur de la place
+               (axe du cap garé), h = largeur.
    - parked  : voitures à l'arrêt (obstacles), éventuellement mal
                garées (angle décalé, débordent sur la place)
-   - traffic : voitures qui circulent (voir traffic.js)
+   - traffic : voitures qui circulent sur la chaussée (traffic.js)
    ============================================================ */
 
 // ---------- Voitures jouables ----------
@@ -33,179 +42,227 @@ const CAR_SPECS = {
   utilitaire: { nom: 'Utilitaire', L: 64, W: 27, accel: 47, brake: 96,  maxF: 140, maxR: 52, maxSteer: 0.40, steerSpeed: 3.0, drag: 0.28, color: '#d0563a' }
 };
 
-// ---------- Helper : circuit rectangulaire pour la circulation ----------
-// Renvoie les 4 coins d'un anneau centré en (cx, cy), décalés de `lane`
-// unités vers l'intérieur (lane > 0) ou l'extérieur (lane < 0).
-function ringPath(cx, cy, rx, ry, lane) {
-  const pts = [
-    [cx - rx, cy - ry], [cx + rx, cy - ry],
-    [cx + rx, cy + ry], [cx - rx, cy + ry]
-  ];
-  return pts.map(([x, y]) => {
-    const dx = cx - x, dy = cy - y;
-    const l = Math.hypot(dx, dy) || 1;
-    return [x + (dx / l) * lane, y + (dy / l) * lane];
-  });
+// ---------- Archétype : grand parking ----------
+function parkingWorld(W, H) {
+  return {
+    world: { w: W, h: H },
+    ground: '#4b4e58',
+    blocks: [
+      { x: 0, y: 0, w: W, h: 60, kind: 'curb' },
+      { x: 0, y: H - 60, w: W, h: 60, kind: 'curb' },
+      { x: 0, y: 0, w: 60, h: H, kind: 'curb' },
+      { x: W - 60, y: 0, w: 60, h: H, kind: 'curb' }
+    ],
+    roads: [],
+    decor: [
+      { type: 'tree', x: 30, y: 30 }, { type: 'tree', x: W - 30, y: 30 },
+      { type: 'tree', x: 30, y: H - 30 }, { type: 'tree', x: W - 30, y: H - 30 }
+    ]
+  };
 }
 
-// ---------- Niveaux ----------
-const PARKING_LEVELS = [
-  {
-    name: 'Première place',
-    desc: 'Une place large et bien dégagée pour prendre le volant. Garez la citadine dans la place verte.',
-    world: { w: 1200, h: 800 },
-    car: 'citadine',
-    start: { x: 140, y: 710, angle: 0 },
-    roads: [ { x: 40, y: 660, w: 1120, h: 80 } ],
-    decor: [],
-    spots: [
-      { x: 760, y: 300, w: 74, h: 38, angle: Math.PI / 2 },
-      { x: 900, y: 300, w: 74, h: 38, angle: Math.PI / 2 },
-      { x: 1040, y: 300, w: 74, h: 38, angle: Math.PI / 2 }
-    ],
-    target: 1,
-    parked: [],
-    traffic: []
-  },
-  {
-    name: 'Créneau entre deux mal garées',
-    desc: 'Deux voitures débordent sur la place en créneau. Glissez la citadine entre elles, bien droite.',
-    world: { w: 1300, h: 800 },
-    car: 'citadine',
-    start: { x: 150, y: 610, angle: 0 },
-    roads: [ { x: 40, y: 560, w: 1220, h: 100 } ],
-    decor: [ { x: 40, y: 470, w: 1220, h: 90, color: '#6d7078' } ],
-    spots: [ { x: 650, y: 522, w: 80, h: 32, angle: 0 } ],
-    target: 0,
-    parked: [
-      { x: 592, y: 524, angle: 0.16, w: 46, h: 22, color: '#9aa0a8' },
-      { x: 708, y: 518, angle: -0.13, w: 46, h: 22, color: '#7d6a55' }
-    ],
-    traffic: []
-  },
-  {
-    name: 'Parking en épi',
-    desc: 'Des places en épi. La voiture de droite est mal garée et déborde : visez la place verte, en biais.',
-    world: { w: 1300, h: 850 },
-    car: 'berline',
-    start: { x: 180, y: 740, angle: 0 },
-    roads: [ { x: 40, y: 690, w: 1220, h: 90 } ],
-    decor: [],
-    spots: [
-      { x: 520, y: 300, w: 66, h: 36, angle: -Math.PI / 3 },
-      { x: 660, y: 300, w: 66, h: 36, angle: -Math.PI / 3 },
-      { x: 800, y: 300, w: 66, h: 36, angle: -Math.PI / 3 }
-    ],
-    target: 1,
-    parked: [
-      { x: 520, y: 300, angle: -Math.PI / 3, w: 48, h: 22, color: '#5f8f5a' },
-      { x: 808, y: 318, angle: -Math.PI / 3 + 0.38, w: 48, h: 22, color: '#a85f5f' }
-    ],
-    traffic: []
-  },
-  {
-    name: 'Entre deux mal garées',
-    desc: 'Place en bataille serrée : deux voitures débordent de chaque côté. Petits coups de volant et marche arrière (R).',
-    world: { w: 1300, h: 850 },
-    car: 'berline',
-    start: { x: 650, y: 740, angle: 0 },
-    roads: [ { x: 40, y: 690, w: 1220, h: 90 } ],
-    decor: [],
-    spots: [ { x: 650, y: 330, w: 70, h: 34, angle: Math.PI / 2 } ],
-    target: 0,
-    parked: [
-      { x: 610, y: 336, angle: 0.28, w: 48, h: 22, color: '#8f6fb8' },
-      { x: 692, y: 326, angle: -0.31, w: 48, h: 22, color: '#b8a44a' }
-    ],
-    traffic: []
-  },
-  {
-    name: 'Rue passante',
-    desc: 'La circulation tourne en boucle autour du parking. Garez le break dans la place du haut sans gêner le trafic.',
-    world: { w: 1400, h: 900 },
-    car: 'break',
-    start: { x: 160, y: 820, angle: 0 },
-    roads: [
-      { x: 40, y: 40, w: 1320, h: 80 },
-      { x: 40, y: 780, w: 1320, h: 80 },
-      { x: 40, y: 40, w: 80, h: 820 },
-      { x: 1280, y: 40, w: 80, h: 820 }
-    ],
-    decor: [],
-    spots: [
-      { x: 560, y: 280, w: 74, h: 38, angle: Math.PI / 2 },
-      { x: 700, y: 280, w: 74, h: 38, angle: Math.PI / 2 },
-      { x: 840, y: 280, w: 74, h: 38, angle: Math.PI / 2 }
-    ],
-    target: 1,
-    parked: [
-      { x: 560, y: 280, angle: Math.PI / 2, w: 48, h: 22, color: '#5f8f5a' }
-    ],
-    traffic: [
-      { path: ringPath(700, 450, 620, 370, 16), speed: 95, loop: true, color: '#c94f4f', spec: 'berline', phase: 0.0, gap: 0 },
-      { path: ringPath(700, 450, 620, 370, -16), speed: 80, loop: true, color: '#4a90d9', spec: 'citadine', phase: 0.5, gap: 0 }
-    ]
-  },
-  {
-    name: 'Créneau sous pression',
-    desc: 'Un créneau en bord de rue avec des voitures qui passent dans les deux sens. Timing serré.',
-    world: { w: 1400, h: 800 },
-    car: 'break',
-    start: { x: 180, y: 640, angle: 0 },
-    roads: [ { x: 40, y: 580, w: 1320, h: 110 } ],
-    decor: [ { x: 40, y: 480, w: 1320, h: 100, color: '#6d7078' } ],
-    spots: [ { x: 700, y: 534, w: 96, h: 34, angle: 0 } ],
-    target: 0,
-    parked: [
-      { x: 640, y: 536, angle: 0.18, w: 50, h: 23, color: '#9aa0a8' },
-      { x: 762, y: 530, angle: -0.16, w: 50, h: 23, color: '#7d6a55' }
-    ],
-    traffic: [
-      { path: [[70, 612], [1330, 612]], speed: 120, loop: false, color: '#c94f4f', spec: 'berline', phase: 0.2, gap: 2.5 },
-      { path: [[1330, 658], [70, 658]], speed: 105, loop: false, color: '#4a90d9', spec: 'citadine', phase: 0.7, gap: 3.5 }
-    ]
-  },
-  {
-    name: 'Livraison en centre-ville',
-    desc: 'Un utilitaire encombrant, une place en bataille entre deux voitures mal garées, et la circulation qui tourne.',
-    world: { w: 1400, h: 900 },
-    car: 'utilitaire',
-    start: { x: 160, y: 820, angle: 0 },
-    roads: [
-      { x: 40, y: 40, w: 1320, h: 80 },
-      { x: 40, y: 780, w: 1320, h: 80 },
-      { x: 40, y: 40, w: 80, h: 820 },
-      { x: 1280, y: 40, w: 80, h: 820 }
-    ],
-    decor: [],
-    spots: [ { x: 700, y: 290, w: 86, h: 42, angle: Math.PI / 2 } ],
-    target: 0,
-    parked: [
-      { x: 654, y: 296, angle: 0.24, w: 54, h: 24, color: '#8f6fb8' },
-      { x: 746, y: 286, angle: -0.27, w: 54, h: 24, color: '#b8a44a' }
-    ],
-    traffic: [
-      { path: ringPath(700, 450, 620, 370, 16), speed: 85, loop: true, color: '#c9a227', spec: 'berline', phase: 0.3, gap: 0 }
-    ]
-  },
-  {
-    name: 'Le boss du parking',
-    desc: 'Créneau serré avec un utilitaire, voitures mal garées des deux côtés et trafic dense. Bonne chance.',
-    world: { w: 1500, h: 850 },
-    car: 'utilitaire',
-    start: { x: 180, y: 660, angle: 0 },
-    roads: [ { x: 40, y: 600, w: 1420, h: 120 } ],
-    decor: [ { x: 40, y: 490, w: 1420, h: 110, color: '#6d7078' } ],
-    spots: [ { x: 750, y: 548, w: 108, h: 38, angle: 0 } ],
-    target: 0,
-    parked: [
-      { x: 678, y: 550, angle: 0.22, w: 54, h: 24, color: '#9aa0a8' },
-      { x: 826, y: 544, angle: -0.19, w: 54, h: 24, color: '#7d6a55' }
-    ],
-    traffic: [
-      { path: [[70, 628], [1430, 628]], speed: 130, loop: false, color: '#c94f4f', spec: 'berline', phase: 0.1, gap: 2.0 },
-      { path: [[1430, 684], [70, 684]], speed: 115, loop: false, color: '#4a90d9', spec: 'citadine', phase: 0.45, gap: 2.8 },
-      { path: [[70, 628], [1430, 628]], speed: 95, loop: false, color: '#5f8f5a', spec: 'break', phase: 0.8, gap: 3.2 }
-    ]
+// Lampadaires le long des bordures
+function withLamps(lv) {
+  const W = lv.world.w, H = lv.world.h;
+  for (let x = 220; x < W - 120; x += 280) {
+    lv.decor.push({ type: 'lamp', x, y: 34 });
+    lv.decor.push({ type: 'lamp', x, y: H - 34 });
   }
+  return lv;
+}
+
+// ---------- Archétype : rue ----------
+// Nord : bâtiments puis trottoir (bloquants). Ensuite bande de
+// stationnement (places en créneau), puis chaussée à deux voies,
+// puis mur (bloquant). La voiture reste entre le trottoir et le mur.
+function streetWorld(W, H) {
+  return {
+    world: { w: W, h: H },
+    ground: '#5d7a4c',
+    blocks: [
+      { x: 0, y: 0, w: W, h: 360, kind: 'building' },
+      { x: 0, y: 360, w: W, h: 100, kind: 'sidewalk' },
+      { x: 0, y: H - 80, w: W, h: 80, kind: 'wall' }
+    ],
+    roads: [
+      { x: 0, y: 460, w: W, h: 70 },   // bande de stationnement
+      { x: 0, y: 530, w: W, h: 170 }   // chaussée à deux voies
+    ],
+    decor: [
+      { type: 'zebra', x: 260, y: 530, w: 70, h: 170 },
+      { type: 'zebra', x: W - 330, y: 530, w: 70, h: 170 },
+      { type: 'tree', x: 120, y: 410 }, { type: 'tree', x: 480, y: 415 },
+      { type: 'tree', x: 900, y: 405 }, { type: 'tree', x: W - 160, y: 412 },
+      { type: 'lamp', x: 420, y: 452 }, { type: 'lamp', x: 760, y: 452 },
+      { type: 'lamp', x: 1100, y: 452 }
+    ]
+  };
+}
+
+// Voies de circulation (aller simple, la voiture sort et revient) :
+// y = 581 vers la droite, y = 649 vers la gauche.
+function laneFwd(W, speed, opts) { return Object.assign({ path: [[80, 581], [W - 80, 581]], loop: false, speed }, opts); }
+function laneBwd(W, speed, opts) { return Object.assign({ path: [[W - 80, 649], [80, 649]], loop: false, speed }, opts); }
+
+// ---------- Niveaux (du plus facile au plus dur) ----------
+const PARKING_LEVELS = [
+  // 1 — tutoriel : grande place libre au milieu d'un parking quasi vide
+  Object.assign(withLamps(parkingWorld(1300, 850)), {
+    name: 'Première place',
+    desc: 'Un grand parking presque vide : garez la citadine dans la place verte.',
+    car: 'citadine',
+    start: { x: 650, y: 720, angle: -Math.PI / 2 },
+    spots: [
+      { x: 550, y: 200, w: 84, h: 42, angle: Math.PI / 2 },
+      { x: 700, y: 200, w: 84, h: 42, angle: Math.PI / 2 },
+      { x: 850, y: 200, w: 84, h: 42, angle: Math.PI / 2 },
+      { x: 550, y: 430, w: 84, h: 42, angle: Math.PI / 2 },
+      { x: 700, y: 430, w: 84, h: 42, angle: Math.PI / 2 },
+      { x: 850, y: 430, w: 84, h: 42, angle: Math.PI / 2 }
+    ],
+    target: 1,
+    parked: [
+      { x: 550, y: 430, angle: Math.PI / 2, w: 46, h: 22, color: '#5f8f5a' }
+    ],
+    traffic: []
+  }),
+
+  // 2 — bataille entre deux voitures bien garées, marge confortable
+  Object.assign(withLamps(parkingWorld(1300, 850)), {
+    name: 'Entre deux voitures',
+    desc: 'Une place en bataille entre deux voitures garées droit. Évitez les chocs (+2 s).',
+    car: 'citadine',
+    start: { x: 650, y: 720, angle: -Math.PI / 2 },
+    spots: [
+      { x: 550, y: 240, w: 70, h: 38, angle: Math.PI / 2 },
+      { x: 700, y: 240, w: 64, h: 36, angle: Math.PI / 2 },
+      { x: 850, y: 240, w: 70, h: 38, angle: Math.PI / 2 }
+    ],
+    target: 1,
+    parked: [
+      { x: 664, y: 240, angle: Math.PI / 2, w: 46, h: 22, color: '#9aa0a8' },
+      { x: 736, y: 240, angle: Math.PI / 2, w: 46, h: 22, color: '#7d6a55' },
+      { x: 550, y: 470, angle: Math.PI / 2, w: 46, h: 22, color: '#5f8f5a' }
+    ],
+    traffic: []
+  }),
+
+  // 3 — premier créneau, large, sans circulation
+  Object.assign(streetWorld(1400, 780), {
+    name: 'Créneau tranquille',
+    desc: 'Un créneau large au bord de la route, entre deux voitures un peu de travers.',
+    car: 'citadine',
+    start: { x: 180, y: 615, angle: 0 },
+    spots: [ { x: 700, y: 495, w: 100, h: 34, angle: 0 } ],
+    target: 0,
+    parked: [
+      { x: 632, y: 497, angle: 0.10, w: 46, h: 22, color: '#9aa0a8' },
+      { x: 768, y: 493, angle: -0.09, w: 46, h: 22, color: '#7d6a55' },
+      { x: 300, y: 495, angle: 0, w: 46, h: 22, color: '#5f8f5a' },
+      { x: 1100, y: 495, angle: 0.05, w: 46, h: 22, color: '#8f6fb8' }
+    ],
+    traffic: []
+  }),
+
+  // 4 — bataille serrée entre deux mal garées, berline moins maniable
+  Object.assign(withLamps(parkingWorld(1300, 850)), {
+    name: 'Bataille serrée',
+    desc: 'Deux voitures mal garées débordent sur la place en bataille. La berline tourne moins bien.',
+    car: 'berline',
+    start: { x: 650, y: 720, angle: -Math.PI / 2 },
+    spots: [
+      { x: 480, y: 240, w: 60, h: 34, angle: Math.PI / 2 },
+      { x: 650, y: 240, w: 56, h: 34, angle: Math.PI / 2 },
+      { x: 820, y: 240, w: 60, h: 34, angle: Math.PI / 2 }
+    ],
+    target: 1,
+    parked: [
+      { x: 612, y: 246, angle: Math.PI / 2 + 0.22, w: 48, h: 22, color: '#8f6fb8' },
+      { x: 690, y: 236, angle: Math.PI / 2 - 0.25, w: 48, h: 22, color: '#b8a44a' },
+      { x: 480, y: 240, angle: Math.PI / 2, w: 48, h: 22, color: '#5f8f5a' }
+    ],
+    traffic: []
+  }),
+
+  // 5 — places en épi + une rue qui traverse le parking avec une voiture
+  Object.assign(withLamps(parkingWorld(1300, 850)), {
+    name: 'Parking en épi',
+    desc: 'Des places en épi, une voiture mal garée qui déborde sur sa voisine, et une rue qui traverse le parking.',
+    car: 'berline',
+    start: { x: 150, y: 680, angle: 0 },
+    roads: [ { x: 60, y: 640, w: 1180, h: 80 } ],
+    spots: [
+      { x: 520, y: 280, w: 66, h: 36, angle: -Math.PI / 3 },
+      { x: 660, y: 280, w: 66, h: 36, angle: -Math.PI / 3 },
+      { x: 800, y: 280, w: 66, h: 36, angle: -Math.PI / 3 }
+    ],
+    target: 1,
+    parked: [
+      { x: 520, y: 280, angle: -Math.PI / 3, w: 48, h: 22, color: '#5f8f5a' },
+      { x: 808, y: 298, angle: -Math.PI / 3 + 0.35, w: 48, h: 22, color: '#a85f5f' }
+    ],
+    traffic: [
+      { path: [[100, 680], [1200, 680]], speed: 90, loop: false, gap: 3, color: '#c94f4f', spec: 'citadine', phase: 0.3 }
+    ]
+  }),
+
+  // 6 — créneau au bord d'une rue passante (une voiture de temps en temps)
+  Object.assign(streetWorld(1400, 780), {
+    name: 'Rue passante',
+    desc: 'Un créneau au bord d\'une rue où une voiture passe de temps en temps. Regardez avant de manœuvrer.',
+    car: 'break',
+    start: { x: 180, y: 615, angle: 0 },
+    spots: [ { x: 700, y: 495, w: 104, h: 36, angle: 0 } ],
+    target: 0,
+    parked: [
+      { x: 630, y: 497, angle: 0.14, w: 50, h: 23, color: '#9aa0a8' },
+      { x: 772, y: 492, angle: -0.12, w: 50, h: 23, color: '#7d6a55' },
+      { x: 320, y: 495, angle: 0, w: 50, h: 23, color: '#5f8f5a' },
+      { x: 1080, y: 496, angle: 0.06, w: 50, h: 23, color: '#8f6fb8' }
+    ],
+    traffic: [
+      laneFwd(1400, 110, { color: '#c94f4f', spec: 'berline', phase: 0.4, gap: 3 })
+    ]
+  }),
+
+  // 7 — créneau plus étroit, trafic dans les deux sens
+  Object.assign(streetWorld(1400, 780), {
+    name: 'Créneau sous pression',
+    desc: 'Créneau plus étroit entre deux voitures de travers, et des voitures qui passent dans les deux sens.',
+    car: 'break',
+    start: { x: 180, y: 615, angle: 0 },
+    spots: [ { x: 700, y: 495, w: 92, h: 34, angle: 0 } ],
+    target: 0,
+    parked: [
+      { x: 636, y: 497, angle: 0.18, w: 50, h: 23, color: '#9aa0a8' },
+      { x: 766, y: 492, angle: -0.16, w: 50, h: 23, color: '#7d6a55' },
+      { x: 300, y: 495, angle: -0.05, w: 50, h: 23, color: '#5f8f5a' },
+      { x: 1100, y: 496, angle: 0.08, w: 50, h: 23, color: '#8f6fb8' }
+    ],
+    traffic: [
+      laneFwd(1400, 120, { color: '#c94f4f', spec: 'berline', phase: 0.2, gap: 2 }),
+      laneBwd(1400, 100, { color: '#4a90d9', spec: 'citadine', phase: 0.65, gap: 3 })
+    ]
+  }),
+
+  // 8 — boss : utilitaire, créneau serré, trafic dense
+  Object.assign(streetWorld(1500, 780), {
+    name: 'Le boss du parking',
+    desc: 'Créneau serré avec un utilitaire encombrant, voitures mal garées des deux côtés, trafic dense. Bonne chance.',
+    car: 'utilitaire',
+    start: { x: 180, y: 630, angle: 0 },
+    spots: [ { x: 750, y: 495, w: 104, h: 38, angle: 0 } ],
+    target: 0,
+    parked: [
+      { x: 676, y: 497, angle: 0.22, w: 54, h: 24, color: '#9aa0a8' },
+      { x: 824, y: 491, angle: -0.20, w: 54, h: 24, color: '#7d6a55' },
+      { x: 320, y: 495, angle: 0, w: 54, h: 24, color: '#5f8f5a' },
+      { x: 1180, y: 496, angle: -0.06, w: 54, h: 24, color: '#8f6fb8' }
+    ],
+    traffic: [
+      laneFwd(1500, 130, { color: '#c94f4f', spec: 'berline', phase: 0.1, gap: 2 }),
+      laneBwd(1500, 115, { color: '#4a90d9', spec: 'citadine', phase: 0.45, gap: 2.8 }),
+      laneFwd(1500, 95, { color: '#5f8f5a', spec: 'break', phase: 0.8, gap: 3.2 })
+    ]
+  })
 ];

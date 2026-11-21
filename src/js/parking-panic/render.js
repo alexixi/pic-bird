@@ -2,11 +2,12 @@
 
 /* ============================================================
    Parking Panic — rendu du monde (canvas 2D)
-   Caméra qui suit le joueur, routes, places de parking, voitures
-   garées, circulation et voiture du joueur (feux selon l'état).
+   Caméra rapprochée qui suit le joueur ; sol, routes, blocs
+   bloquants (bâtiments, trottoirs, bordures, murs), décor (arbres,
+   lampadaires, passages piétons), places de parking et voitures.
    ============================================================ */
 
-const VIEW_W = 1150, VIEW_H = 700; // zone du monde visible (unités)
+const VIEW_W = 860, VIEW_H = 540; // zone du monde visible (unités)
 
 function rr(c, x, y, w, h, r) {
   r = Math.min(r, w / 2, h / 2);
@@ -69,6 +70,56 @@ function drawCar(c, x, y, angle, L, W, opts) {
   }
 }
 
+// ---------- Blocs bloquants ----------
+// b : { x, y, w, h, kind } — x,y = coin haut-gauche
+function drawBlock(c, b) {
+  const x = b.x, y = b.y, w = b.w, h = b.h;
+  if (b.kind === 'building') {
+    c.fillStyle = '#454a58'; c.fillRect(x, y, w, h);
+    c.strokeStyle = 'rgba(0,0,0,0.5)'; c.lineWidth = 3; c.strokeRect(x, y, w, h);
+    // fenêtres, certaines allumées (déteterministe)
+    const cols = Math.floor(w / 70), rows = Math.max(1, Math.floor(h / 60));
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        c.fillStyle = (i * 7 + j * 13) % 4 === 0 ? '#e8d47a' : '#2e3340';
+        c.fillRect(x + 18 + i * 70, y + 14 + j * 60, 34, 30);
+      }
+    }
+  } else if (b.kind === 'sidewalk') {
+    c.fillStyle = '#83868f'; c.fillRect(x, y, w, h);
+    c.strokeStyle = 'rgba(0,0,0,0.22)'; c.lineWidth = 1.5;
+    for (let gx = x + 40; gx < x + w; gx += 40) { c.beginPath(); c.moveTo(gx, y); c.lineTo(gx, y + h); c.stroke(); }
+    for (let gy = y + 40; gy < y + h; gy += 40) { c.beginPath(); c.moveTo(x, gy); c.lineTo(x + w, gy); c.stroke(); }
+    c.strokeStyle = '#5f6168'; c.lineWidth = 4; c.strokeRect(x + 2, y + 2, w - 4, h - 4);
+  } else if (b.kind === 'curb') {
+    c.fillStyle = '#7d808a'; c.fillRect(x, y, w, h);
+    c.strokeStyle = '#d9b23a'; c.lineWidth = 3; c.strokeRect(x + 3, y + 3, w - 6, h - 6);
+  } else if (b.kind === 'wall') {
+    c.fillStyle = '#33363f'; c.fillRect(x, y, w, h);
+    c.fillStyle = '#4a4e5a'; c.fillRect(x, y, w, 8);
+    c.strokeStyle = 'rgba(0,0,0,0.5)'; c.lineWidth = 2; c.strokeRect(x, y, w, h);
+  } else { // grass / défaut
+    c.fillStyle = '#5d7a4c'; c.fillRect(x, y, w, h);
+  }
+}
+
+// ---------- Décor ----------
+// d : { type: 'tree'|'lamp'|'zebra', x, y, w, h, r }
+function drawDecor(c, d) {
+  if (d.type === 'tree') {
+    c.fillStyle = '#4a3826'; c.fillRect(d.x - 2.5, d.y - 2, 5, 10);
+    c.fillStyle = '#3f6b35'; c.beginPath(); c.arc(d.x, d.y - 8, d.r || 11, 0, Math.PI * 2); c.fill();
+    c.fillStyle = '#4d8242'; c.beginPath(); c.arc(d.x - 4, d.y - 12, (d.r || 11) * 0.6, 0, Math.PI * 2); c.fill();
+  } else if (d.type === 'lamp') {
+    c.strokeStyle = '#2c2e36'; c.lineWidth = 3;
+    c.beginPath(); c.moveTo(d.x, d.y + 10); c.lineTo(d.x, d.y - 12); c.stroke();
+    c.fillStyle = '#f0e6b0'; c.beginPath(); c.arc(d.x, d.y - 14, 4, 0, Math.PI * 2); c.fill();
+  } else if (d.type === 'zebra') {
+    c.fillStyle = 'rgba(255,255,255,0.75)';
+    for (let sx = d.x + 6; sx < d.x + d.w - 6; sx += 16) c.fillRect(sx, d.y + 8, 8, d.h - 16);
+  }
+}
+
 function drawGame(c, CW, CH, S) {
   c.setTransform(1, 0, 0, 1, 0, 0);
   c.fillStyle = '#20222a';
@@ -85,18 +136,11 @@ function drawGame(c, CW, CH, S) {
   c.setTransform(s, 0, 0, s, CW / 2 - camX * s, CH / 2 - camY * s);
 
   const w = level.world;
-  // sol du parking
-  c.fillStyle = '#4b4e58';
+  // sol (asphalte de parking ou pelouse de rue)
+  c.fillStyle = level.ground || '#4b4e58';
   c.fillRect(0, 0, w.w, w.h);
   c.strokeStyle = '#2c2e36'; c.lineWidth = 6;
   c.strokeRect(0, 0, w.w, w.h);
-  // décors (trottoirs, etc.)
-  for (const d of level.decor || []) {
-    c.fillStyle = d.color || '#666a74';
-    c.fillRect(d.x, d.y, d.w, d.h);
-    c.strokeStyle = 'rgba(0,0,0,0.3)'; c.lineWidth = 2;
-    c.strokeRect(d.x, d.y, d.w, d.h);
-  }
   // routes : asphalte foncé, ligne médiane jaune, bandes de rive
   for (const r of level.roads) {
     c.fillStyle = '#3a3d46';
@@ -110,6 +154,12 @@ function drawGame(c, CW, CH, S) {
     c.stroke();
     c.setLineDash([]);
   }
+  // passages piétons (sur la chaussée)
+  for (const d of level.decor || []) if (d.type === 'zebra') drawDecor(c, d);
+  // blocs bloquants (bâtiments, trottoirs, bordures, murs)
+  for (const b of level.blocks || []) drawBlock(c, b);
+  // autre décor (arbres, lampadaires)
+  for (const d of level.decor || []) if (d.type !== 'zebra') drawDecor(c, d);
   // places de parking (la cible pulse en vert)
   level.spots.forEach((sp, i) => {
     const target = i === level.target;
