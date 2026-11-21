@@ -1,0 +1,50 @@
+{
+  "seq": 239,
+  "received_at": "2026-11-21T14:37:59.414478+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "ac1Zkik2e",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/render.js",
+      "old_string": [
+        "  } else if (d.type === 'zebra') {",
+        "    c.fillStyle = 'rgba(255,255,255,0.75)';",
+        "    for (let sx = d.x + 6; sx < d.x + d.w - 6; sx += 16) c.fillRect(sx, d.y + 8, 8, d.h - 16);",
+        "  }",
+        "}"
+      ],
+      "new_string": [
+        "  } else if (d.type === 'zebra') {",
+        "    c.fillStyle = 'rgba(255,255,255,0.75)';",
+        "    for (let sx = d.x + 6; sx < d.x + d.w - 6; sx += 16) c.fillRect(sx, d.y + 8, 8, d.h - 16);",
+        "  } else if (d.type === 'bush') {",
+        "    c.fillStyle = '#3f6b35'; c.beginPath(); c.arc(d.x, d.y, 7, 0, Math.PI * 2); c.fill();",
+        "    c.fillStyle = '#4d8242'; c.beginPath(); c.arc(d.x + 5, d.y - 3, 5, 0, Math.PI * 2); c.fill();",
+        "  } else if (d.type === 'arrow') {",
+        "    // flèche de sens peinte sur la chaussée",
+        "    c.save(); c.translate(d.x, d.y); c.rotate(d.angle || 0);",
+        "    c.fillStyle = 'rgba(255,255,255,0.55)';",
+        "    c.fillRect(-12, -2.5, 18, 5);",
+        "    c.beginPath(); c.moveTo(14, 0); c.lineTo(2, -7); c.lineTo(2, 7); c.closePath(); c.fill();",
+        "    c.restore();",
+        "  }",
+        "}"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/render.js",
+      "lines_changed": 15,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

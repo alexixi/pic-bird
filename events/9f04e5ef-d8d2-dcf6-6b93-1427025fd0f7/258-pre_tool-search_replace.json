@@ -1,0 +1,31 @@
+{
+  "seq": 258,
+  "received_at": "2026-11-21T14:40:19.262827+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "eFDlgIJiQ",
+    "tool_input": {
+      "file_path": "/tmp/pp-test.js",
+      "old_string": [
+        "  // la place cible ne mord aucun bloc bloquant (sinon ingérable)",
+        "  const spotObb = { x: spot.x, y: spot.y, angle: spot.angle, L: spot.w, W: spot.h };",
+        "  ok(blocks.every((b) => satCollide(spotObb, b) === null), `N${i + 1} la place cible est hors des blocs`);"
+      ],
+      "new_string": [
+        "  // la place cible ne mord aucun bloc bloquant (sinon ingérable)",
+        "  const spotObb = { x: spot.x, y: spot.y, angle: spot.angle, L: spot.w, W: spot.h };",
+        "  ok(blocks.every((b) => satCollide(spotObb, b) === null), `N${i + 1} la place cible est hors des blocs`);",
+        "  // toutes les places hors des blocs et sans chevauchement entre elles",
+        "  ok(lv.spots.every((sp) => blocks.every((b) => satCollide({ x: sp.x, y: sp.y, angle: sp.angle, L: sp.w, W: sp.h }, b) === null)), `N${i + 1} toutes les places sont hors des blocs`);",
+        "  ok(lv.spots.every((sp, j) => lv.spots.every((sq, k) => k <= j || satCollide({ x: sp.x, y: sp.y, angle: sp.angle, L: sp.w, W: sp.h }, { x: sq.x, y: sq.y, angle: sq.angle, L: sq.w, W: sq.h }) === null)), `N${i + 1} les places ne se chevauchent pas`);"
+      ],
+      "replace_all": false
+    }
+  }
+}

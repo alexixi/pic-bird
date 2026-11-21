@@ -1,0 +1,51 @@
+{
+  "seq": 243,
+  "received_at": "2026-11-21T14:38:19.713723+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "GbWCwSS4l",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "old_string": [
+        "    decor: [",
+        "      { type: 'zebra', x: 260, y: 530, w: 70, h: 110 },",
+        "      { type: 'zebra', x: W - 330, y: 530, w: 70, h: 110 },",
+        "      { type: 'tree', x: 120, y: 410 }, { type: 'tree', x: 480, y: 415 },",
+        "      { type: 'tree', x: 900, y: 405 }, { type: 'tree', x: W - 160, y: 412 },",
+        "      { type: 'lamp', x: 420, y: 462 }, { type: 'lamp', x: 760, y: 462 },",
+        "      { type: 'lamp', x: 1100, y: 462 }",
+        "    ]"
+      ],
+      "new_string": [
+        "    decor: [",
+        "      { type: 'zebra', x: 260, y: 530, w: 70, h: 110 },",
+        "      { type: 'zebra', x: W - 330, y: 530, w: 70, h: 110 },",
+        "      // flèches de sens peintes sur les voies",
+        "      { type: 'arrow', x: 420, y: 560, angle: 0 }, { type: 'arrow', x: 920, y: 560, angle: 0 },",
+        "      { type: 'arrow', x: 680, y: 610, angle: Math.PI }, { type: 'arrow', x: 1180, y: 610, angle: Math.PI },",
+        "      { type: 'tree', x: 120, y: 410 }, { type: 'tree', x: 480, y: 415 },",
+        "      { type: 'tree', x: 900, y: 405 }, { type: 'tree', x: W - 160, y: 412 },",
+        "      { type: 'bush', x: 220, y: 392 }, { type: 'bush', x: 600, y: 396 },",
+        "      { type: 'bush', x: 1000, y: 390 }, { type: 'bush', x: W - 260, y: 394 },",
+        "      { type: 'lamp', x: 420, y: 462 }, { type: 'lamp', x: 760, y: 462 },",
+        "      { type: 'lamp', x: 1100, y: 462 }",
+        "    ]"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "lines_changed": 13,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

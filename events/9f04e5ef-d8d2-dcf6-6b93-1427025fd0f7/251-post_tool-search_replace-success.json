@@ -1,0 +1,45 @@
+{
+  "seq": 251,
+  "received_at": "2026-11-21T14:39:23.729110+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "2hCnJbN7Z",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "old_string": [
+        "  // 1 — tutoriel : grande place libre au milieu d'un parking",
+        "  Object.assign(withParkingDecor(parkingWorld(1300, 850)), {",
+        "    name: 'Première place',",
+        "    desc: 'Un grand parking : garez la citadine dans la place verte.',",
+        "    car: 'citadine',",
+        "    start: { x: 650, y: 720, angle: -Math.PI / 2 },",
+        "    blocks: undefined, // complété ci-dessous (Object.assign ignore undefined ? non : on fusionne)",
+        "    spots: ["
+      ],
+      "new_string": [
+        "  // 1 — tutoriel : grande place libre au milieu d'un parking",
+        "  Object.assign(withIsland(withParkingDecor(parkingWorld(1300, 850)), 1010, 590, 130, 70), {",
+        "    name: 'Première place',",
+        "    desc: 'Un grand parking : garez la citadine dans la place verte.',",
+        "    car: 'citadine',",
+        "    start: { x: 650, y: 720, angle: -Math.PI / 2 },",
+        "    spots: ["
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "lines_changed": 8,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

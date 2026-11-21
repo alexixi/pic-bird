@@ -1,0 +1,89 @@
+{
+  "seq": 196,
+  "received_at": "2026-11-21T14:16:13.696824+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "vibe.todo",
+    "tool_call_id": "mt37gV2mM",
+    "tool_input": {
+      "action": "write",
+      "todos": [
+        {
+          "content": "Fix chocs : seuil 35 u/s + cooldown 0.6s + rebond",
+          "id": "1",
+          "priority": "high",
+          "status": "completed"
+        },
+        {
+          "content": "Monde borné : blocs de collision + rendu (trottoirs/bâtiments/murs)",
+          "id": "2",
+          "priority": "high",
+          "status": "completed"
+        },
+        {
+          "content": "Caméra rapprochée (860x540) + environnement rempli (arbres, lampadaires, zébras, voitures)",
+          "id": "3",
+          "priority": "high",
+          "status": "completed"
+        },
+        {
+          "content": "8 niveaux réécrits : archétypes parking/rue, courbe de difficulté rééquilibrée",
+          "id": "4",
+          "priority": "high",
+          "status": "completed"
+        },
+        {
+          "content": "Tests node (confinement, places hors blocs, chocs, SAT) + commits + docs",
+          "id": "5",
+          "priority": "high",
+          "status": "completed"
+        }
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "message": "Updated 5 todos",
+      "todos": [
+        {
+          "content": "Fix chocs : seuil 35 u/s + cooldown 0.6s + rebond",
+          "id": "1",
+          "priority": "high",
+          "status": "completed"
+        },
+        {
+          "content": "Monde borné : blocs de collision + rendu (trottoirs/bâtiments/murs)",
+          "id": "2",
+          "priority": "high",
+          "status": "completed"
+        },
+        {
+          "content": "Caméra rapprochée (860x540) + environnement rempli (arbres, lampadaires, zébras, voitures)",
+          "id": "3",
+          "priority": "high",
+          "status": "completed"
+        },
+        {
+          "content": "8 niveaux réécrits : archétypes parking/rue, courbe de difficulté rééquilibrée",
+          "id": "4",
+          "priority": "high",
+          "status": "completed"
+        },
+        {
+          "content": "Tests node (confinement, places hors blocs, chocs, SAT) + commits + docs",
+          "id": "5",
+          "priority": "high",
+          "status": "completed"
+        }
+      ],
+      "total_count": 5,
+      "verb": "Updated"
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "seq": 199,
+  "received_at": "2026-11-21T14:31:11.538551+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "VjpkhzII0",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/render.js",
+      "old_string": "const VIEW_W = 860, VIEW_H = 540; // zone du monde visible (unités)",
+      "new_string": "const VIEW_W = 720, VIEW_H = 450; // zone du monde visible (unités)",
+      "replace_all": false
+    }
+  }
+}

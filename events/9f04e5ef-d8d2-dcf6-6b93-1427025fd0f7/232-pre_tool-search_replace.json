@@ -1,0 +1,27 @@
+{
+  "seq": 232,
+  "received_at": "2026-11-21T14:32:05.457490+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "D8ZE4xPjO",
+    "tool_input": {
+      "file_path": "/tmp/pp-test.js",
+      "old_string": [
+        "  const inRoad = lv.roads.some((r) => sp.x >= r.x && sp.x <= r.x + r.w && sp.y >= r.y && sp.y <= r.y + r.h);",
+        "  ok(inRoad || !lv.roads.length || lv.roads.every((r) => r.h > 120), `N${i + 1} la place cible est sur une zone roulable`);"
+      ],
+      "new_string": [
+        "  const inRoad = lv.roads.some((r) => sp.x >= r.x && sp.x <= r.x + r.w && sp.y >= r.y && sp.y <= r.y + r.h);",
+        "  const isParkingLot = lv.ground === '#4b4e58'; // archétype parking : tout l'intérieur est roulable",
+        "  ok(inRoad || isParkingLot, `N${i + 1} la place cible est sur une zone roulable`);"
+      ],
+      "replace_all": false
+    }
+  }
+}

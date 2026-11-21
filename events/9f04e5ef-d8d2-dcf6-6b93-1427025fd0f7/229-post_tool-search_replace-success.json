@@ -1,0 +1,48 @@
+{
+  "seq": 229,
+  "received_at": "2026-11-21T14:31:50.064284+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "4Y6vre3PZ",
+    "tool_input": {
+      "file_path": "/tmp/pp-test.js",
+      "old_string": "// ---------- Physique ----------",
+      "new_string": [
+        "// ---------- Géométrie des voies (étroites) et des places ----------",
+        "console.log('Géométrie :');",
+        "PARKING_LEVELS.forEach((lv, i) => {",
+        "  const road = lv.roads.find((r) => r.h <= 120 && r.w >= r.h * 4); // la chaussée",
+        "  if (road) ok(road.h <= 110, `N${i + 1} chaussée étroite (h=${road.h})`);",
+        "  // chaque place est dans une bande roulable (road) et hors des blocs",
+        "  const sp = lv.spots[lv.target];",
+        "  const inRoad = lv.roads.some((r) => sp.x >= r.x && sp.x <= r.x + r.w && sp.y >= r.y && sp.y <= r.y + r.h);",
+        "  ok(inRoad || !lv.roads.length || lv.roads.every((r) => r.h > 120), `N${i + 1} la place cible est sur une zone roulable`);",
+        "  // les voies de circulation passent dans la chaussée",
+        "  for (const tr of lv.traffic) {",
+        "    for (const [tx, ty] of tr.path) {",
+        "      const onRoad = lv.roads.some((r) => tx >= r.x && tx <= r.x + r.w && ty >= r.y && ty <= r.y + r.h);",
+        "      ok(onRoad, `N${i + 1} voie (${tx},${ty}) sur la chaussée`);",
+        "    }",
+        "  }",
+        "});",
+        "",
+        "// ---------- Physique ----------"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/tmp/pp-test.js",
+      "lines_changed": 19,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

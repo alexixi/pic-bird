@@ -1,0 +1,30 @@
+{
+  "seq": 208,
+  "received_at": "2026-11-21T14:31:40.342062+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "knOWtgGLI",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "old_string": [
+        "      { x: 632, y: 497, angle: 0.10, w: 46, h: 22, color: '#9aa0a8' },",
+        "      { x: 768, y: 493, angle: -0.09, w: 46, h: 22, color: '#7d6a55' },",
+        "      { x: 300, y: 495, angle: 0, w: 46, h: 22, color: '#5f8f5a' },",
+        "      { x: 1100, y: 495, angle: 0.05, w: 46, h: 22, color: '#8f6fb8' }"
+      ],
+      "new_string": [
+        "      { x: 632, y: 502, angle: 0.10, w: 46, h: 22, color: '#9aa0a8' },",
+        "      { x: 768, y: 498, angle: -0.09, w: 46, h: 22, color: '#7d6a55' },",
+        "      { x: 300, y: 500, angle: 0, w: 46, h: 22, color: '#5f8f5a' },",
+        "      { x: 1100, y: 500, angle: 0.05, w: 46, h: 22, color: '#8f6fb8' }"
+      ],
+      "replace_all": false
+    }
+  }
+}
