@@ -112,9 +112,9 @@ function streetWorld(W, H) {
     decor: [
       { type: 'zebra', x: 260, y: 530, w: 70, h: 110 },
       { type: 'zebra', x: W - 330, y: 530, w: 70, h: 110 },
-      // flèches de sens peintes sur les voies
-      { type: 'arrow', x: 420, y: 560, angle: 0 }, { type: 'arrow', x: 920, y: 560, angle: 0 },
-      { type: 'arrow', x: 680, y: 610, angle: Math.PI }, { type: 'arrow', x: 1180, y: 610, angle: Math.PI },
+      // flèches de sens peintes sur les voies (roule à droite : → en bas, ← en haut)
+      { type: 'arrow', x: 420, y: 610, angle: 0 }, { type: 'arrow', x: 920, y: 610, angle: 0 },
+      { type: 'arrow', x: 680, y: 560, angle: Math.PI }, { type: 'arrow', x: 1180, y: 560, angle: Math.PI },
       { type: 'tree', x: 120, y: 410 }, { type: 'tree', x: 480, y: 415 },
       { type: 'tree', x: 900, y: 405 }, { type: 'tree', x: W - 160, y: 412 },
       { type: 'bush', x: 220, y: 392 }, { type: 'bush', x: 600, y: 396 },
@@ -125,10 +125,11 @@ function streetWorld(W, H) {
   };
 }
 
-// Voies de circulation (aller simple, la voiture sort et revient) :
-// y = 560 vers la droite, y = 610 vers la gauche.
-function laneFwd(W, speed, opts) { return Object.assign({ path: [[80, 560], [W - 80, 560]], loop: false, speed }, opts); }
-function laneBwd(W, speed, opts) { return Object.assign({ path: [[W - 80, 610], [80, 610]], loop: false, speed }, opts); }
+// Voies de circulation (aller simple, la voiture sort et revient).
+// Sens français (on roule à droite) : la voie → est en bas (y=610),
+// la voie ← en haut (y=560).
+function laneFwd(W, speed, opts) { return Object.assign({ path: [[80, 610], [W - 80, 610]], loop: false, speed }, opts); }
+function laneBwd(W, speed, opts) { return Object.assign({ path: [[W - 80, 560], [80, 560]], loop: false, speed }, opts); }
 
 // ---------- Niveaux (du plus facile au plus dur) ----------
 const PARKING_LEVELS = [
