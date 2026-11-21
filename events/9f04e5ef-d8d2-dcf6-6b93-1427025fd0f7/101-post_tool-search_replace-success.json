@@ -1,0 +1,38 @@
+{
+  "seq": 101,
+  "received_at": "2026-11-21T11:52:23.715408+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "2V83oEWC9",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/game.js",
+      "old_string": [
+        "        const c = satCollide(player, t);",
+        "        if (c) {",
+        "          player.x += c.nx * c.depth;",
+        "          player.y += c.ny * c.depth;"
+      ],
+      "new_string": [
+        "        const c = satCollide(player, t);",
+        "        if (c) {",
+        "          player.x -= c.nx * c.depth;",
+        "          player.y -= c.ny * c.depth;"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/game.js",
+      "lines_changed": 4,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

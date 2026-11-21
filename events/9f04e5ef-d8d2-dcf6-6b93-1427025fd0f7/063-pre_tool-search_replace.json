@@ -1,0 +1,45 @@
+{
+  "seq": 63,
+  "received_at": "2026-11-21T11:41:38.815256+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "KS8UZwmKS",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/game.js",
+      "old_string": [
+        "function levelSuccess() {",
+        "  playing = false;",
+        "  const score = Math.round((time + shocks * SHOCK_PENALTY) * 10) / 10;",
+        "  toast('Place validée ! (' + score + ' s)');",
+        "}"
+      ],
+      "new_string": [
+        "function levelSuccess() {",
+        "  playing = false;",
+        "  const score = Math.round((time + shocks * SHOCK_PENALTY) * 10) / 10;",
+        "  if (save.done[levelIdx] == null || score < save.done[levelIdx]) save.done[levelIdx] = score;",
+        "  save.unlocked = Math.max(save.unlocked, Math.min(levelIdx + 1, PARKING_LEVELS.length - 1));",
+        "  const n = doneCount();",
+        "  const newlyCleared = !save.cleared && n >= NEED_DONE;",
+        "  if (newlyCleared) save.cleared = true;",
+        "  storeSave();",
+        "  el.winTitle.textContent = newlyCleared ? 'Jeu réussi !' : 'Niveau réussi !';",
+        "  el.winText.textContent = 'Niveau ' + (levelIdx + 1) + ' garé en ' + score.toFixed(1) + ' s (' +",
+        "    shocks + ' choc' + (shocks > 1 ? 's' : '') + '). ' + n + '/' + PARKING_LEVELS.length +",
+        "    ' niveaux réussis' + (newlyCleared",
+        "      ? ' : le jeu est réussi, la suite du parcours est débloquée !'",
+        "      : ' — il en faut ' + NEED_DONE + ' pour réussir le jeu et débloquer la suite.');",
+        "  el.winNext.style.display = levelIdx + 1 < PARKING_LEVELS.length ? '' : 'none';",
+        "  el.winOverlay.classList.remove('hidden');",
+        "}"
+      ],
+      "replace_all": false
+    }
+  }
+}

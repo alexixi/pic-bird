@@ -1,0 +1,42 @@
+{
+  "seq": 90,
+  "received_at": "2026-11-21T11:50:25.953300+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "YFLtTLuJs",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "old_string": [
+        "const CAR_SPECS = {",
+        "  citadine:   { nom: 'Citadine',   L: 42, W: 20, accel: 80, brake: 125, maxF: 175, maxR: 70, maxSteer: 0.62, steerSpeed: 5.4, drag: 0.90, color: '#e8a13a' },",
+        "  berline:    { nom: 'Berline',    L: 48, W: 21, accel: 70, brake: 115, maxF: 190, maxR: 75, maxSteer: 0.53, steerSpeed: 4.5, drag: 0.85, color: '#3a7bd5' },",
+        "  break:      { nom: 'Break',      L: 53, W: 22, accel: 62, brake: 108, maxF: 180, maxR: 70, maxSteer: 0.47, steerSpeed: 4.0, drag: 0.80, color: '#8a5fd0' },",
+        "  utilitaire: { nom: 'Utilitaire', L: 64, W: 27, accel: 47, brake: 96,  maxF: 140, maxR: 52, maxSteer: 0.40, steerSpeed: 3.0, drag: 0.75, color: '#d0563a' }",
+        "};"
+      ],
+      "new_string": [
+        "const CAR_SPECS = {",
+        "  citadine:   { nom: 'Citadine',   L: 42, W: 20, accel: 80, brake: 125, maxF: 175, maxR: 70, maxSteer: 0.62, steerSpeed: 5.4, drag: 0.35, color: '#e8a13a' },",
+        "  berline:    { nom: 'Berline',    L: 48, W: 21, accel: 70, brake: 115, maxF: 190, maxR: 75, maxSteer: 0.53, steerSpeed: 4.5, drag: 0.32, color: '#3a7bd5' },",
+        "  break:      { nom: 'Break',      L: 53, W: 22, accel: 62, brake: 108, maxF: 180, maxR: 70, maxSteer: 0.47, steerSpeed: 4.0, drag: 0.30, color: '#8a5fd0' },",
+        "  utilitaire: { nom: 'Utilitaire', L: 64, W: 27, accel: 47, brake: 96,  maxF: 140, maxR: 52, maxSteer: 0.40, steerSpeed: 3.0, drag: 0.28, color: '#d0563a' }",
+        "};"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "lines_changed": 6,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

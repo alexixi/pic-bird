@@ -1,0 +1,37 @@
+{
+  "seq": 77,
+  "received_at": "2026-11-21T11:43:22.585060+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "mxdVwLd85",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/README.md",
+      "old_string": [
+        "### Étape 5 — Troisième jeu",
+        "- Concevoir et implémenter un troisième mini-jeu, débloqué après Plan de Table."
+      ],
+      "new_string": [
+        "### Étape 5 — Troisième jeu (fait)",
+        "- Parking Panic implémenté dans `src/js/parking-panic/` : 8 niveaux, 4 voitures",
+        "  de tailles/maniabilités différentes, voitures mal garées et circulation",
+        "  perturbatrice, déblocage après 2 niveaux réussis du Plan de Table, jeu",
+        "  « réussi » à 5 niveaux pour débloquer la suite."
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/README.md",
+      "lines_changed": 5,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

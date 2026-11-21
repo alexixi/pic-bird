@@ -1,0 +1,36 @@
+{
+  "seq": 111,
+  "received_at": "2026-11-21T11:52:41.469849+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "Op1mZ7xYJ",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "old_string": [
+        "   - spots   : places de parking dessinées ; target = index de la",
+        "               place à réussir (contour vert)"
+      ],
+      "new_string": [
+        "   - spots   : places de parking dessinées ; target = index de la",
+        "               place à réussir (contour vert). w = longueur de la place",
+        "               (le long de l'axe local x, donc du cap de la voiture",
+        "               garée), h = largeur de la place."
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "lines_changed": 4,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "seq": 89,
+  "received_at": "2026-11-21T11:50:25.941224+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "DLXA7NKIN",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/traffic.js",
+      "old_string": [
+        "  const t = {",
+        "    def, pts, cum, total,",
+        "    spec: CAR_SPECS[def.spec || 'berline'],",
+        "    dist: (def.phase || 0) * total,"
+      ],
+      "new_string": [
+        "  const t = {",
+        "    def, pts, cum, total,",
+        "    spec: CAR_SPECS[def.spec || 'berline'],",
+        "    dist: (def.phase || 0) * total,",
+        "    L: CAR_SPECS[def.spec || 'berline'].L, W: CAR_SPECS[def.spec || 'berline'].W,"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/traffic.js",
+      "lines_changed": 5,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

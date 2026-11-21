@@ -1,0 +1,20 @@
+{
+  "seq": 106,
+  "received_at": "2026-11-21T11:52:41.054641+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "T8RiNm13o",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "old_string": "    spots: [ { x: 650, y: 330, w: 34, h: 70, angle: Math.PI / 2 } ],",
+      "new_string": "    spots: [ { x: 650, y: 330, w: 70, h: 34, angle: Math.PI / 2 } ],",
+      "replace_all": false
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "seq": 14,
+  "received_at": "2026-11-21T11:13:53.329741+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "2HMYzaixt",
+    "tool_input": {
+      "command": "cd /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird && wc -l src/js/catch-bird/* src/js/plan-de-table/* && head -60 src/js/catch-bird/game.js && echo \"=== index catch-bird ===\" && head -50 src/js/catch-bird/index.html"
+    }
+  }
+}

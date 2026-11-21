@@ -1,0 +1,25 @@
+{
+  "seq": 91,
+  "received_at": "2026-11-21T11:51:02.525228+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "mgnGaqkgW",
+    "tool_input": {
+      "file_path": "/tmp/pp-test.js",
+      "old_string": "  ok(spot.w >= spec.W && spot.h >= spec.L, `N${i + 1} la place cible (${spot.w}x${spot.h}) accueille la voiture (${spec.W}x${spec.L})`);",
+      "new_string": [
+        "  // la longueur de la voiture se couche le long du \"grand axe\" de la place",
+        "  const alongW = Math.abs(Math.sin(spot.angle)) < 0.5;",
+        "  const fits = alongW ? (spot.w >= spec.L && spot.h >= spec.W) : (spot.h >= spec.L && spot.w >= spec.W);",
+        "  ok(fits, `N${i + 1} la place cible (${spot.w}x${spot.h}) accueille la voiture (${spec.W}x${spec.L})`);"
+      ],
+      "replace_all": false
+    }
+  }
+}

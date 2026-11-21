@@ -1,0 +1,34 @@
+{
+  "seq": 130,
+  "received_at": "2026-11-21T11:56:51.749514+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "Hyi9FNOv8",
+    "tool_input": {
+      "command": "node /tmp/pp-test.js 2>&1 | tail -5"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "node /tmp/pp-test.js 2>&1 | tail -5",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "  OK  elle revient après le délai",
+        "Simulation niveau 1 (autopilote) :",
+        "  OK  autopilote a garé la voiture (pos 900.0,306.6, cap -1.57, chocs=0)",
+        "",
+        "TOUS LES TESTS PASSENT",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

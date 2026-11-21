@@ -1,0 +1,34 @@
+{
+  "seq": 104,
+  "received_at": "2026-11-21T11:52:41.045223+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "7aYVD5fjr",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/levels.js",
+      "old_string": [
+        "    spots: [",
+        "      { x: 760, y: 300, w: 38, h: 74, angle: Math.PI / 2 },",
+        "      { x: 900, y: 300, w: 38, h: 74, angle: Math.PI / 2 },",
+        "      { x: 1040, y: 300, w: 38, h: 74, angle: Math.PI / 2 }",
+        "    ],",
+        "    target: 1,"
+      ],
+      "new_string": [
+        "    spots: [",
+        "      { x: 760, y: 300, w: 74, h: 38, angle: Math.PI / 2 },",
+        "      { x: 900, y: 300, w: 74, h: 38, angle: Math.PI / 2 },",
+        "      { x: 1040, y: 300, w: 74, h: 38, angle: Math.PI / 2 }",
+        "    ],",
+        "    target: 1,"
+      ],
+      "replace_all": false
+    }
+  }
+}

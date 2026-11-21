@@ -1,0 +1,119 @@
+{
+  "seq": 18,
+  "received_at": "2026-11-21T11:18:22.609317+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "ui.ask_user_question",
+    "tool_call_id": "rQ6DX6lv5",
+    "tool_input": {
+      "footerNote": "Choix que je fixe par défaut si tu ne dis rien : les chocs avec les autres voitures = rebond + pénalité de chrono + compteur de chocs affiché (pas d'échec dur) ; la voiture du niveau grandit et devient moins maniable (citadine → berline → break → utilitaire) ; le jeu 3 vérifie la sauvegarde localStorage de Plan de Table et affiche un écran verrouillé tant que le critère choisi n'est pas rempli.",
+      "questions": [
+        {
+          "header": "Nom du jeu",
+          "options": [
+            {
+              "description": "Dans la continuité de la marque Pic'Bird",
+              "label": "Park'Bird"
+            },
+            {
+              "description": "Ton arcade, collisions et circulation",
+              "label": "Parking Panic"
+            },
+            {
+              "description": "Plus sobre, style cours de conduite",
+              "label": "Pro du Parking"
+            }
+          ],
+          "question": "Comment s'appelle le troisième jeu ?"
+        },
+        {
+          "header": "Déblocage",
+          "options": [
+            {
+              "description": "Les 3 niveaux du Plan de Table doivent être faits (cohérent avec « réussir le jeu » du hub)",
+              "label": "Tous les niveaux réussis"
+            },
+            {
+              "description": "Finir le niveau 3 suffit à débloquer le jeu 3",
+              "label": "Dernier niveau réussi"
+            },
+            {
+              "description": "Seuil partiel, plus permissif",
+              "label": "Au moins 2 niveaux sur 3"
+            }
+          ],
+          "question": "Le jeu 3 se débloque quand le jeu 2 (Plan de Table) est considéré comme réussi. Quel critère ?"
+        },
+        {
+          "header": "Niveaux",
+          "options": [
+            {
+              "description": "Progression séquentielle comme Plan de Table ; 4 réussites = jeu réussi",
+              "label": "6 niveaux, 4 à réussir"
+            },
+            {
+              "description": "Plus court, 3 réussites suffisent",
+              "label": "5 niveaux, 3 à réussir"
+            },
+            {
+              "description": "Compact et exigeant",
+              "label": "4 niveaux, tous à réussir"
+            },
+            {
+              "description": "Plus long, 5 réussites suffisent",
+              "label": "8 niveaux, 5 à réussir"
+            }
+          ],
+          "question": "Combien de niveaux de parking, et combien faut-il en réussir pour que le jeu soit marqué « réussi » (ce qui débloquera le futur jeu 4) ?"
+        },
+        {
+          "header": "Commandes",
+          "options": [
+            {
+              "description": "Freiner à l'arrêt (↓ quand vitesse ~0) passe en marche arrière automatiquement — mode AV/AR affiché",
+              "label": "Boîte auto"
+            },
+            {
+              "description": "On bascule explicitement AV/AR avec R ; ↓ ne fait que freiner",
+              "label": "Touche R = marche arrière"
+            }
+          ],
+          "question": "Quelles commandes exactes ? (volant ←/→ et frein à main Espace dans tous les cas ; ↑ = pédale accélérateur, ↓ = pédale frein)"
+        }
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "answers": [
+        {
+          "answer": "Parking Panic",
+          "isOther": false,
+          "question": "Comment s'appelle le troisième jeu ?"
+        },
+        {
+          "answer": "Au moins 2 niveaux sur 3",
+          "isOther": false,
+          "question": "Le jeu 3 se débloque quand le jeu 2 (Plan de Table) est considéré comme réussi. Quel critère ?"
+        },
+        {
+          "answer": "8 niveaux, 5 à réussir",
+          "isOther": false,
+          "question": "Combien de niveaux de parking, et combien faut-il en réussir pour que le jeu soit marqué « réussi » (ce qui débloquera le futur jeu 4) ?"
+        },
+        {
+          "answer": "Touche R = marche arrière",
+          "isOther": false,
+          "question": "Quelles commandes exactes ? (volant ←/→ et frein à main Espace dans tous les cas ; ↑ = pédale accélérateur, ↓ = pédale frein)"
+        }
+      ],
+      "cancelled": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "seq": 124,
+  "received_at": "2026-11-21T11:56:04.082630+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "GziChpCKB",
+    "tool_input": {
+      "command": "node /tmp/pp-test.js 2>&1 | tail -8"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "node /tmp/pp-test.js 2>&1 | tail -8",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "  OK  freine devant le joueur (vitesse 63.0 après 0.1 s, freinage=true)",
+        "  OK  s'arrête complètement devant le joueur (vitesse 0.0)",
+        "  OK  aller simple : la voiture sort en bout de route après 544 pas",
+        "  OK  elle revient après le délai",
+        "Simulation niveau 1 (autopilote) :",
+        "  FAIL autopilote a garé la voiture (pos 1044.7,200.8, cap 63.71, chocs=0)",
+        "",
+        "1 ÉCHEC(S)",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

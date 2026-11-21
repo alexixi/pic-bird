@@ -1,0 +1,17 @@
+{
+  "seq": 20,
+  "received_at": "2026-11-21T11:21:01.407413+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "9aJADFHXy",
+    "tool_input": {
+      "command": "cd /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird && cat .gitignore && ls events/ && git status --short | head"
+    }
+  }
+}

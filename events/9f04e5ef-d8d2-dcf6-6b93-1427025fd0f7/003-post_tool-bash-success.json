@@ -1,0 +1,42 @@
+{
+  "seq": 3,
+  "received_at": "2026-11-21T11:13:46.771633+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "i8IyyjQi3",
+    "tool_input": {
+      "command": "find /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird -type f -not -path \"*/.git/*\" -not -path \"*/events/*\" -not -path \"*/node_modules/*\" | head -100"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "find /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird -type f -not -path \"*/.git/*\" -not -path \"*/events/*\" -not -path \"*/node_modules/*\" | head -100",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/.gitignore",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/.vibe/hooks.toml",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/.vibe/hooks/log_event.py",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/AGENTS.md",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/README.md",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/README.md",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/catch-bird/game.js",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/catch-bird/index.html",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/catch-bird/style.css",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/plan-de-table/game.js",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/plan-de-table/index.html",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/plan-de-table/levels.js",
+        "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/plan-de-table/style.css",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

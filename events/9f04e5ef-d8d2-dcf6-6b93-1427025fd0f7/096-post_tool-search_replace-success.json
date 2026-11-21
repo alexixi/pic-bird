@@ -1,0 +1,36 @@
+{
+  "seq": 96,
+  "received_at": "2026-11-21T11:51:21.628159+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "WUw2LVype",
+    "tool_input": {
+      "file_path": "/tmp/pp-test.js",
+      "old_string": [
+        "for (let i = 0; i < 60; i++) updateTraffic(t2, 1 / 60, { x: px, y: py });",
+        "ok(t2.speed < 1 && t2.braking, `freine devant le joueur (vitesse ${t2.speed.toFixed(1)})`);"
+      ],
+      "new_string": [
+        "for (let i = 0; i < 30; i++) updateTraffic(t2, 1 / 60, { x: px, y: py });",
+        "ok(t2.speed < t2.def.speed * 0.6 && t2.braking, `freine devant le joueur (vitesse ${t2.speed.toFixed(1)} après 0.5 s)`);",
+        "for (let i = 0; i < 120; i++) updateTraffic(t2, 1 / 60, { x: px, y: py });",
+        "ok(t2.speed < 1, `s'arrête complètement devant le joueur (vitesse ${t2.speed.toFixed(1)})`);"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/tmp/pp-test.js",
+      "lines_changed": 4,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

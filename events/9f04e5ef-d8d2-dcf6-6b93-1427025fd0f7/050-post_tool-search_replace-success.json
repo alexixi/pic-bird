@@ -1,0 +1,37 @@
+{
+  "seq": 50,
+  "received_at": "2026-11-21T11:34:06.927625+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "WWjKiNnRP",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/index.html",
+      "old_string": [
+        "<script src=\"levels.js\"></script>",
+        "<script src=\"game.js\"></script>"
+      ],
+      "new_string": [
+        "<script src=\"levels.js\"></script>",
+        "<script src=\"engine.js\"></script>",
+        "<script src=\"traffic.js\"></script>",
+        "<script src=\"render.js\"></script>",
+        "<script src=\"game.js\"></script>"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/index.html",
+      "lines_changed": 5,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

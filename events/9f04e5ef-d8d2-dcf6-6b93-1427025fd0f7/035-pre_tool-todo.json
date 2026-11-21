@@ -1,0 +1,67 @@
+{
+  "seq": 35,
+  "received_at": "2026-11-21T11:30:01.910895+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "vibe.todo",
+    "tool_call_id": "aHjZy7AJR",
+    "tool_input": {
+      "action": "write",
+      "todos": [
+        {
+          "id": "1",
+          "content": "Commit 1 — squelette parking-panic (index.html, style.css, levels.js vide, game.js: sauvegarde + verrou + écrans)",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "2",
+          "content": "Commit 2 — levels.js complet : 8 niveaux + 4 specs de voitures",
+          "status": "in_progress",
+          "priority": "high"
+        },
+        {
+          "id": "3",
+          "content": "Commit 3 — moteur physique (engine.js), contrôles clavier, boucle de jeu, HUD pédales/mode AV-AR",
+          "status": "pending",
+          "priority": "high"
+        },
+        {
+          "id": "4",
+          "content": "Commit 4 — rendu du monde, caméra, voitures (render.js)",
+          "status": "pending",
+          "priority": "high"
+        },
+        {
+          "id": "5",
+          "content": "Commit 5 — voitures perturbatrices, freinage IA, collisions (traffic.js)",
+          "status": "pending",
+          "priority": "high"
+        },
+        {
+          "id": "6",
+          "content": "Commit 6 — progression : verrouillage après 2/3 niveaux Plan de Table, 5/8 niveaux pour réussir le jeu",
+          "status": "pending",
+          "priority": "high"
+        },
+        {
+          "id": "7",
+          "content": "Commit 7 — docs src/README.md (étape 5) + commit chore(events)",
+          "status": "pending",
+          "priority": "medium"
+        },
+        {
+          "id": "8",
+          "content": "Vérification : syntaxe JS de tous les fichiers, commits log, test logique en sandbox si possible",
+          "status": "pending",
+          "priority": "high"
+        }
+      ]
+    }
+  }
+}

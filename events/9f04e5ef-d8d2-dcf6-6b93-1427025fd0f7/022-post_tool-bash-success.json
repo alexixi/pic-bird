@@ -1,0 +1,34 @@
+{
+  "seq": 22,
+  "received_at": "2026-11-21T11:21:01.682370+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "9aJADFHXy",
+    "tool_input": {
+      "command": "cd /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird && cat .gitignore && ls events/ && git status --short | head"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird && cat .gitignore && ls events/ && git status --short | head",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        ".DS_Store",
+        "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+        "bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+        "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+        "?? events/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7/",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}
