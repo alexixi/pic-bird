@@ -1,0 +1,50 @@
+{
+  "seq": 272,
+  "received_at": "2026-11-21T14:45:51.627570+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "ZuVbGaX2I",
+    "tool_input": {
+      "file_path": "/tmp/pp-test.js",
+      "old_string": [
+        "// ---------- Trafic ----------",
+        "console.log('Trafic :');"
+      ],
+      "new_string": [
+        "// ---------- Sens de circulation français (roule à droite) ----------",
+        "console.log('Sens de circulation :');",
+        "PARKING_LEVELS.forEach((lv, i) => {",
+        "  const fwd = lv.traffic.find((t) => t.path[0][0] < t.path[1][0]); // va vers +x",
+        "  const bwd = lv.traffic.find((t) => t.path[0][0] > t.path[1][0]); // va vers -x",
+        "  if (fwd && bwd) {",
+        "    ok(fwd.path[0][1] > bwd.path[0][1], `N${i + 1} roule à droite : voie → (y=${fwd.path[0][1]}) sous la voie ← (y=${bwd.path[0][1]})`);",
+        "  }",
+        "  // flèches peintes cohérentes avec les voies",
+        "  for (const d of lv.decor || []) {",
+        "    if (d.type !== 'arrow') continue;",
+        "    if (fwd && Math.abs(d.y - fwd.path[0][1]) < 1) ok(Math.abs(d.angle) < 0.01, `N${i + 1} flèche → sur la bonne voie (y=${d.y})`);",
+        "    if (bwd && Math.abs(d.y - bwd.path[0][1]) < 1) ok(Math.abs(Math.abs(d.angle) - Math.PI) < 0.01, `N${i + 1} flèche ← sur la bonne voie (y=${d.y})`);",
+        "  }",
+        "});",
+        "",
+        "// ---------- Trafic ----------",
+        "console.log('Trafic :');"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/tmp/pp-test.js",
+      "lines_changed": 18,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

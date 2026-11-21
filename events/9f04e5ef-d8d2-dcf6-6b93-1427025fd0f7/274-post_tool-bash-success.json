@@ -1,0 +1,32 @@
+{
+  "seq": 274,
+  "received_at": "2026-11-21T14:45:59.127249+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "f0nLBGa2D",
+    "tool_input": {
+      "command": "cd /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird && node --check src/js/parking-panic/levels.js && node /tmp/pp-test.js 2>&1 | grep -E \"FAIL|ÉCHEC|TOUS|Sens\" ; node /tmp/pp-test.js >/dev/null 2>&1; echo \"exit=$?\""
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird && node --check src/js/parking-panic/levels.js && node /tmp/pp-test.js 2>&1 | grep -E \"FAIL|ÉCHEC|TOUS|Sens\" ; node /tmp/pp-test.js >/dev/null 2>&1; echo \"exit=$?\"",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "Sens de circulation :",
+        "TOUS LES TESTS PASSENT",
+        "exit=0",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}
