@@ -98,6 +98,13 @@ function drawBlock(c, b) {
     c.fillStyle = '#33363f'; c.fillRect(x, y, w, h);
     c.fillStyle = '#4a4e5a'; c.fillRect(x, y, w, 8);
     c.strokeStyle = 'rgba(0,0,0,0.5)'; c.lineWidth = 2; c.strokeRect(x, y, w, h);
+  } else if (b.kind === 'island') {
+    // îlot central : herbe + bordure jaune + arbre
+    c.fillStyle = '#5d7a4c'; c.fillRect(x, y, w, h);
+    c.strokeStyle = '#d9b23a'; c.lineWidth = 3; c.strokeRect(x + 3, y + 3, w - 6, h - 6);
+    c.fillStyle = '#4a3826'; c.fillRect(x + w / 2 - 2.5, y + h / 2 - 2, 5, 10);
+    c.fillStyle = '#3f6b35'; c.beginPath(); c.arc(x + w / 2, y + h / 2 - 8, 11, 0, Math.PI * 2); c.fill();
+    c.fillStyle = '#4d8242'; c.beginPath(); c.arc(x + w / 2 - 4, y + h / 2 - 12, 6.5, 0, Math.PI * 2); c.fill();
   } else { // grass / défaut
     c.fillStyle = '#5d7a4c'; c.fillRect(x, y, w, h);
   }
@@ -117,6 +124,16 @@ function drawDecor(c, d) {
   } else if (d.type === 'zebra') {
     c.fillStyle = 'rgba(255,255,255,0.75)';
     for (let sx = d.x + 6; sx < d.x + d.w - 6; sx += 16) c.fillRect(sx, d.y + 8, 8, d.h - 16);
+  } else if (d.type === 'bush') {
+    c.fillStyle = '#3f6b35'; c.beginPath(); c.arc(d.x, d.y, 7, 0, Math.PI * 2); c.fill();
+    c.fillStyle = '#4d8242'; c.beginPath(); c.arc(d.x + 5, d.y - 3, 5, 0, Math.PI * 2); c.fill();
+  } else if (d.type === 'arrow') {
+    // flèche de sens peinte sur la chaussée
+    c.save(); c.translate(d.x, d.y); c.rotate(d.angle || 0);
+    c.fillStyle = 'rgba(255,255,255,0.55)';
+    c.fillRect(-12, -2.5, 18, 5);
+    c.beginPath(); c.moveTo(14, 0); c.lineTo(2, -7); c.lineTo(2, 7); c.closePath(); c.fill();
+    c.restore();
   }
 }
 

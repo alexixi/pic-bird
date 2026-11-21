@@ -61,13 +61,33 @@ function parkingWorld(W, H) {
   };
 }
 
-// Lampadaires le long des bordures
-function withLamps(lv) {
+// Décor du pourtour d'un parking : lampadaires, arbres et buissons
+// le long des bordures
+function withParkingDecor(lv) {
   const W = lv.world.w, H = lv.world.h;
-  for (let x = 220; x < W - 120; x += 280) {
+  for (let x = 200; x < W - 100; x += 240) {
     lv.decor.push({ type: 'lamp', x, y: 34 });
-    lv.decor.push({ type: 'lamp', x, y: H - 34 });
+    lv.decor.push({ type: 'lamp', x: x + 120, y: H - 34 });
   }
+  for (const x of [110, W / 2, W - 110]) {
+    lv.decor.push({ type: 'tree', x, y: 30 });
+    lv.decor.push({ type: 'tree', x, y: H - 30 });
+  }
+  for (const y of [170, H / 2, H - 170]) {
+    lv.decor.push({ type: 'tree', x: 30, y });
+    lv.decor.push({ type: 'tree', x: W - 30, y });
+  }
+  for (let x = 140; x < W - 80; x += 190) lv.decor.push({ type: 'bush', x, y: 80 });
+  for (let y = 150; y < H - 80; y += 230) {
+    lv.decor.push({ type: 'bush', x: 80, y });
+    lv.decor.push({ type: 'bush', x: W - 80, y });
+  }
+  return lv;
+}
+
+// Îlot central bloquant (herbe + arbre) dans un parking
+function withIsland(lv, x, y, w, h) {
+  lv.blocks.push({ x, y, w, h, kind: 'island' });
   return lv;
 }
 
@@ -92,8 +112,13 @@ function streetWorld(W, H) {
     decor: [
       { type: 'zebra', x: 260, y: 530, w: 70, h: 110 },
       { type: 'zebra', x: W - 330, y: 530, w: 70, h: 110 },
+      // flèches de sens peintes sur les voies
+      { type: 'arrow', x: 420, y: 560, angle: 0 }, { type: 'arrow', x: 920, y: 560, angle: 0 },
+      { type: 'arrow', x: 680, y: 610, angle: Math.PI }, { type: 'arrow', x: 1180, y: 610, angle: Math.PI },
       { type: 'tree', x: 120, y: 410 }, { type: 'tree', x: 480, y: 415 },
       { type: 'tree', x: 900, y: 405 }, { type: 'tree', x: W - 160, y: 412 },
+      { type: 'bush', x: 220, y: 392 }, { type: 'bush', x: 600, y: 396 },
+      { type: 'bush', x: 1000, y: 390 }, { type: 'bush', x: W - 260, y: 394 },
       { type: 'lamp', x: 420, y: 462 }, { type: 'lamp', x: 760, y: 462 },
       { type: 'lamp', x: 1100, y: 462 }
     ]
@@ -107,10 +132,10 @@ function laneBwd(W, speed, opts) { return Object.assign({ path: [[W - 80, 610], 
 
 // ---------- Niveaux (du plus facile au plus dur) ----------
 const PARKING_LEVELS = [
-  // 1 — tutoriel : grande place libre au milieu d'un parking quasi vide
-  Object.assign(withLamps(parkingWorld(1300, 850)), {
+  // 1 — tutoriel : grande place libre au milieu d'un parking
+  Object.assign(withIsland(withParkingDecor(parkingWorld(1300, 850)), 1010, 590, 130, 70), {
     name: 'Première place',
-    desc: 'Un grand parking presque vide : garez la citadine dans la place verte.',
+    desc: 'Un grand parking : garez la citadine dans la place verte.',
     car: 'citadine',
     start: { x: 650, y: 720, angle: -Math.PI / 2 },
     spots: [
@@ -119,17 +144,23 @@ const PARKING_LEVELS = [
       { x: 850, y: 200, w: 84, h: 42, angle: Math.PI / 2 },
       { x: 550, y: 430, w: 84, h: 42, angle: Math.PI / 2 },
       { x: 700, y: 430, w: 84, h: 42, angle: Math.PI / 2 },
-      { x: 850, y: 430, w: 84, h: 42, angle: Math.PI / 2 }
+      { x: 850, y: 430, w: 84, h: 42, angle: Math.PI / 2 },
+      { x: 550, y: 640, w: 84, h: 42, angle: Math.PI / 2 },
+      { x: 700, y: 640, w: 84, h: 42, angle: Math.PI / 2 },
+      { x: 850, y: 640, w: 84, h: 42, angle: Math.PI / 2 }
     ],
     target: 1,
     parked: [
-      { x: 550, y: 430, angle: Math.PI / 2, w: 46, h: 22, color: '#5f8f5a' }
+      { x: 550, y: 430, angle: Math.PI / 2, w: 46, h: 22, color: '#5f8f5a' },
+      { x: 850, y: 430, angle: Math.PI / 2, w: 46, h: 22, color: '#8f6fb8' },
+      { x: 700, y: 640, angle: Math.PI / 2, w: 46, h: 22, color: '#a85f5f' },
+      { x: 850, y: 640, angle: Math.PI / 2, w: 46, h: 22, color: '#7d6a55' }
     ],
     traffic: []
   }),
 
   // 2 — bataille entre deux voitures bien garées, marge confortable
-  Object.assign(withLamps(parkingWorld(1300, 850)), {
+  Object.assign(withIsland(withParkingDecor(parkingWorld(1300, 850)), 300, 380, 140, 80), {
     name: 'Entre deux voitures',
     desc: 'Une place en bataille entre deux voitures garées droit. Évitez les chocs (+2 s).',
     car: 'citadine',
@@ -137,13 +168,17 @@ const PARKING_LEVELS = [
     spots: [
       { x: 550, y: 240, w: 70, h: 38, angle: Math.PI / 2 },
       { x: 700, y: 240, w: 64, h: 36, angle: Math.PI / 2 },
-      { x: 850, y: 240, w: 70, h: 38, angle: Math.PI / 2 }
+      { x: 850, y: 240, w: 70, h: 38, angle: Math.PI / 2 },
+      { x: 550, y: 520, w: 70, h: 38, angle: Math.PI / 2 },
+      { x: 700, y: 520, w: 70, h: 38, angle: Math.PI / 2 },
+      { x: 850, y: 520, w: 70, h: 38, angle: Math.PI / 2 }
     ],
     target: 1,
     parked: [
       { x: 664, y: 240, angle: Math.PI / 2, w: 46, h: 22, color: '#9aa0a8' },
       { x: 736, y: 240, angle: Math.PI / 2, w: 46, h: 22, color: '#7d6a55' },
-      { x: 550, y: 470, angle: Math.PI / 2, w: 46, h: 22, color: '#5f8f5a' }
+      { x: 550, y: 520, angle: Math.PI / 2, w: 46, h: 22, color: '#5f8f5a' },
+      { x: 850, y: 520, angle: Math.PI / 2, w: 46, h: 22, color: '#8f6fb8' }
     ],
     traffic: []
   }),
@@ -166,7 +201,7 @@ const PARKING_LEVELS = [
   }),
 
   // 4 — bataille serrée entre deux mal garées, berline moins maniable
-  Object.assign(withLamps(parkingWorld(1300, 850)), {
+  Object.assign(withIsland(withParkingDecor(parkingWorld(1300, 850)), 880, 380, 150, 80), {
     name: 'Bataille serrée',
     desc: 'Deux voitures mal garées débordent sur la place en bataille. La berline tourne moins bien.',
     car: 'berline',
@@ -174,19 +209,24 @@ const PARKING_LEVELS = [
     spots: [
       { x: 480, y: 240, w: 60, h: 34, angle: Math.PI / 2 },
       { x: 650, y: 240, w: 56, h: 34, angle: Math.PI / 2 },
-      { x: 820, y: 240, w: 60, h: 34, angle: Math.PI / 2 }
+      { x: 820, y: 240, w: 60, h: 34, angle: Math.PI / 2 },
+      { x: 480, y: 560, w: 60, h: 34, angle: Math.PI / 2 },
+      { x: 650, y: 560, w: 60, h: 34, angle: Math.PI / 2 },
+      { x: 820, y: 560, w: 60, h: 34, angle: Math.PI / 2 }
     ],
     target: 1,
     parked: [
       { x: 612, y: 246, angle: Math.PI / 2 + 0.22, w: 48, h: 22, color: '#8f6fb8' },
       { x: 690, y: 236, angle: Math.PI / 2 - 0.25, w: 48, h: 22, color: '#b8a44a' },
-      { x: 480, y: 240, angle: Math.PI / 2, w: 48, h: 22, color: '#5f8f5a' }
+      { x: 480, y: 240, angle: Math.PI / 2, w: 48, h: 22, color: '#5f8f5a' },
+      { x: 480, y: 560, angle: Math.PI / 2, w: 48, h: 22, color: '#7d6a55' },
+      { x: 820, y: 560, angle: Math.PI / 2, w: 48, h: 22, color: '#5f8f5a' }
     ],
     traffic: []
   }),
 
   // 5 — places en épi + une rue qui traverse le parking avec une voiture
-  Object.assign(withLamps(parkingWorld(1300, 850)), {
+  Object.assign(withIsland(withParkingDecor(parkingWorld(1300, 850)), 950, 430, 140, 70), {
     name: 'Parking en épi',
     desc: 'Des places en épi, une voiture mal garée qui déborde sur sa voisine, et une rue qui traverse le parking.',
     car: 'berline',
@@ -195,12 +235,17 @@ const PARKING_LEVELS = [
     spots: [
       { x: 520, y: 280, w: 66, h: 36, angle: -Math.PI / 3 },
       { x: 660, y: 280, w: 66, h: 36, angle: -Math.PI / 3 },
-      { x: 800, y: 280, w: 66, h: 36, angle: -Math.PI / 3 }
+      { x: 800, y: 280, w: 66, h: 36, angle: -Math.PI / 3 },
+      { x: 520, y: 520, w: 66, h: 36, angle: Math.PI / 2 },
+      { x: 660, y: 520, w: 66, h: 36, angle: Math.PI / 2 },
+      { x: 800, y: 520, w: 66, h: 36, angle: Math.PI / 2 }
     ],
     target: 1,
     parked: [
       { x: 520, y: 280, angle: -Math.PI / 3, w: 48, h: 22, color: '#5f8f5a' },
-      { x: 808, y: 298, angle: -Math.PI / 3 + 0.35, w: 48, h: 22, color: '#a85f5f' }
+      { x: 808, y: 298, angle: -Math.PI / 3 + 0.35, w: 48, h: 22, color: '#a85f5f' },
+      { x: 660, y: 520, angle: Math.PI / 2, w: 48, h: 22, color: '#7d6a55' },
+      { x: 800, y: 520, angle: Math.PI / 2, w: 48, h: 22, color: '#8f6fb8' }
     ],
     traffic: [
       { path: [[100, 680], [1200, 680]], speed: 90, loop: false, gap: 3, color: '#c94f4f', spec: 'citadine', phase: 0.3 }
