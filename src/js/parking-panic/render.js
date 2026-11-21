@@ -7,7 +7,7 @@
    lampadaires, passages piétons), places de parking et voitures.
    ============================================================ */
 
-const VIEW_W = 860, VIEW_H = 540; // zone du monde visible (unités)
+const VIEW_W = 720, VIEW_H = 450; // zone du monde visible (unités)
 
 function rr(c, x, y, w, h, r) {
   r = Math.min(r, w / 2, h / 2);

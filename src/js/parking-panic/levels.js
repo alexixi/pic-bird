@@ -73,36 +73,37 @@ function withLamps(lv) {
 
 // ---------- Archétype : rue ----------
 // Nord : bâtiments puis trottoir (bloquants). Ensuite bande de
-// stationnement (places en créneau), puis chaussée à deux voies,
-// puis mur (bloquant). La voiture reste entre le trottoir et le mur.
+// stationnement étroite (places en créneau), puis chaussée à deux
+// voies étroites (les voitures s'y croisent de justesse), puis mur
+// (bloquant). La voiture reste entre le trottoir et le mur.
 function streetWorld(W, H) {
   return {
     world: { w: W, h: H },
     ground: '#5d7a4c',
     blocks: [
       { x: 0, y: 0, w: W, h: 360, kind: 'building' },
-      { x: 0, y: 360, w: W, h: 100, kind: 'sidewalk' },
+      { x: 0, y: 360, w: W, h: 110, kind: 'sidewalk' },
       { x: 0, y: H - 80, w: W, h: 80, kind: 'wall' }
     ],
     roads: [
-      { x: 0, y: 460, w: W, h: 70 },   // bande de stationnement
-      { x: 0, y: 530, w: W, h: 170 }   // chaussée à deux voies
+      { x: 0, y: 470, w: W, h: 60 },   // bande de stationnement
+      { x: 0, y: 530, w: W, h: 110 }   // chaussée à deux voies étroites
     ],
     decor: [
-      { type: 'zebra', x: 260, y: 530, w: 70, h: 170 },
-      { type: 'zebra', x: W - 330, y: 530, w: 70, h: 170 },
+      { type: 'zebra', x: 260, y: 530, w: 70, h: 110 },
+      { type: 'zebra', x: W - 330, y: 530, w: 70, h: 110 },
       { type: 'tree', x: 120, y: 410 }, { type: 'tree', x: 480, y: 415 },
       { type: 'tree', x: 900, y: 405 }, { type: 'tree', x: W - 160, y: 412 },
-      { type: 'lamp', x: 420, y: 452 }, { type: 'lamp', x: 760, y: 452 },
-      { type: 'lamp', x: 1100, y: 452 }
+      { type: 'lamp', x: 420, y: 462 }, { type: 'lamp', x: 760, y: 462 },
+      { type: 'lamp', x: 1100, y: 462 }
     ]
   };
 }
 
 // Voies de circulation (aller simple, la voiture sort et revient) :
-// y = 581 vers la droite, y = 649 vers la gauche.
-function laneFwd(W, speed, opts) { return Object.assign({ path: [[80, 581], [W - 80, 581]], loop: false, speed }, opts); }
-function laneBwd(W, speed, opts) { return Object.assign({ path: [[W - 80, 649], [80, 649]], loop: false, speed }, opts); }
+// y = 560 vers la droite, y = 610 vers la gauche.
+function laneFwd(W, speed, opts) { return Object.assign({ path: [[80, 560], [W - 80, 560]], loop: false, speed }, opts); }
+function laneBwd(W, speed, opts) { return Object.assign({ path: [[W - 80, 610], [80, 610]], loop: false, speed }, opts); }
 
 // ---------- Niveaux (du plus facile au plus dur) ----------
 const PARKING_LEVELS = [
@@ -152,14 +153,14 @@ const PARKING_LEVELS = [
     name: 'Créneau tranquille',
     desc: 'Un créneau large au bord de la route, entre deux voitures un peu de travers.',
     car: 'citadine',
-    start: { x: 180, y: 615, angle: 0 },
-    spots: [ { x: 700, y: 495, w: 100, h: 34, angle: 0 } ],
+    start: { x: 180, y: 585, angle: 0 },
+    spots: [ { x: 700, y: 500, w: 100, h: 34, angle: 0 } ],
     target: 0,
     parked: [
-      { x: 632, y: 497, angle: 0.10, w: 46, h: 22, color: '#9aa0a8' },
-      { x: 768, y: 493, angle: -0.09, w: 46, h: 22, color: '#7d6a55' },
-      { x: 300, y: 495, angle: 0, w: 46, h: 22, color: '#5f8f5a' },
-      { x: 1100, y: 495, angle: 0.05, w: 46, h: 22, color: '#8f6fb8' }
+      { x: 632, y: 502, angle: 0.10, w: 46, h: 22, color: '#9aa0a8' },
+      { x: 768, y: 498, angle: -0.09, w: 46, h: 22, color: '#7d6a55' },
+      { x: 300, y: 500, angle: 0, w: 46, h: 22, color: '#5f8f5a' },
+      { x: 1100, y: 500, angle: 0.05, w: 46, h: 22, color: '#8f6fb8' }
     ],
     traffic: []
   }),
@@ -190,7 +191,7 @@ const PARKING_LEVELS = [
     desc: 'Des places en épi, une voiture mal garée qui déborde sur sa voisine, et une rue qui traverse le parking.',
     car: 'berline',
     start: { x: 150, y: 680, angle: 0 },
-    roads: [ { x: 60, y: 640, w: 1180, h: 80 } ],
+    roads: [ { x: 60, y: 650, w: 1180, h: 60 } ],
     spots: [
       { x: 520, y: 280, w: 66, h: 36, angle: -Math.PI / 3 },
       { x: 660, y: 280, w: 66, h: 36, angle: -Math.PI / 3 },
@@ -211,14 +212,14 @@ const PARKING_LEVELS = [
     name: 'Rue passante',
     desc: 'Un créneau au bord d\'une rue où une voiture passe de temps en temps. Regardez avant de manœuvrer.',
     car: 'break',
-    start: { x: 180, y: 615, angle: 0 },
-    spots: [ { x: 700, y: 495, w: 104, h: 36, angle: 0 } ],
+    start: { x: 180, y: 585, angle: 0 },
+    spots: [ { x: 700, y: 500, w: 104, h: 36, angle: 0 } ],
     target: 0,
     parked: [
-      { x: 630, y: 497, angle: 0.14, w: 50, h: 23, color: '#9aa0a8' },
-      { x: 772, y: 492, angle: -0.12, w: 50, h: 23, color: '#7d6a55' },
-      { x: 320, y: 495, angle: 0, w: 50, h: 23, color: '#5f8f5a' },
-      { x: 1080, y: 496, angle: 0.06, w: 50, h: 23, color: '#8f6fb8' }
+      { x: 630, y: 502, angle: 0.14, w: 50, h: 23, color: '#9aa0a8' },
+      { x: 772, y: 498, angle: -0.12, w: 50, h: 23, color: '#7d6a55' },
+      { x: 320, y: 500, angle: 0, w: 50, h: 23, color: '#5f8f5a' },
+      { x: 1080, y: 500, angle: 0.06, w: 50, h: 23, color: '#8f6fb8' }
     ],
     traffic: [
       laneFwd(1400, 110, { color: '#c94f4f', spec: 'berline', phase: 0.4, gap: 3 })
@@ -230,14 +231,14 @@ const PARKING_LEVELS = [
     name: 'Créneau sous pression',
     desc: 'Créneau plus étroit entre deux voitures de travers, et des voitures qui passent dans les deux sens.',
     car: 'break',
-    start: { x: 180, y: 615, angle: 0 },
-    spots: [ { x: 700, y: 495, w: 92, h: 34, angle: 0 } ],
+    start: { x: 180, y: 585, angle: 0 },
+    spots: [ { x: 700, y: 500, w: 92, h: 34, angle: 0 } ],
     target: 0,
     parked: [
-      { x: 636, y: 497, angle: 0.18, w: 50, h: 23, color: '#9aa0a8' },
-      { x: 766, y: 492, angle: -0.16, w: 50, h: 23, color: '#7d6a55' },
-      { x: 300, y: 495, angle: -0.05, w: 50, h: 23, color: '#5f8f5a' },
-      { x: 1100, y: 496, angle: 0.08, w: 50, h: 23, color: '#8f6fb8' }
+      { x: 636, y: 502, angle: 0.18, w: 50, h: 23, color: '#9aa0a8' },
+      { x: 766, y: 498, angle: -0.16, w: 50, h: 23, color: '#7d6a55' },
+      { x: 300, y: 500, angle: -0.05, w: 50, h: 23, color: '#5f8f5a' },
+      { x: 1100, y: 500, angle: 0.08, w: 50, h: 23, color: '#8f6fb8' }
     ],
     traffic: [
       laneFwd(1400, 120, { color: '#c94f4f', spec: 'berline', phase: 0.2, gap: 2 }),
@@ -250,14 +251,14 @@ const PARKING_LEVELS = [
     name: 'Le boss du parking',
     desc: 'Créneau serré avec un utilitaire encombrant, voitures mal garées des deux côtés, trafic dense. Bonne chance.',
     car: 'utilitaire',
-    start: { x: 180, y: 630, angle: 0 },
-    spots: [ { x: 750, y: 495, w: 104, h: 38, angle: 0 } ],
+    start: { x: 180, y: 585, angle: 0 },
+    spots: [ { x: 750, y: 500, w: 104, h: 38, angle: 0 } ],
     target: 0,
     parked: [
-      { x: 676, y: 497, angle: 0.22, w: 54, h: 24, color: '#9aa0a8' },
-      { x: 824, y: 491, angle: -0.20, w: 54, h: 24, color: '#7d6a55' },
-      { x: 320, y: 495, angle: 0, w: 54, h: 24, color: '#5f8f5a' },
-      { x: 1180, y: 496, angle: -0.06, w: 54, h: 24, color: '#8f6fb8' }
+      { x: 676, y: 502, angle: 0.22, w: 54, h: 24, color: '#9aa0a8' },
+      { x: 824, y: 498, angle: -0.20, w: 54, h: 24, color: '#7d6a55' },
+      { x: 320, y: 500, angle: 0, w: 54, h: 24, color: '#5f8f5a' },
+      { x: 1180, y: 500, angle: -0.06, w: 54, h: 24, color: '#8f6fb8' }
     ],
     traffic: [
       laneFwd(1500, 130, { color: '#c94f4f', spec: 'berline', phase: 0.1, gap: 2 }),
