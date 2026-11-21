@@ -1,0 +1,18 @@
+{
+  "seq": 88,
+  "received_at": "2026-11-21T09:17:10.756185+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "CTpFiZbVC",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird && git status --short | head -30 && echo --- && git status --short | wc -l"
+    }
+  }
+}

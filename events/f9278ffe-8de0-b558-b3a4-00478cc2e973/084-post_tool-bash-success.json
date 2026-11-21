@@ -1,0 +1,56 @@
+{
+  "seq": 84,
+  "received_at": "2026-11-21T09:13:00.812046+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "aRZHRc0q0",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird && git remote -v && git add src/README.md src/js/plan-de-table events && git status --short | head -20 && git status --short | wc -l"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird && git remote -v && git add src/README.md src/js/plan-de-table events && git status --short | head -20 && git status --short | wc -l",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "origin\tgit@github.com:alexixi/pic-bird.git (fetch)",
+        "origin\tgit@github.com:alexixi/pic-bird.git (push)",
+        "upstream\tgit@github.com:rrobbes/mini-project-template.git (fetch)",
+        "upstream\tgit@github.com:rrobbes/mini-project-template.git (push)",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/.lock",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/001-pre_tool-bash.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/002-pre_tool-read_file.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/003-post_tool-read_file-success.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/004-post_tool-bash-success.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/005-pre_tool-read_file.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/006-pre_tool-bash.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/007-post_tool-read_file-success.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/008-post_tool-bash-success.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/009-pre_tool-bash.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/010-post_tool-bash-success.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/011-pre_tool-write_file.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/012-post_tool-write_file-success.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/013-post_agent.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/014-pre_tool-bash.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/015-post_tool-bash-success.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/016-pre_tool-bash.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/017-post_tool-bash-success.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/018-pre_tool-bash.json",
+        "A  events/bd12004e-c1f7-1684-f133-04aa84b0a3f7/019-post_tool-bash-success.json",
+        "171",
+        ""
+      ],
+      "timed_out": false,
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}
