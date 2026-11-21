@@ -22,6 +22,7 @@ function makeTraffic(def) {
     def, pts, cum, total,
     spec: CAR_SPECS[def.spec || 'berline'],
     dist: (def.phase || 0) * total,
+    L: CAR_SPECS[def.spec || 'berline'].L, W: CAR_SPECS[def.spec || 'berline'].W,
     x: 0, y: 0, angle: 0,
     speed: 0, braking: false, angry: 0,
     active: true, wait: 0

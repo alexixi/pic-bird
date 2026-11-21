@@ -167,8 +167,8 @@ function frame(ts) {
       if (t.active) {
         const c = satCollide(player, t);
         if (c) {
-          player.x += c.nx * c.depth;
-          player.y += c.ny * c.depth;
+          player.x -= c.nx * c.depth;
+          player.y -= c.ny * c.depth;
           const ps = Math.abs(player.speed);
           player.speed *= -0.3;
           t.speed = 0; t.angry = 1.2;

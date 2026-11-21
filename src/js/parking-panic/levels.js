@@ -13,7 +13,9 @@
    - roads   : bandes d'asphalte foncé (décor + repère des voies)
    - decor   : rectangles de décor (trottoirs, etc.)
    - spots   : places de parking dessinées ; target = index de la
-               place à réussir (contour vert)
+               place à réussir (contour vert). w = longueur de la place
+               (le long de l'axe local x, donc du cap de la voiture
+               garée), h = largeur de la place.
    - parked  : voitures à l'arrêt (obstacles), éventuellement mal
                garées (angle décalé, débordent sur la place)
    - traffic : voitures qui circulent (voir traffic.js)
@@ -25,10 +27,10 @@
 // volant max (rad) ; steerSpeed : vitesse de rotation du volant (rad/s) ;
 // drag : traînée. Plus la voiture est grosse, moins elle est maniable.
 const CAR_SPECS = {
-  citadine:   { nom: 'Citadine',   L: 42, W: 20, accel: 80, brake: 125, maxF: 175, maxR: 70, maxSteer: 0.62, steerSpeed: 5.4, drag: 0.90, color: '#e8a13a' },
-  berline:    { nom: 'Berline',    L: 48, W: 21, accel: 70, brake: 115, maxF: 190, maxR: 75, maxSteer: 0.53, steerSpeed: 4.5, drag: 0.85, color: '#3a7bd5' },
-  break:      { nom: 'Break',      L: 53, W: 22, accel: 62, brake: 108, maxF: 180, maxR: 70, maxSteer: 0.47, steerSpeed: 4.0, drag: 0.80, color: '#8a5fd0' },
-  utilitaire: { nom: 'Utilitaire', L: 64, W: 27, accel: 47, brake: 96,  maxF: 140, maxR: 52, maxSteer: 0.40, steerSpeed: 3.0, drag: 0.75, color: '#d0563a' }
+  citadine:   { nom: 'Citadine',   L: 42, W: 20, accel: 80, brake: 125, maxF: 175, maxR: 70, maxSteer: 0.62, steerSpeed: 5.4, drag: 0.35, color: '#e8a13a' },
+  berline:    { nom: 'Berline',    L: 48, W: 21, accel: 70, brake: 115, maxF: 190, maxR: 75, maxSteer: 0.53, steerSpeed: 4.5, drag: 0.32, color: '#3a7bd5' },
+  break:      { nom: 'Break',      L: 53, W: 22, accel: 62, brake: 108, maxF: 180, maxR: 70, maxSteer: 0.47, steerSpeed: 4.0, drag: 0.30, color: '#8a5fd0' },
+  utilitaire: { nom: 'Utilitaire', L: 64, W: 27, accel: 47, brake: 96,  maxF: 140, maxR: 52, maxSteer: 0.40, steerSpeed: 3.0, drag: 0.28, color: '#d0563a' }
 };
 
 // ---------- Helper : circuit rectangulaire pour la circulation ----------
@@ -57,9 +59,9 @@ const PARKING_LEVELS = [
     roads: [ { x: 40, y: 660, w: 1120, h: 80 } ],
     decor: [],
     spots: [
-      { x: 760, y: 300, w: 38, h: 74, angle: Math.PI / 2 },
-      { x: 900, y: 300, w: 38, h: 74, angle: Math.PI / 2 },
-      { x: 1040, y: 300, w: 38, h: 74, angle: Math.PI / 2 }
+      { x: 760, y: 300, w: 74, h: 38, angle: Math.PI / 2 },
+      { x: 900, y: 300, w: 74, h: 38, angle: Math.PI / 2 },
+      { x: 1040, y: 300, w: 74, h: 38, angle: Math.PI / 2 }
     ],
     target: 1,
     parked: [],
@@ -90,9 +92,9 @@ const PARKING_LEVELS = [
     roads: [ { x: 40, y: 690, w: 1220, h: 90 } ],
     decor: [],
     spots: [
-      { x: 520, y: 300, w: 36, h: 66, angle: -Math.PI / 3 },
-      { x: 660, y: 300, w: 36, h: 66, angle: -Math.PI / 3 },
-      { x: 800, y: 300, w: 36, h: 66, angle: -Math.PI / 3 }
+      { x: 520, y: 300, w: 66, h: 36, angle: -Math.PI / 3 },
+      { x: 660, y: 300, w: 66, h: 36, angle: -Math.PI / 3 },
+      { x: 800, y: 300, w: 66, h: 36, angle: -Math.PI / 3 }
     ],
     target: 1,
     parked: [
@@ -109,7 +111,7 @@ const PARKING_LEVELS = [
     start: { x: 650, y: 740, angle: 0 },
     roads: [ { x: 40, y: 690, w: 1220, h: 90 } ],
     decor: [],
-    spots: [ { x: 650, y: 330, w: 34, h: 70, angle: Math.PI / 2 } ],
+    spots: [ { x: 650, y: 330, w: 70, h: 34, angle: Math.PI / 2 } ],
     target: 0,
     parked: [
       { x: 610, y: 336, angle: 0.28, w: 48, h: 22, color: '#8f6fb8' },
@@ -131,9 +133,9 @@ const PARKING_LEVELS = [
     ],
     decor: [],
     spots: [
-      { x: 560, y: 280, w: 38, h: 74, angle: Math.PI / 2 },
-      { x: 700, y: 280, w: 38, h: 74, angle: Math.PI / 2 },
-      { x: 840, y: 280, w: 38, h: 74, angle: Math.PI / 2 }
+      { x: 560, y: 280, w: 74, h: 38, angle: Math.PI / 2 },
+      { x: 700, y: 280, w: 74, h: 38, angle: Math.PI / 2 },
+      { x: 840, y: 280, w: 74, h: 38, angle: Math.PI / 2 }
     ],
     target: 1,
     parked: [
@@ -176,11 +178,11 @@ const PARKING_LEVELS = [
       { x: 1280, y: 40, w: 80, h: 820 }
     ],
     decor: [],
-    spots: [ { x: 700, y: 290, w: 42, h: 86, angle: Math.PI / 2 } ],
+    spots: [ { x: 700, y: 290, w: 86, h: 42, angle: Math.PI / 2 } ],
     target: 0,
     parked: [
-      { x: 648, y: 296, angle: 0.24, w: 54, h: 24, color: '#8f6fb8' },
-      { x: 756, y: 286, angle: -0.27, w: 54, h: 24, color: '#b8a44a' }
+      { x: 654, y: 296, angle: 0.24, w: 54, h: 24, color: '#8f6fb8' },
+      { x: 746, y: 286, angle: -0.27, w: 54, h: 24, color: '#b8a44a' }
     ],
     traffic: [
       { path: ringPath(700, 450, 620, 370, 16), speed: 85, loop: true, color: '#c9a227', spec: 'berline', phase: 0.3, gap: 0 }

@@ -14,7 +14,7 @@ const PARK_MAX_ANGLE = 0.28;  // ~16° d'écart de cap accepté
 // ---------- Voiture ----------
 // gear : 1 = marche avant (AV), -1 = marche arrière (AR)
 function makeCar(spec, x, y, angle) {
-  return { spec, x, y, angle, speed: 0, steer: 0, gear: 1 };
+  return { spec, L: spec.L, W: spec.W, x, y, angle, speed: 0, steer: 0, gear: 1 };
 }
 
 // ---------- Physique (modèle bicycle, arcade) ----------
@@ -111,8 +111,9 @@ function collideStatic(car, level) {
   for (const o of obstacles) {
     const c = satCollide(car, o);
     if (c) {
-      car.x += c.nx * c.depth;
-      car.y += c.ny * c.depth;
+      // l'axe va de la voiture vers l'obstacle : on repousse la voiture à l'opposé
+      car.x -= c.nx * c.depth;
+      car.y -= c.ny * c.depth;
       impact = Math.max(impact, Math.abs(car.speed));
     }
   }
