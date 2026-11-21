@@ -1,0 +1,32 @@
+{
+  "seq": 81,
+  "received_at": "2026-11-21T09:12:15.381286+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "KOQUD7koB",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && node --check game.js && google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=6000 --dump-dom \"file://$PWD/test-render.html\" 2>/tmp/chrome-err.log | grep -o '<title>[^<]*</title>'; grep -iE 'uncaught|typeerror|referenceerror' /tmp/chrome-err.log | head -3; rm test-render.html"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && node --check game.js && google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=6000 --dump-dom \"file://$PWD/test-render.html\" 2>/tmp/chrome-err.log | grep -o '<title>[^<]*</title>'; grep -iE 'uncaught|typeerror|referenceerror' /tmp/chrome-err.log | head -3; rm test-render.html",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "<title>TEST amb=25 conf=1 tok=16 neckPx=19 chinToShirt ok</title>",
+        ""
+      ],
+      "timed_out": false,
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "seq": 27,
+  "received_at": "2026-11-20T12:29:25.708016+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "ORTuxkR4c",
+    "tool_input": {
+      "timeout": 120,
+      "command": "find /home/matheline -name 'game.js' -o -name 'index.html' 2>/dev/null | grep -v node_modules | head; echo '---'; find /tmp /var/tmp -name 'game.js' 2>/dev/null | head; echo '---'; cd /home/matheline/Documents/Semestre9/Agentique/pic-bird && git fsck --lost-found 2>&1 | head -5; git log --all --oneline -- index.html game.js style.css"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "find /home/matheline -name 'game.js' -o -name 'index.html' 2>/dev/null | grep -v node_modules | head; echo '---'; find /tmp /var/tmp -name 'game.js' 2>/dev/null | head; echo '---'; cd /home/matheline/Documents/Semestre9/Agentique/pic-bird && git fsck --lost-found 2>&1 | head -5; git log --all --oneline -- index.html game.js style.css",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "/home/matheline/.vscode-oss/extensions/zaaack.markdown-editor-0.1.9-universal/media/index.html",
+        "/home/matheline/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/index.html",
+        "/home/matheline/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/error_codes/index.html",
+        "/home/matheline/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/core/borrow/index.html",
+        "/home/matheline/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/core/view/index.html",
+        "/home/matheline/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/core/index.html",
+        "/home/matheline/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/core/char/index.html",
+        "/home/matheline/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/core/sync/index.html",
+        "/home/matheline/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/core/sync/atomic/index.html",
+        "/home/matheline/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/core/field/index.html",
+        "---",
+        "---",
+        ""
+      ],
+      "timed_out": false,
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

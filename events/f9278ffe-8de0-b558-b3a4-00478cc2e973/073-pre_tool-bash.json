@@ -1,0 +1,18 @@
+{
+  "seq": 73,
+  "received_at": "2026-11-21T08:50:34.399321+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "MqRuUiQAw",
+    "tool_input": {
+      "timeout": 120,
+      "command": "rm /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/test-render.html && git -C /home/matheline/Documents/Semestre9/Agentique/pic-bird status --short"
+    }
+  }
+}

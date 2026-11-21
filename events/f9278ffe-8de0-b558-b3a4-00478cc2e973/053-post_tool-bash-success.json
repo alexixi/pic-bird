@@ -1,0 +1,35 @@
+{
+  "seq": 53,
+  "received_at": "2026-11-21T08:15:05.762116+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "Gtkz7QFKZ",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && for h in \"\" \"#n3\"; do echo \"== hash '$h' ==\"; google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=4000 --dump-dom \"file://$PWD/test-render.html$h\" 2>/tmp/chrome-err.log | grep -o '<title>[^<]*</title>'; grep -iE 'uncaught|typeerror|referenceerror' /tmp/chrome-err.log | head -3; done"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && for h in \"\" \"#n3\"; do echo \"== hash '$h' ==\"; google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=4000 --dump-dom \"file://$PWD/test-render.html$h\" 2>/tmp/chrome-err.log | grep -o '<title>[^<]*</title>'; grep -iE 'uncaught|typeerror|referenceerror' /tmp/chrome-err.log | head -3; done",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "== hash '' ==",
+        "<title>TEST ambiance=22 conflits=1 tokens=8 seats=8 warnings=4 canvasPx=36830</title>",
+        "== hash '#n3' ==",
+        "<title>TEST ambiance=25 conflits=1 tokens=16 seats=16 warnings=4 canvasPx=59292</title>",
+        ""
+      ],
+      "timed_out": false,
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

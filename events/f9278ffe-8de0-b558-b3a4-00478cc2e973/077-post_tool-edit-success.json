@@ -1,0 +1,52 @@
+{
+  "seq": 77,
+  "received_at": "2026-11-21T08:52:13.364757+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "Lp54feeZD",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/game.js",
+      "new_string": [
+        "// Géométrie commune au SVG (viewBox 64) et au canvas",
+        "function faceLayout() {",
+        "  const headY = 31, headR = 12.5;",
+        "  return {",
+        "    cx: 32, headY, headR, earR: 2.4,",
+        "    capY: headY, capR: 13.8, capInner: 9.6,",
+        "    eyeY: headY + 1.5, eyeDX: 5.2, eyeR: 2.5, pupilR: 1.25,",
+        "    browY: headY - 2.4, noseY: headY + 4.5, mouthY: headY + 8.6,",
+        "    blushY: headY + 6.8, blushDX: 8.2, blushRX: 2.3, blushRY: 1.6,",
+        "    neckW: 8.5, neckY: headY + headR - 3, neckH: 12, shoulderY: 40",
+        "  };",
+        "}"
+      ],
+      "old_string": [
+        "// Géométrie commune au SVG (viewBox 64) et au canvas",
+        "function faceLayout() {",
+        "  return {",
+        "    cx: 32, headY: 30, headR: 12.5, earR: 2.4,",
+        "    capY: 30, capR: 13.8, capInner: 9.6,",
+        "    eyeY: 31.5, eyeDX: 5.2, eyeR: 2.5, pupilR: 1.25,",
+        "    browY: 27.6, noseY: 34.5, mouthY: 38.6,",
+        "    blushY: 36.8, blushDX: 8.2, blushRX: 2.3, blushRY: 1.6,",
+        "    neckW: 7, neckY: 40, neckH: 16, shoulderY: 47",
+        "  };",
+        "}"
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/game.js",
+      "lines_changed": 12,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

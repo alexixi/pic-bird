@@ -1,0 +1,22 @@
+{
+  "seq": 51,
+  "received_at": "2026-11-20T13:02:39.902059+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "vLibSOeMz",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/index.html",
+      "old_string": "<script src=\"game.js\"></script>",
+      "new_string": [
+        "<script src=\"levels.js\"></script>",
+        "<script src=\"game.js\"></script>"
+      ]
+    }
+  }
+}

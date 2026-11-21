@@ -1,0 +1,55 @@
+{
+  "seq": 63,
+  "received_at": "2026-11-20T14:46:46.426783+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "vibe.todo",
+    "tool_call_id": "bCiWkYLXi",
+    "tool_input": {
+      "action": "write",
+      "todos": [
+        {
+          "id": "1",
+          "content": "Créer src/js/plan-de-table/index.html (structure UI)",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "2",
+          "content": "Créer style.css du jeu",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "3",
+          "content": "Créer game.js + levels.js (niveaux, graphe, drag&drop, scoring)",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "4",
+          "content": "Tester le scoring par simulation (seuils atteignables)",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "5",
+          "content": "Mettre à jour src/README.md (jeu 2)",
+          "status": "in_progress",
+          "priority": "medium"
+        },
+        {
+          "id": "6",
+          "content": "Commit du 2e jeu",
+          "status": "pending",
+          "priority": "medium"
+        }
+      ]
+    }
+  }
+}

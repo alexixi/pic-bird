@@ -30,7 +30,7 @@ Ce document décrit le projet, son organisation et les étapes prévues. Il vit 
 | # | Jeu | Statut | Idée |
 |---|-----|--------|------|
 | 1 | Catch Bird (safari photo) | fait | Photographier des oiseaux sans les effrayer |
-| 2 | à définir | à venir | Un deuxième mini-jeu dans le même univers |
+| 2 | Plan de Table | fait | Placer les invités aux tables selon leurs relations pour maximiser l'ambiance |
 | 3 | à définir | à venir | Un troisième mini-jeu, débloqué après le 2 |
 | … | … | … | D'autres jeux s'ajoutent au fil du projet |
 
@@ -82,7 +82,47 @@ meilleur score est affiché comme record.
 
 ---
 
-## 3. Organisation du code dans `src/`
+## 3. Le deuxième jeu : Plan de Table
+
+Plan de Table est un jeu de **placement d'invités** : des tables rondes, des invités
+à positionner, et un schéma de relations entre eux (qui s'aime, qui se déteste).
+Le but est de réaliser le meilleur plan de table possible pour obtenir le meilleur
+score d'**ambiance**.
+
+### Mécaniques
+
+- **Schéma des relations** (canvas à gauche) : chaque invité est un nœud, chaque
+  relation une arête — verte pour l'amitié, rouge pour l'hostilité, épaisseur selon
+  la force (1 à 3). Les conflits actuels (ennemis à la même table) ressortent en
+  doré.
+- **Tables rondes** : les invités se placent par glisser-déposer (ou clic :
+  sélectionner un invité puis un siège) ; déposer sur un siège occupé échange les
+  deux places.
+- **Score d'ambiance** (0-100 %, affiché en temps réel) :
+  - paire à la même table : contribution = valeur de la relation (amis +, ennemis −) ;
+  - paire côte à côte sur une table ronde : bonus de voisinage (+50 % de la valeur),
+    car les voisins se parlent plus ;
+  - le tout est normalisé entre le pire et le meilleur cas théorique du niveau.
+- **3 niveaux** (`levels.js`) : 8 invités / 2 tables (objectif 70 %), 12 / 3
+  (75 %), 16 / 4 (80 %). Les niveaux se débloquent les uns après les autres quand
+  l'objectif d'ambiance est atteint ; la progression est sauvegardée en
+  `localStorage`.
+- **Aide au placement** : la liste sous le schéma signale les conflits en cours et
+  les amitiés fortes encore séparées.
+
+Le calibrage des seuils a été vérifié par simulation : un placement aléatoire donne
+~36-47 % d'ambiance (échec), regrouper les amis par table donne 87-92 % (réussite).
+
+### Fichiers
+
+- `src/js/plan-de-table/index.html` — HUD, panneau du schéma, tables, écrans
+- `src/js/plan-de-table/style.css` — habillage
+- `src/js/plan-de-table/levels.js` — données des 3 niveaux (invités, relations, seuils)
+- `src/js/plan-de-table/game.js` — graphe, drag & drop, scoring, progression
+
+---
+
+## 4. Organisation du code dans `src/`
 
 Le code de la plateforme sera organisé ainsi (le jeu Catch Bird y sera déplacé) :
 
@@ -95,11 +135,15 @@ src/
 └── js/
     ├── main.js          ← routeur : hub, progression, sauvegarde localStorage
     ├── progression.js   ← seuils de déblocage, jeux verrouillés/débloqués
-    └── games/
-        └── catch-bird/  ← un sous-dossier par jeu
-            ├── index.html
-            ├── game.js
-            └── style.css
+    ├── catch-bird/      ← un sous-dossier par jeu
+    │   ├── index.html
+    │   ├── game.js
+    │   └── style.css
+    └── plan-de-table/
+        ├── index.html
+        ├── style.css
+        ├── levels.js
+        └── game.js
 ```
 
 Chaque jeu expose une petite interface commune (démarrer, score courant, seuil de
@@ -110,36 +154,40 @@ réussite, « réussi ? ») pour que le hub puisse :
 
 ---
 
-## 4. Étapes du projet
+## 5. Étapes du projet
 
 ### Étape 1 — Premier jeu jouable (faite)
-- Catch Bird fonctionnel à la racine du repo : monde, oiseaux, photo, score, galerie.
+- Catch Bird fonctionnel : monde, oiseaux, photo, score, galerie.
 
-### Étape 2 — Structure de la plateforme (en cours)
-- Créer `src/` et y déplacer le code du premier jeu.
-- Écrire le README du projet (ce document).
-- Mettre en place le hub : page d'accueil listant les jeux avec leur état.
+### Étape 2 — Structure de la plateforme (faite)
+- `src/` créé, code du premier jeu placé dans `src/js/catch-bird/`.
+- README du projet rédigé (ce document).
 
-### Étape 3 — Système de progression
-- Définir les seuils de réussite par jeu.
-- Débloquer le jeu suivant quand le seuil est atteint ; persister dans `localStorage`.
-- Afficher la progression dans le hub (parcours verrouillé → réussi).
+### Étape 3 — Deuxième jeu (fait)
+- Plan de Table implémenté dans `src/js/plan-de-table/` avec 3 niveaux et
+  progression locale par seuils d'ambiance.
 
-### Étape 4 — Deuxième jeu
-- Concevoir et implémenter un deuxième mini-jeu dans le même univers.
-- Le rendre déblocable après Catch Bird.
+### Étape 4 — Hub et système de progression global (en cours)
+- Page d'accueil `src/index.html` listant les jeux avec leur état
+  (verrouillé / en cours / réussi).
+- Définir les seuils de réussite de chaque jeu ; débloquer le jeu suivant quand
+  le seuil est atteint ; persister la progression globale dans `localStorage`.
+- Relier Catch Bird et Plan de Table au hub.
 
-### Étape 5 — Jeux suivants et polish
+### Étape 5 — Troisième jeu
+- Concevoir et implémenter un troisième mini-jeu, débloqué après Plan de Table.
+
+### Étape 6 — Jeux suivants et polish
 - Ajouter d'autres jeux au parcours.
 - Améliorations : écran de victoire entre les jeux, récapitulatif des scores,
   éventuels sons, page « à propos ».
 
-### Étape 6 — Utilisable par un agent
+### Étape 7 — Utilisable par un agent
 - Exposer une interface utilisable par un agent (ligne de commande ou API/MCP) en
   parallèle de l'interface web, par exemple pour lancer une partie, lire le score
   ou la progression sans ouvrir de navigateur.
 
-### Étape 7 — Rapport
+### Étape 8 — Rapport
 - Rédiger `report.md` à la racine : réflexion sur le processus de travail
   (facilités, difficultés, organisation du groupe).
 

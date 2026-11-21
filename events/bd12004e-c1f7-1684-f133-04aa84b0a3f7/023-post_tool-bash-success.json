@@ -1,0 +1,36 @@
+{
+  "seq": 23,
+  "received_at": "2026-11-20T12:28:58.337295+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "jG1VrlqmM",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird && git add -v index.html game.js style.css; echo \"rc=$?\"; git status --short | grep -v events/ ; git ls-files | grep -E 'index|game|style'"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird && git add -v index.html game.js style.css; echo \"rc=$?\"; git status --short | grep -v events/ ; git ls-files | grep -E 'index|game|style'",
+      "returncode": 1,
+      "stderr": [
+        "fatal: pathspec 'index.html' did not match any files",
+        ""
+      ],
+      "stdout": [
+        "rc=128",
+        "?? src/",
+        ""
+      ],
+      "timed_out": false,
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

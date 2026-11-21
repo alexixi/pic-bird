@@ -1,0 +1,47 @@
+{
+  "seq": 77,
+  "received_at": "2026-11-20T14:47:50.794200+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "oPWDk3eEm",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/README.md",
+      "old_string": [
+        "    ├── main.js          ← routeur : hub, progression, sauvegarde localStorage",
+        "    ├── progression.js   ← seuils de déblocage, jeux verrouillés/débloqués",
+        "    └── js/",
+        "        ├── main.js          ← routeur : hub, progression, sauvegarde localStorage",
+        "        ├── progression.js   ← seuils de déblocage, jeux verrouillés/débloqués",
+        "        └── games/  (en pratique : js/<nom-du-jeu>/)",
+        "            ├── catch-bird/",
+        "            │   ├── index.html",
+        "            │   ├── game.js",
+        "            │   └── style.css",
+        "            └── plan-de-table/",
+        "                ├── index.html",
+        "                ├── style.css",
+        "                ├── levels.js",
+        "                └── game.js"
+      ],
+      "new_string": [
+        "    ├── main.js          ← routeur : hub, progression, sauvegarde localStorage",
+        "    ├── progression.js   ← seuils de déblocage, jeux verrouillés/débloqués",
+        "    ├── catch-bird/      ← un sous-dossier par jeu",
+        "    │   ├── index.html",
+        "    │   ├── game.js",
+        "    │   └── style.css",
+        "    └── plan-de-table/",
+        "        ├── index.html",
+        "        ├── style.css",
+        "        ├── levels.js",
+        "        └── game.js"
+      ]
+    }
+  }
+}

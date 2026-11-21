@@ -1,0 +1,27 @@
+{
+  "seq": 30,
+  "received_at": "2026-11-21T08:12:14.967820+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "HFxeERfep",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/game.js",
+      "new_string": "  level: $('hLevel'), ambFill: $('hAmbFill'), amb: $('hAmb'), goal: $('hGoal'), ambGoal: $('hAmbGoal'),",
+      "old_string": "  level: $('hLevel'), ambFill: $('hAmbFill'), amb: $('hAmb'), goal: $('hGoal'),"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/game.js",
+      "lines_changed": 1,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

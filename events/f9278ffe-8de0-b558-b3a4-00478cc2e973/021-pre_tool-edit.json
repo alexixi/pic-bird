@@ -1,0 +1,43 @@
+{
+  "seq": 21,
+  "received_at": "2026-11-21T08:11:56.075443+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "q8VrRmMuZ",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/index.html",
+      "old_string": [
+        "    <h1>Plan de Table</h1>",
+        "    <p class=\"sub\">Un dîner, des tables rondes, et des invités qui s'aiment… ou pas.",
+        "    Faites le meilleur plan de table possible pour maximiser l'ambiance !</p>",
+        "    <ul>",
+        "      <li><b>Glissez-déposez</b> les invités sur les sièges des tables (ou cliquez : sélectionner un invité, puis un siège).</li>",
+        "      <li>Deux <b>amis à la même table</b> : points positifs. Deux <b>ennemis à la même table</b> : gros malus.</li>",
+        "      <li>Deux personnes <b>côte à côte</b> sur une table ronde se parlent plus : bonus ou malus amplifié.</li>",
+        "      <li>Le <b>schéma des relations</b> à gauche montre qui s'aime (vert) et qui se déteste (rouge).</li>",
+        "      <li>Atteignez l'<b>objectif d'ambiance</b> pour réussir le niveau et débloquer le suivant.</li>",
+        "    </ul>"
+      ],
+      "new_string": [
+        "    <svg class=\"heart\" width=\"40\" height=\"36\" viewBox=\"0 0 40 36\" aria-hidden=\"true\"><path d=\"M20 33 C6 22 2 14 5 8 C8 3 14 3 17 7 L20 11 L23 7 C26 3 32 3 35 8 C38 14 34 22 20 33 Z\" fill=\"#d98e96\" stroke=\"#c9a227\" stroke-width=\"1.5\"/></svg>",
+        "    <h1>Plan de Table</h1>",
+        "    <p class=\"sub\">Un dîner, des tables rondes, et des invités qui s'aiment… ou pas.",
+        "    Faites le meilleur plan de table possible pour maximiser l'ambiance !</p>",
+        "    <ul>",
+        "      <li><b>Glissez-déposez</b> les têtes des invités sur les sièges des tables (ou cliquez : sélectionner un invité, puis un siège).</li>",
+        "      <li>Chaque invité a <b>sa tête</b>, sur le schéma comme sur les sièges.</li>",
+        "      <li>Sur le schéma, la <b>pastille au milieu de chaque lien</b> indique sa force : +1 à +3 (verts) pour les amis, −1 à −3 (rouges) pour les ennemis. Plus le trait est épais, plus le lien est fort.</li>",
+        "      <li>Deux <b>amis à la même table</b> : points positifs. Deux <b>ennemis à la même table</b> : gros malus, le lien passe au doré.</li>",
+        "      <li>Deux personnes <b>côte à côte</b> sur une table ronde se parlent plus : bonus ou malus amplifié.</li>",
+        "      <li>Atteignez l'<b>objectif d'ambiance</b> (trait noir sur la jauge) pour réussir le niveau et débloquer le suivant.</li>",
+        "    </ul>"
+      ]
+    }
+  }
+}

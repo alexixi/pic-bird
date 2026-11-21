@@ -1,0 +1,17 @@
+{
+  "seq": 53,
+  "received_at": "2026-11-20T13:03:08.076305+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.read_file",
+    "tool_call_id": "typescript:56:BpHYOFVoJ:0:tool:0",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/levels.js"
+    }
+  }
+}

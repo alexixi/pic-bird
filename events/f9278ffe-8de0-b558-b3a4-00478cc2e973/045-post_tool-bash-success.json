@@ -1,0 +1,35 @@
+{
+  "seq": 45,
+  "received_at": "2026-11-21T08:14:27.222805+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "EFClAsbrg",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && for h in \"\" \"#n3\"; do echo \"== hash '$h' ==\"; google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=4000 --dump-dom \"file://$PWD/test-render.html$h\" 2>/tmp/chrome-err.log | grep -o '<title>[^<]*</title>'; grep -iE 'console|error|uncaught' /tmp/chrome-err.log | grep -v 'GPU\\|dbus\\|bluez\\|Floss' | head -5; done"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && for h in \"\" \"#n3\"; do echo \"== hash '$h' ==\"; google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=4000 --dump-dom \"file://$PWD/test-render.html$h\" 2>/tmp/chrome-err.log | grep -o '<title>[^<]*</title>'; grep -iE 'console|error|uncaught' /tmp/chrome-err.log | grep -v 'GPU\\|dbus\\|bluez\\|Floss' | head -5; done",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "== hash '' ==",
+        "<title>TEST ambiance=35 conflits=0 tokens=8 seats=8 warnings=3</title>",
+        "== hash '#n3' ==",
+        "<title>TEST ambiance=28 conflits=0 tokens=16 seats=16 warnings=3</title>",
+        ""
+      ],
+      "timed_out": false,
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

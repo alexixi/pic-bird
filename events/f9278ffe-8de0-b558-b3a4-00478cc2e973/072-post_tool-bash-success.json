@@ -1,0 +1,34 @@
+{
+  "seq": 72,
+  "received_at": "2026-11-21T08:50:12.863502+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/f9278ffe-8de0-b558-b3a4-00478cc2e973",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "uvdvxwXvk",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=6000 --dump-dom \"file://$PWD/test-render.html#n3\" 2>/tmp/chrome-err.log | grep -o '<title>[^<]*</title>'; grep -iE 'uncaught|typeerror|referenceerror' /tmp/chrome-err.log | head -3; echo \"---\"; google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=6000 --dump-dom \"file://$PWD/test-render.html\" 2>/dev/null | grep -o '<title>[^<]*</title>'"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=6000 --dump-dom \"file://$PWD/test-render.html#n3\" 2>/tmp/chrome-err.log | grep -o '<title>[^<]*</title>'; grep -iE 'uncaught|typeerror|referenceerror' /tmp/chrome-err.log | head -3; echo \"---\"; google-chrome --headless=new --disable-gpu --no-sandbox --virtual-time-budget=6000 --dump-dom \"file://$PWD/test-render.html\" 2>/dev/null | grep -o '<title>[^<]*</title>'",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "<title>TEST amb=25 conf=1 tok=16 svg=16 px=58447 | Marc:H160/S96/C158 Nina:H160/S96/C158 Oscar:H160/S96/C158 Paula:H160/S96/C158 Quentin:H160/S96/C158 Rosa:H160/S96/C158 Sami:H160/S96/C158 Tina:H160/S96/C158 Ugo:H160/S96/C158 Vera:H160/S96/C158 Wassila:H160/S96/C158 Yanis:H160/S96/C158 Zoé:H160/S96/C158 Adam:H160/S96/C158 Betty:H160/S96/C158 Côme:H160/S96/C158</title>",
+        "---",
+        "<title>TEST amb=22 conf=1 tok=8 svg=8 px=36150 | Marc:H160/S96/C158 Nina:H160/S96/C158 Oscar:H160/S96/C158 Paula:H160/S96/C158 Quentin:H160/S96/C158 Rosa:H160/S96/C158 Sami:H160/S96/C158 Tina:H160/S96/C158 Ugo:H160/S96/C158 Vera:H160/S96/C158 Wassila:H160/S96/C158 Yanis:H160/S96/C158 Zoé:H160/S96/C158 Adam:H160/S96/C158 Betty:H160/S96/C158 Côme:H160/S96/C158</title>",
+        ""
+      ],
+      "timed_out": false,
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "seq": 71,
+  "received_at": "2026-11-20T14:47:32.911865+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "GiAOWWRTw",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/README.md",
+      "old_string": [
+        "### Étape 6 — Utilisable par un agent",
+        "- Exposer une interface utilisable par un agent (ligne de commande ou API/MCP) en",
+        "  parallèle de l'interface web, par exemple pour lancer une partie, lire le score",
+        "  ou la progression sans ouvrir de navigateur.",
+        "",
+        "### Étape 7 — Rapport"
+      ],
+      "new_string": [
+        "### Étape 7 — Utilisable par un agent",
+        "- Exposer une interface utilisable par un agent (ligne de commande ou API/MCP) en",
+        "  parallèle de l'interface web, par exemple pour lancer une partie, lire le score",
+        "  ou la progression sans ouvrir de navigateur.",
+        "",
+        "### Étape 8 — Rapport"
+      ]
+    }
+  }
+}

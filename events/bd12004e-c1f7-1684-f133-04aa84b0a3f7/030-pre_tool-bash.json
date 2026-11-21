@@ -1,0 +1,18 @@
+{
+  "seq": 30,
+  "received_at": "2026-11-20T12:30:40.656362+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/bd12004e-c1f7-1684-f133-04aa84b0a3f7",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "IKZd9TFW0",
+    "tool_input": {
+      "timeout": 120,
+      "command": "grep -rl 'Catch Bird' /home/matheline --include='*.js' --include='*.html' --include='*.css' --include='*.zip' 2>/dev/null | grep -v -E '\\.vibe/logs|\\.cache' | head; echo '---'; ls /home/matheline/Documents/Semestre9/ 2>/dev/null; ls /home/matheline/Documents/Semestre9/Agentique/ 2>/dev/null; echo '---zip---'; unzip -l ~/.local/share/Trash/files/tp2-pigeon-matheline.zip 2>/dev/null | head -20"
+    }
+  }
+}
