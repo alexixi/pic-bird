@@ -58,6 +58,7 @@ let traffic = [];
 let inp = { up: false, down: false, left: false, right: false, hand: false };
 let playing = false; // une partie est en cours
 let time = 0, shocks = 0, parkT = 0, flash = 0;
+let lastShock = -10; // cooldown anti-rebond des chocs (s)
 
 // ---------- Canvas ----------
 const canvas = $('game');
@@ -158,9 +159,16 @@ function frame(ts) {
     time += dt;
     if (flash > 0) flash -= dt;
     stepCar(player, inp, dt);
-    // murs + voitures garées
+    // murs, blocs (trottoirs, bâtiments) et voitures garées
     const impact = collideStatic(player, level);
-    if (impact > SHOCK_MIN_SPEED) { shocks++; flash = 0.4; }
+    if (impact > 0) {
+      if (impact > SHOCK_MIN_SPEED && time - lastShock > 0.6) {
+        shocks++; flash = 0.4; lastShock = time;
+        player.speed *= -0.2; // rebond
+      } else {
+        player.speed *= 0.4;
+      }
+    }
     // voitures en circulation
     for (const t of traffic) {
       updateTraffic(t, dt, player);
@@ -170,9 +178,9 @@ function frame(ts) {
           player.x -= c.nx * c.depth;
           player.y -= c.ny * c.depth;
           const ps = Math.abs(player.speed);
-          player.speed *= -0.3;
+          player.speed *= -0.25;
           t.speed = 0; t.angry = 1.2;
-          if (ps > 50) { shocks++; flash = 0.4; }
+          if (ps > 30 && time - lastShock > 0.6) { shocks++; flash = 0.4; lastShock = time; }
         }
       }
     }

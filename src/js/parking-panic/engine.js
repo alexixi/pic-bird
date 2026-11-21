@@ -6,7 +6,7 @@
    place de parking.
    ============================================================ */
 
-const SHOCK_MIN_SPEED = 70;   // vitesse d'impact déclenchant un "choc"
+const SHOCK_MIN_SPEED = 35;   // vitesse d'impact déclenchant un "choc" (~12 km/h)
 const PARK_HOLD_TIME = 1.0;   // secondes à maintenir dans la place
 const PARK_MAX_SPEED = 5;     // vitesse max considérée comme "à l'arrêt"
 const PARK_MAX_ANGLE = 0.28;  // ~16° d'écart de cap accepté
@@ -92,10 +92,12 @@ function satCollide(a, b) {
   return { nx: axis.x, ny: axis.y, depth: minDepth };
 }
 
-// ---------- Collisions contre murs et voitures garées ----------
+// ---------- Collisions contre murs, blocs et voitures garées ----------
 // Décale la voiture hors de chaque obstacle ; renvoie la vitesse
-// d'impact la plus forte (avant amortissement), 0 s'il n'y a eu
-// aucun contact.
+// d'impact la plus forte (avant amortissement, géré par l'appelant),
+// 0 s'il n'y a eu aucun contact.
+// level.blocks : rectangles bloquants (trottoirs, bâtiments, murs),
+// définis par leur coin haut-gauche { x, y, w, h, kind }.
 function collideStatic(car, level) {
   const w = level.world.w, h = level.world.h, t = 40;
   const walls = [
@@ -104,9 +106,9 @@ function collideStatic(car, level) {
     { x: -t / 2, y: h / 2, angle: 0, L: t, W: h + 2 * t },
     { x: w + t / 2, y: h / 2, angle: 0, L: t, W: h + 2 * t }
   ];
-  const obstacles = walls.concat(
-    level.parked.map((p) => ({ x: p.x, y: p.y, angle: p.angle, L: p.w, W: p.h }))
-  );
+  const obstacles = walls
+    .concat((level.blocks || []).map((b) => ({ x: b.x + b.w / 2, y: b.y + b.h / 2, angle: b.angle || 0, L: b.w, W: b.h })))
+    .concat(level.parked.map((p) => ({ x: p.x, y: p.y, angle: p.angle, L: p.w, W: p.h })));
   let impact = 0;
   for (const o of obstacles) {
     const c = satCollide(car, o);
@@ -117,7 +119,6 @@ function collideStatic(car, level) {
       impact = Math.max(impact, Math.abs(car.speed));
     }
   }
-  if (impact > 0) car.speed *= 0.25;
   return impact;
 }
 
