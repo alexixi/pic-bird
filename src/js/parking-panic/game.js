@@ -173,7 +173,7 @@ function frame(ts) {
     }
     updateHUD();
   }
-  drawGame(ctx, CW, CH, { level, player, traffic, parkT, flash });
+  drawGame(ctx, CW, CH, { level, player, traffic, parkT, flash, inp });
 }
 
 // ---------- Toast ----------
