@@ -116,7 +116,20 @@ function loadLevel(i) {
 function levelSuccess() {
   playing = false;
   const score = Math.round((time + shocks * SHOCK_PENALTY) * 10) / 10;
-  toast('Place validée ! (' + score + ' s)');
+  if (save.done[levelIdx] == null || score < save.done[levelIdx]) save.done[levelIdx] = score;
+  save.unlocked = Math.max(save.unlocked, Math.min(levelIdx + 1, PARKING_LEVELS.length - 1));
+  const n = doneCount();
+  const newlyCleared = !save.cleared && n >= NEED_DONE;
+  if (newlyCleared) save.cleared = true;
+  storeSave();
+  el.winTitle.textContent = newlyCleared ? 'Jeu réussi !' : 'Niveau réussi !';
+  el.winText.textContent = 'Niveau ' + (levelIdx + 1) + ' garé en ' + score.toFixed(1) + ' s (' +
+    shocks + ' choc' + (shocks > 1 ? 's' : '') + '). ' + n + '/' + PARKING_LEVELS.length +
+    ' niveaux réussis' + (newlyCleared
+      ? ' : le jeu est réussi, la suite du parcours est débloquée !'
+      : ' — il en faut ' + NEED_DONE + ' pour réussir le jeu et débloquer la suite.');
+  el.winNext.style.display = levelIdx + 1 < PARKING_LEVELS.length ? '' : 'none';
+  el.winOverlay.classList.remove('hidden');
 }
 
 // ---------- HUD ----------
