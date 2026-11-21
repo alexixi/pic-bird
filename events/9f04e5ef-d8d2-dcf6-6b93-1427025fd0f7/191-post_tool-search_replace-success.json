@@ -1,0 +1,39 @@
+{
+  "seq": 191,
+  "received_at": "2026-11-21T14:15:51.093768+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "PIWuh8X1l",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/README.md",
+      "old_string": [
+        "- **8 niveaux** : place large, créneau entre deux voitures mal garées, parking",
+        "  en épi, place en bataille serrée, rue passante avec circulation en boucle,",
+        "  créneau sous trafic dense, livraison en utilitaire, niveau « boss »."
+      ],
+      "new_string": [
+        "- **8 niveaux**, du plus facile au plus dur, dans deux archétypes : un **grand",
+        "  parking** bordé de bordures bloquantes, ou une **rue** entre trottoir et mur",
+        "  (la voiture ne peut pas sortir de la route) avec des places en créneau dans",
+        "  la bande de stationnement. Ordre : place large, bataille entre deux voitures,",
+        "  créneau large sans trafic, bataille serrée, épi, créneau avec une voiture qui",
+        "  passe, créneau étroit à double sens, boss en utilitaire avec trafic dense."
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/README.md",
+      "lines_changed": 6,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

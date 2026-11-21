@@ -1,0 +1,89 @@
+{
+  "seq": 144,
+  "received_at": "2026-11-21T13:55:15.357070+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "vibe.todo",
+    "tool_call_id": "ooRHcpau4",
+    "tool_input": {
+      "action": "write",
+      "todos": [
+        {
+          "content": "Fix chocs : seuil 35 u/s + cooldown 0.6s + rebond (engine.js, game.js)",
+          "id": "1",
+          "priority": "high",
+          "status": "in_progress"
+        },
+        {
+          "content": "Monde borné : blocs de collision (trottoirs/bâtiments/murs) dans engine.js + rendu dans render.js",
+          "id": "2",
+          "priority": "high",
+          "status": "pending"
+        },
+        {
+          "content": "Caméra rapprochée (VIEW 860x540) + environnement rempli (arbres, lampadaires, zébras, voitures garées)",
+          "id": "3",
+          "priority": "high",
+          "status": "pending"
+        },
+        {
+          "content": "8 niveaux réécrits : archétypes parking/rue, courbe de difficulté rééquilibrée, créneaux élargis",
+          "id": "4",
+          "priority": "high",
+          "status": "pending"
+        },
+        {
+          "content": "Tests node mis à jour (confinement, places hors blocs, chocs) + commits + docs",
+          "id": "5",
+          "priority": "high",
+          "status": "pending"
+        }
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "message": "Updated 5 todos",
+      "todos": [
+        {
+          "content": "Fix chocs : seuil 35 u/s + cooldown 0.6s + rebond (engine.js, game.js)",
+          "id": "1",
+          "priority": "high",
+          "status": "in_progress"
+        },
+        {
+          "content": "Monde borné : blocs de collision (trottoirs/bâtiments/murs) dans engine.js + rendu dans render.js",
+          "id": "2",
+          "priority": "high",
+          "status": "pending"
+        },
+        {
+          "content": "Caméra rapprochée (VIEW 860x540) + environnement rempli (arbres, lampadaires, zébras, voitures garées)",
+          "id": "3",
+          "priority": "high",
+          "status": "pending"
+        },
+        {
+          "content": "8 niveaux réécrits : archétypes parking/rue, courbe de difficulté rééquilibrée, créneaux élargis",
+          "id": "4",
+          "priority": "high",
+          "status": "pending"
+        },
+        {
+          "content": "Tests node mis à jour (confinement, places hors blocs, chocs) + commits + docs",
+          "id": "5",
+          "priority": "high",
+          "status": "pending"
+        }
+      ],
+      "total_count": 5,
+      "verb": "Updated"
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

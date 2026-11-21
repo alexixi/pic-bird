@@ -1,0 +1,67 @@
+{
+  "seq": 137,
+  "received_at": "2026-11-21T12:01:15.611867+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "vibe.todo",
+    "tool_call_id": "2qnfG9lqS",
+    "tool_input": {
+      "action": "write",
+      "todos": [
+        {
+          "id": "1",
+          "content": "Commit 1 — squelette parking-panic",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "2",
+          "content": "Commit 2 — levels.js complet : 8 niveaux + 4 specs de voitures",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "3",
+          "content": "Commit 3 — moteur physique, contrôles clavier, boucle de jeu, HUD pédales/mode AV-AR",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "4",
+          "content": "Commit 4 — rendu du monde, caméra, voitures (render.js)",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "5",
+          "content": "Commit 5 — voitures perturbatrices, freinage IA, collisions (traffic.js)",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "6",
+          "content": "Commit 6 — progression : verrouillage après 2/3 niveaux Plan de Table, 5/8 niveaux pour réussir le jeu",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "7",
+          "content": "Commit 7 — docs src/README.md + commit chore(events)",
+          "status": "completed",
+          "priority": "medium"
+        },
+        {
+          "id": "8",
+          "content": "Vérification : syntaxe JS, tests logiques node, cohérence IDs HTML/JS, commits",
+          "status": "completed",
+          "priority": "high"
+        }
+      ]
+    }
+  }
+}

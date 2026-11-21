@@ -1,0 +1,49 @@
+{
+  "seq": 141,
+  "received_at": "2026-11-21T13:55:15.057411+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "vibe.todo",
+    "tool_call_id": "ooRHcpau4",
+    "tool_input": {
+      "action": "write",
+      "todos": [
+        {
+          "id": "1",
+          "content": "Fix chocs : seuil 35 u/s + cooldown 0.6s + rebond (engine.js, game.js)",
+          "status": "in_progress",
+          "priority": "high"
+        },
+        {
+          "id": "2",
+          "content": "Monde borné : blocs de collision (trottoirs/bâtiments/murs) dans engine.js + rendu dans render.js",
+          "status": "pending",
+          "priority": "high"
+        },
+        {
+          "id": "3",
+          "content": "Caméra rapprochée (VIEW 860x540) + environnement rempli (arbres, lampadaires, zébras, voitures garées)",
+          "status": "pending",
+          "priority": "high"
+        },
+        {
+          "id": "4",
+          "content": "8 niveaux réécrits : archétypes parking/rue, courbe de difficulté rééquilibrée, créneaux élargis",
+          "status": "pending",
+          "priority": "high"
+        },
+        {
+          "id": "5",
+          "content": "Tests node mis à jour (confinement, places hors blocs, chocs) + commits + docs",
+          "status": "pending",
+          "priority": "high"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "seq": 181,
+  "received_at": "2026-11-21T14:11:49.323590+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "9Tf5GFgxg",
+    "tool_input": {
+      "file_path": "/tmp/pp-test.js",
+      "old_string": [
+        "  // confinement : une voiture placée au milieu du premier bloc est repoussée dehors",
+        "  if (blocks.length) {",
+        "    const c = makeCar(spec, blocks[0].x, blocks[0].y, 0);",
+        "    c.speed = 50;",
+        "    const imp = collideStatic(c, lv);",
+        "    ok(imp > 0 && satCollide(c, blocks[0]) === null, `N${i + 1} un bloc repousse la voiture hors du bloc (impact ${imp.toFixed(0)})`);",
+        "  }"
+      ],
+      "new_string": [
+        "  // confinement : on fonce dans le premier bloc depuis la zone roulable,",
+        "  // la voiture ne doit jamais traverser sa face côté monde",
+        "  if (blocks.length) {",
+        "    const b = blocks[0];",
+        "    const wcx = lv.world.w / 2, wcy = lv.world.h / 2;",
+        "    // direction du centre du bloc vers le centre du monde",
+        "    const dir = Math.atan2(wcy - b.y, wcx - b.x);",
+        "    const car = makeCar(spec, b.x + Math.cos(dir) * -30, b.y + Math.sin(dir) * -30, dir);",
+        "    car.speed = 120;",
+        "    const idle = { up: false, down: false, left: false, right: false, hand: false };",
+        "    let imp2 = 0;",
+        "    for (let k = 0; k < 90; k++) { stepCar(car, idle, 1 / 60); imp2 = Math.max(imp2, collideStatic(car, lv)); }",
+        "    ok(imp2 > 0 && satCollide(car, b) === null, `N${i + 1} le bloc bloque la voiture (impact ${imp2.toFixed(0)}, plus de chevauchement)`);",
+        "  }"
+      ],
+      "replace_all": false
+    }
+  }
+}

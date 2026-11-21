@@ -1,0 +1,45 @@
+{
+  "seq": 160,
+  "received_at": "2026-11-21T14:01:50.340044+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "DkXURmzVT",
+    "tool_input": {
+      "command": "node /tmp/pp-test.js 2>&1 | grep -E \"FAIL|ÉCHEC|TOUS|Niveaux|Physique|Collisions|Chocs|Détection|Trafic|Simulation\" "
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "node /tmp/pp-test.js 2>&1 | grep -E \"FAIL|ÉCHEC|TOUS|Niveaux|Physique|Collisions|Chocs|Détection|Trafic|Simulation\" ",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "Niveaux : 8",
+        "  FAIL N1 un bloc repousse la voiture (impact 0)",
+        "  FAIL N2 un bloc repousse la voiture (impact 0)",
+        "  FAIL N3 un bloc repousse la voiture (impact 0)",
+        "  FAIL N4 un bloc repousse la voiture (impact 0)",
+        "  FAIL N5 un bloc repousse la voiture (impact 0)",
+        "  FAIL N6 un bloc repousse la voiture (impact 0)",
+        "  FAIL N7 un bloc repousse la voiture (impact 0)",
+        "  FAIL N8 un bloc repousse la voiture (impact 0)",
+        "Physique :",
+        "Collisions :",
+        "Chocs :",
+        "Détection de place :",
+        "Trafic :",
+        "Simulation niveau 1 (autopilote) :",
+        "8 ÉCHEC(S)",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "seq": 161,
+  "received_at": "2026-11-21T14:02:09.623015+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "mXbuPgNRI",
+    "tool_input": {
+      "file_path": "/tmp/pp-test.js",
+      "old_string": [
+        "  if (blocks.length) {",
+        "    const c = makeCar(spec, blocks[0].x, blocks[0].y, 0);",
+        "    const imp = collideStatic(c, lv);",
+        "    ok(imp > 0 && satCollide(c, blocks[0]) === null, `N${i + 1} un bloc repousse la voiture (impact ${imp.toFixed(0)})`);",
+        "  }"
+      ],
+      "new_string": [
+        "  if (blocks.length) {",
+        "    const c = makeCar(spec, blocks[0].x, blocks[0].y, 0);",
+        "    c.speed = 50;",
+        "    const imp = collideStatic(c, lv);",
+        "    ok(imp > 0 && satCollide(c, blocks[0]) === null, `N${i + 1} un bloc repousse la voiture hors du bloc (impact ${imp.toFixed(0)})`);",
+        "  }"
+      ],
+      "replace_all": false
+    }
+  }
+}

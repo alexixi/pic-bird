@@ -1,0 +1,39 @@
+{
+  "seq": 164,
+  "received_at": "2026-11-21T14:06:44.536169+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "lgb7dq5jE",
+    "tool_input": {
+      "command": "node /tmp/pp-test.js 2>&1 | grep -E \"FAIL|ÉCHEC|TOUS\" ; echo \"exit=$?\""
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "node /tmp/pp-test.js 2>&1 | grep -E \"FAIL|ÉCHEC|TOUS\" ; echo \"exit=$?\"",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "  FAIL N1 un bloc repousse la voiture hors du bloc (impact 50)",
+        "  FAIL N2 un bloc repousse la voiture hors du bloc (impact 50)",
+        "  FAIL N3 un bloc repousse la voiture hors du bloc (impact 50)",
+        "  FAIL N4 un bloc repousse la voiture hors du bloc (impact 50)",
+        "  FAIL N5 un bloc repousse la voiture hors du bloc (impact 50)",
+        "  FAIL N6 un bloc repousse la voiture hors du bloc (impact 50)",
+        "  FAIL N7 un bloc repousse la voiture hors du bloc (impact 50)",
+        "  FAIL N8 un bloc repousse la voiture hors du bloc (impact 50)",
+        "8 ÉCHEC(S)",
+        "exit=0",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "seq": 169,
+  "received_at": "2026-11-21T14:07:28.259691+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "4F0LajGtB",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/engine.js",
+      "old_string": [
+        "    const c = satCollide(car, o);",
+        "    if (c) {",
+        "      // l'axe va de la voiture vers l'obstacle : on repousse la voiture à l'opposé",
+        "      car.x -= c.nx * c.depth;",
+        "      car.y -= c.ny * c.depth;",
+        "      impact = Math.max(impact, Math.abs(car.speed));",
+        "    }"
+      ],
+      "new_string": [
+        "    const c = satCollide(car, o);",
+        "    if (c) {",
+        "      // l'axe indique le sens où sortir la voiture de l'obstacle",
+        "      car.x += c.nx * c.depth;",
+        "      car.y += c.ny * c.depth;",
+        "      impact = Math.max(impact, Math.abs(car.speed));",
+        "    }"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/engine.js",
+      "lines_changed": 7,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

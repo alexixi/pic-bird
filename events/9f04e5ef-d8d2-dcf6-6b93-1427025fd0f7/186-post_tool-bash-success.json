@@ -1,0 +1,63 @@
+{
+  "seq": 186,
+  "received_at": "2026-11-21T14:12:14.341373+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "KytneNaDN",
+    "tool_input": {
+      "command": "node /tmp/pp-test.js 2>&1 | tail -30 && cd /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird && git status --short -- src/"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "node /tmp/pp-test.js 2>&1 | tail -30 && cd /home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird && git status --short -- src/",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "Détection de place :",
+        "  OK  validée quand garé droit à l'arrêt",
+        "  OK  refusé si encore en mouvement",
+        "  OK  refusé si la voiture dépasse de la place",
+        "  OK  refusé si trop de travers (>16°)",
+        "Trafic :",
+        "  OK  la voiture roule sur sa voie (y=581.0)",
+        "  OK  aller simple : avance et reste active",
+        "  OK  freine devant le joueur (78.0 après 0.1 s)",
+        "  OK  s'arrête devant le joueur (0.0)",
+        "  OK  sort en bout de route après 442 pas",
+        "  OK  réapparaît après le délai",
+        "  OK  N5 la voie de circulation (100,680) est hors des blocs",
+        "  OK  N5 la voie de circulation (1200,680) est hors des blocs",
+        "  OK  N6 la voie de circulation (80,581) est hors des blocs",
+        "  OK  N6 la voie de circulation (1320,581) est hors des blocs",
+        "  OK  N7 la voie de circulation (80,581) est hors des blocs",
+        "  OK  N7 la voie de circulation (1320,581) est hors des blocs",
+        "  OK  N7 la voie de circulation (1320,649) est hors des blocs",
+        "  OK  N7 la voie de circulation (80,649) est hors des blocs",
+        "  OK  N8 la voie de circulation (80,581) est hors des blocs",
+        "  OK  N8 la voie de circulation (1420,581) est hors des blocs",
+        "  OK  N8 la voie de circulation (1420,649) est hors des blocs",
+        "  OK  N8 la voie de circulation (80,649) est hors des blocs",
+        "  OK  N8 la voie de circulation (80,581) est hors des blocs",
+        "  OK  N8 la voie de circulation (1420,581) est hors des blocs",
+        "Simulation niveau 1 (autopilote) :",
+        "  OK  autopilote a garé la voiture (pos 700.0,206.6, cap -1.57, chocs=0)",
+        "",
+        "TOUS LES TESTS PASSENT",
+        " M src/js/parking-panic/engine.js",
+        " M src/js/parking-panic/game.js",
+        " M src/js/parking-panic/levels.js",
+        " M src/js/parking-panic/render.js",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "seq": 174,
+  "received_at": "2026-11-21T14:09:55.981745+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "transcript_path": "/home/alexisgb/.vibe-enseirb/logs/session/unified/9f04e5ef-d8d2-dcf6-6b93-1427025fd0f7",
+    "cwd": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "ioHMh403H",
+    "tool_input": {
+      "file_path": "/home/alexisgb/Documents/enseirb/Semestre9/agentique/pic-bird/src/js/parking-panic/engine.js",
+      "old_string": [
+        "  let impact = 0;",
+        "  for (const o of obstacles) {",
+        "    const c = satCollide(car, o);",
+        "    if (c) {",
+        "      // l'axe indique le sens où sortir la voiture de l'obstacle",
+        "      car.x += c.nx * c.depth;",
+        "      car.y += c.ny * c.depth;",
+        "      impact = Math.max(impact, Math.abs(car.speed));",
+        "    }",
+        "  }",
+        "  return impact;",
+        "}"
+      ],
+      "new_string": [
+        "  let impact = 0;",
+        "  // deux passes pour faire converger la résolution quand plusieurs",
+        "  // obstacles se touchent (mur + bordure, etc.)",
+        "  for (let pass = 0; pass < 2; pass++) {",
+        "    for (const o of obstacles) {",
+        "      const c = satCollide(car, o);",
+        "      if (c) {",
+        "        // l'axe indique le sens où sortir la voiture de l'obstacle",
+        "        car.x += c.nx * c.depth;",
+        "        car.y += c.ny * c.depth;",
+        "        impact = Math.max(impact, Math.abs(car.speed));",
+        "      }",
+        "    }",
+        "  }",
+        "  return impact;",
+        "}"
+      ],
+      "replace_all": false
+    }
+  }
+}
