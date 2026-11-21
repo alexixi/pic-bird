@@ -14,8 +14,9 @@
 
 // ---------- Constantes de progression ----------
 const SAVE_KEY = 'picbird.parkingPanic';
-const NEED_PDT_DONE = 2; // niveaux de Plan de Table à réussir pour débloquer Parking Panic
-const NEED_DONE = 5;     // niveaux à réussir sur PARKING_LEVELS.length pour réussir le jeu
+const NEED_PDT_DONE = 2;  // niveaux de Plan de Table à réussir pour débloquer Parking Panic
+const NEED_DONE = 5;      // niveaux à réussir sur PARKING_LEVELS.length pour réussir le jeu
+const SHOCK_PENALTY = 2;  // secondes ajoutées au chrono par choc
 
 // ---------- Sauvegarde ----------
 function loadSave() {
@@ -49,6 +50,132 @@ const el = {
   btnReset: $('btnReset'), btnLevels: $('btnLevels')
 };
 
+// ---------- État ----------
+let levelIdx = 0;
+let level = null;
+let player = null;
+let traffic = [];
+let inp = { up: false, down: false, left: false, right: false, hand: false };
+let playing = false; // une partie est en cours
+let time = 0, shocks = 0, parkT = 0, flash = 0;
+
+// ---------- Canvas ----------
+const canvas = $('game');
+const ctx = canvas.getContext('2d');
+let CW = 0, CH = 0;
+function resize() {
+  const r = canvas.parentElement.getBoundingClientRect();
+  const DPR = Math.min(2, window.devicePixelRatio || 1);
+  CW = r.width; CH = r.height;
+  canvas.width = Math.round(CW * DPR);
+  canvas.height = Math.round(CH * DPR);
+}
+window.addEventListener('resize', resize);
+
+// ---------- Entrées clavier ----------
+// Les touches affichées à l'écran : ↑ ↓ ← → Espace R.
+// Alias ZQSD/WASD acceptés pour les claviers/azerty.
+const KEYMAP = {
+  ArrowUp: 'up', KeyW: 'up', KeyZ: 'up',
+  ArrowDown: 'down', KeyS: 'down',
+  ArrowLeft: 'left', KeyA: 'left', KeyQ: 'left',
+  ArrowRight: 'right', KeyD: 'right',
+  Space: 'hand'
+};
+window.addEventListener('keydown', (e) => {
+  if (KEYMAP[e.code]) { inp[KEYMAP[e.code]] = true; e.preventDefault(); }
+  else if (e.code === 'KeyR') { toggleGear(); e.preventDefault(); }
+});
+window.addEventListener('keyup', (e) => {
+  if (KEYMAP[e.code]) { inp[KEYMAP[e.code]] = false; e.preventDefault(); }
+});
+
+function toggleGear() {
+  if (!playing || !player) return;
+  if (Math.abs(player.speed) < 6) {
+    player.gear *= -1;
+    toast(player.gear > 0 ? 'Mode marche avant (AV)' : 'Mode marche arrière (AR)');
+  } else {
+    toast('Ralentissez complètement pour changer de mode (R)');
+  }
+}
+
+// ---------- Niveaux ----------
+function loadLevel(i) {
+  levelIdx = i;
+  level = PARKING_LEVELS[i];
+  player = makeCar(CAR_SPECS[level.car], level.start.x, level.start.y, level.start.angle);
+  traffic = level.traffic.map(makeTraffic);
+  time = 0; shocks = 0; parkT = 0; flash = 0;
+  playing = true;
+  for (const k of Object.keys(inp)) inp[k] = false;
+  el.winOverlay.classList.add('hidden');
+  updateHUD();
+}
+
+function levelSuccess() {
+  playing = false;
+  const score = Math.round((time + shocks * SHOCK_PENALTY) * 10) / 10;
+  toast('Place validée ! (' + score + ' s)');
+}
+
+// ---------- HUD ----------
+function updateHUD() {
+  el.hLevel.textContent = level ? (levelIdx + 1) + ' / ' + PARKING_LEVELS.length + ' — ' + level.name : '—';
+  el.hTime.textContent = (time + shocks * SHOCK_PENALTY).toFixed(1) + ' s';
+  el.hShocks.textContent = shocks;
+  el.hGear.textContent = player && player.gear < 0 ? 'AR' : 'AV';
+  el.hGear.className = player && player.gear < 0 ? 'ar' : 'av';
+  el.pAcc.classList.toggle('pressed', inp.up);
+  el.pBrake.classList.toggle('pressed', inp.down);
+  el.pHand.classList.toggle('pressed', inp.hand);
+  const spot = level ? level.spots[level.target] : null;
+  const show = playing && spot && player && canPark(player, spot);
+  el.parkWrap.classList.toggle('hidden', !show);
+  el.parkFill.style.width = Math.min(100, (parkT / PARK_HOLD_TIME) * 100) + '%';
+}
+
+// ---------- Boucle de jeu ----------
+let lastTs = 0;
+function frame(ts) {
+  requestAnimationFrame(frame);
+  const dt = Math.min(0.033, lastTs ? (ts - lastTs) / 1000 : 0.016);
+  lastTs = ts;
+  if (playing && level && player) {
+    time += dt;
+    if (flash > 0) flash -= dt;
+    stepCar(player, inp, dt);
+    // murs + voitures garées
+    const impact = collideStatic(player, level);
+    if (impact > SHOCK_MIN_SPEED) { shocks++; flash = 0.4; }
+    // voitures en circulation
+    for (const t of traffic) {
+      updateTraffic(t, dt, player);
+      if (t.active) {
+        const c = satCollide(player, t);
+        if (c) {
+          player.x += c.nx * c.depth;
+          player.y += c.ny * c.depth;
+          const ps = Math.abs(player.speed);
+          player.speed *= -0.3;
+          t.speed = 0; t.angry = 1.2;
+          if (ps > 50) { shocks++; flash = 0.4; }
+        }
+      }
+    }
+    // stationnement dans la place cible
+    const spot = level.spots[level.target];
+    if (canPark(player, spot)) {
+      parkT += dt;
+      if (parkT >= PARK_HOLD_TIME) levelSuccess();
+    } else {
+      parkT = 0;
+    }
+    updateHUD();
+  }
+  drawGame(ctx, CW, CH, { level, player, traffic, parkT, flash });
+}
+
 // ---------- Toast ----------
 function toast(msg) {
   el.toast.textContent = msg;
@@ -65,7 +192,7 @@ function refreshLock() {
   el.start.classList.toggle('hidden', locked);
   if (locked) {
     el.lockText.textContent = 'Réussissez au moins ' + NEED_PDT_DONE + ' niveaux du Plan de Table ' +
-      'pour déblocher Parking Panic (' + done + '/' + NEED_PDT_DONE + ' réussi' + (done > 1 ? 's' : '') + ').';
+      'pour débloquer Parking Panic (' + done + '/' + NEED_PDT_DONE + ' réussi' + (done > 1 ? 's' : '') + ').';
   }
   return !locked;
 }
@@ -89,11 +216,20 @@ function renderLevelList() {
 }
 
 // ---------- Boutons ----------
-el.startBtn.addEventListener('click', () => { el.start.classList.add('hidden'); });
+el.startBtn.addEventListener('click', () => {
+  el.start.classList.add('hidden');
+  loadLevel(Math.min(save.unlocked, PARKING_LEVELS.length - 1));
+});
 el.levelsClose.addEventListener('click', () => el.levelsOverlay.classList.add('hidden'));
 el.btnLevels.addEventListener('click', () => { renderLevelList(); el.levelsOverlay.classList.remove('hidden'); });
 el.lockRefresh.addEventListener('click', () => location.reload());
+el.btnReset.addEventListener('click', () => { if (level) loadLevel(levelIdx); });
+el.winNext.addEventListener('click', () => loadLevel(Math.min(levelIdx + 1, PARKING_LEVELS.length - 1)));
+el.winRetry.addEventListener('click', () => loadLevel(levelIdx));
+el.winLevels.addEventListener('click', () => { el.winOverlay.classList.add('hidden'); renderLevelList(); el.levelsOverlay.classList.remove('hidden'); });
 
 // ---------- Démarrage ----------
+resize();
 refreshLock();
 renderLevelList();
+requestAnimationFrame(frame);
