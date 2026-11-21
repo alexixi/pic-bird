@@ -145,9 +145,12 @@ haut de l'écran ; les touches de chaque action sont affichées en bas.
 - **Voiture du niveau** : citadine, berline, break ou utilitaire — de plus en
   plus grosse et moins maniable (accélération, vitesse max, débattement du
   volant, rayon de braquage).
-- **8 niveaux** : place large, créneau entre deux voitures mal garées, parking
-  en épi, place en bataille serrée, rue passante avec circulation en boucle,
-  créneau sous trafic dense, livraison en utilitaire, niveau « boss ».
+- **8 niveaux**, du plus facile au plus dur, dans deux archétypes : un **grand
+  parking** bordé de bordures bloquantes, ou une **rue** entre trottoir et mur
+  (la voiture ne peut pas sortir de la route) avec des places en créneau dans
+  la bande de stationnement. Ordre : place large, bataille entre deux voitures,
+  créneau large sans trafic, bataille serrée, épi, créneau avec une voiture qui
+  passe, créneau étroit à double sens, boss en utilitaire avec trafic dense.
 - **Stationnement réussi** : voiture entièrement dans la place verte, bien
   droite (±16°, nez ou cul indifférent), à l'arrêt, maintenue 1 seconde.
 - **Chocs** (murs, voitures garées ou en circulation) : +2 s de pénalité sur
@@ -162,8 +165,8 @@ haut de l'écran ; les touches de chaque action sont affichées en bas.
 
 - `src/js/parking-panic/index.html` — HUD (pédales, mode AV/AR, chrono, chocs), barre des contrôles, écrans
 - `src/js/parking-panic/style.css` — habillage
-- `src/js/parking-panic/levels.js` — les 4 voitures jouables et les données des 8 niveaux
-- `src/js/parking-panic/engine.js` — physique (modèle bicycle), collisions OBB/SAT, détection de place
+- `src/js/parking-panic/levels.js` — les 4 voitures jouables, les 2 archétypes de monde et les données des 8 niveaux
+- `src/js/parking-panic/engine.js` — physique (modèle bicycle), collisions OBB/SAT (murs, blocs bloquants, voitures), détection de place
 - `src/js/parking-panic/traffic.js` — voitures perturbatrices (chemins, freinage, collisions)
 - `src/js/parking-panic/render.js` — caméra et dessin du monde (canvas 2D)
 - `src/js/parking-panic/game.js` — boucle de jeu, entrées clavier, HUD, progression
