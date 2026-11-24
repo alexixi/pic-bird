@@ -28,7 +28,7 @@
 <main id="board">
   <section id="relationsPanel">
     <h2>Schéma des relations</h2>
-    <canvas id="graph" width="460" height="460"></canvas>
+    <canvas id="graph" width="520" height="520"></canvas>
     <div id="legend">
       <div class="lg-title">Légende du schéma</div>
       <span class="lg"><svg width="44" height="10"><line x1="3" y1="5" x2="41" y2="5" stroke="#7cb87c" stroke-width="2" stroke-dasharray="6,4" stroke-linecap="round"/></svg>amitié +1</span>
@@ -38,20 +38,19 @@
       <span class="lg"><svg width="44" height="10"><line x1="3" y1="5" x2="41" y2="5" stroke="#d64545" stroke-width="4" stroke-linecap="round"/></svg>hostilité −2</span>
       <span class="lg"><svg width="44" height="10"><line x1="3" y1="5" x2="41" y2="5" stroke="#a71d1d" stroke-width="6" stroke-linecap="round"/></svg>hostilité −3</span>
       <span class="lg"><svg width="44" height="10"><line x1="3" y1="5" x2="41" y2="5" stroke="#e0a800" stroke-width="5" stroke-linecap="round"/></svg>conflit (même table)</span>
-      <span class="lg"><svg width="34" height="16"><rect x="1" y="1" width="32" height="14" rx="7" fill="#fffdf8" stroke="#4c9a2a" stroke-width="1.5"/><text x="17" y="11.5" text-anchor="middle" font-size="10" font-weight="bold" fill="#4c9a2a" font-family="Georgia, serif">+2</text></svg>pastille = force du lien</span>
+      <span class="lg lg-wide">Astuce : cliquez sur une tête du schéma (ou sur un jeton) pour surligner ses relations — les autres liens s'estompent.</span>
     </div>
-    <h3 id="warnTitle">À surveiller</h3>
-    <ul id="warnings"></ul>
   </section>
 
   <section id="tablesPanel">
     <h2 id="levelName">—</h2>
     <p id="levelDesc"></p>
     <div id="tables"></div>
-    <div id="benchWrap">
-      <h3>Invités à placer</h3>
-      <div id="bench"></div>
-    </div>
+  </section>
+
+  <section id="benchPanel">
+    <h3>Invités à placer</h3>
+    <div id="bench"></div>
   </section>
 </main>
 
@@ -66,7 +65,7 @@
     <ul>
       <li><b>Glissez-déposez</b> les têtes des invités sur les sièges des tables (ou cliquez : sélectionner un invité, puis un siège).</li>
       <li>Chaque invité a <b>sa tête</b>, sur le schéma comme sur les sièges.</li>
-      <li>Sur le schéma, la <b>pastille au milieu de chaque lien</b> indique sa force : +1 à +3 (verts) pour les amis, −1 à −3 (rouges) pour les ennemis. Plus le trait est épais, plus le lien est fort.</li>
+      <li>Sur le schéma, chaque lien est <b>vert (amitié)</b> ou <b>rouge (hostilité)</b> : plus le trait est épais, plus le lien est fort. Cliquez sur une tête pour <b>surligner ses relations</b>.</li>
       <li>Deux <b>amis à la même table</b> : points positifs. Deux <b>ennemis à la même table</b> : gros malus, le lien passe au doré.</li>
       <li>Deux personnes <b>côte à côte</b> sur une table ronde se parlent plus : bonus ou malus amplifié.</li>
       <li>Atteignez l'<b>objectif d'ambiance</b> (trait noir sur la jauge) pour réussir le niveau et débloquer le suivant.</li>

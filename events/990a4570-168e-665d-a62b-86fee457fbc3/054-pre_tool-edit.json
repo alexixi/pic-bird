@@ -1,0 +1,46 @@
+{
+  "seq": 54,
+  "received_at": "2026-11-24T14:03:26.313227+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "DEeM9b2S0",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/game.js",
+      "old_string": [
+        "    gtx.stroke();",
+        "    gtx.shadowBlur = 0;",
+        "    const lr = R + 32;",
+        "    gtx.font = (isSel || vRel !== undefined ? 'bold ' : '') + '11.5px Georgia, serif';",
+        "    gtx.fillStyle = dim ? '#c0b3a0' : isSel ? '#8a6d1f' : '#6b5d4f';",
+        "    gtx.textAlign = 'center'; gtx.textBaseline = 'middle';",
+        "    gtx.fillText(level.guests[i], cx + lr * Math.cos(p.a), cy + lr * Math.sin(p.a));",
+        "    gtx.globalAlpha = 1;",
+        "  });",
+        "}"
+      ],
+      "new_string": [
+        "    gtx.stroke();",
+        "    gtx.shadowBlur = 0;",
+        "    // nom ancré à l'extérieur du cercle : alignement selon l'angle pour",
+        "    // que le texte s'éloigne toujours de la tête (jamais dessus)",
+        "    const lr = R + 30;",
+        "    const lx = cx + lr * Math.cos(p.a), ly = cy + lr * Math.sin(p.a);",
+        "    const ca = Math.cos(p.a), sa = Math.sin(p.a);",
+        "    gtx.textAlign = ca > 0.35 ? 'left' : ca < -0.35 ? 'right' : 'center';",
+        "    gtx.textBaseline = sa > 0.35 ? 'top' : sa < -0.35 ? 'bottom' : 'middle';",
+        "    gtx.font = (isSel || vRel !== undefined ? 'bold ' : '') + '11px Georgia, serif';",
+        "    gtx.fillStyle = dim ? '#c0b3a0' : isSel ? '#8a6d1f' : '#6b5d4f';",
+        "    gtx.fillText(level.guests[i], lx, ly);",
+        "    gtx.globalAlpha = 1;",
+        "  });",
+        "}"
+      ]
+    }
+  }
+}

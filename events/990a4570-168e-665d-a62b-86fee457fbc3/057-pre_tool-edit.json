@@ -1,0 +1,46 @@
+{
+  "seq": 57,
+  "received_at": "2026-11-24T14:03:42.298811+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "4hgM7gj11",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/game.js",
+      "old_string": [
+        "  el.conflicts.textContent = sc.conflicts.length;",
+        "  el.warnings.innerHTML = '';",
+        "  sc.conflicts.forEach((c) => {",
+        "    const li = document.createElement('li');",
+        "    li.textContent = level.guests[c.a] + ' et ' + level.guests[c.b] +",
+        "      ' se détestent' + (c.adjacent ? ' et sont côte à côte !' : ' et partagent la table ' + (seatOf(c.a).table + 1) + '.');",
+        "    el.warnings.appendChild(li);",
+        "  });",
+        "  // conseils : amitiés fortes séparées",
+        "  const rel = relMap();",
+        "  const separated = [];",
+        "  for (const r of level.relations) {",
+        "    if (r.v >= 2 && !sameTable(r.a, r.b)) separated.push(r);",
+        "  }",
+        "  separated.slice(0, 3).forEach((r) => {",
+        "    const li = document.createElement('li');",
+        "    li.className = 'info';",
+        "    li.textContent = level.guests[r.a] + ' et ' + level.guests[r.b] + ' sont proches : même table ?';",
+        "    el.warnings.appendChild(li);",
+        "  });",
+        "  return sc;",
+        "}"
+      ],
+      "new_string": [
+        "  el.conflicts.textContent = sc.conflicts.length;",
+        "  return sc;",
+        "}"
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "seq": 20,
+  "received_at": "2026-11-24T13:58:08.239037+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "qOVUpvjpk",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/index.html",
+      "old_string": "      <span class=\"lg\"><svg width=\"34\" height=\"16\"><rect x=\"1\" y=\"1\" width=\"32\" height=\"14\" rx=\"7\" fill=\"#fffdf8\" stroke=\"#4c9a2a\" stroke-width=\"1.5\"/><text x=\"17\" y=\"11.5\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"bold\" fill=\"#4c9a2a\" font-family=\"Georgia, serif\">+2</text></svg>pastille = force du lien</span>",
+      "new_string": "      <span class=\"lg lg-wide\">Astuce : cliquez sur une tête du schéma (ou sur un jeton) pour surligner ses relations — les autres liens s'estompent.</span>"
+    }
+  }
+}

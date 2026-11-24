@@ -26,12 +26,13 @@ let save = loadSave();
 // placement[g] = { table, seat } ou null
 let placement = [];
 let selected = null; // invité sélectionné (mode clic)
+let guestOrder = []; // ordre d'affichage mélangé des invités (indices)
 
 // ---------- Eléments ----------
 const $ = (id) => document.getElementById(id);
 const el = {
   level: $('hLevel'), ambFill: $('hAmbFill'), amb: $('hAmb'), goal: $('hGoal'), ambGoal: $('hAmbGoal'),
-  conflicts: $('hConflicts'), graph: $('graph'), warnings: $('warnings'),
+  conflicts: $('hConflicts'), graph: $('graph'),
   tables: $('tables'), bench: $('bench'), levelName: $('levelName'),
   levelDesc: $('levelDesc'), toast: $('toast'),
   start: $('start'), levelsOverlay: $('levelsOverlay'), levelList: $('levelList'),
@@ -319,7 +320,7 @@ function tokenEl(g) {
 
 function renderBench() {
   el.bench.innerHTML = '';
-  for (let g = 0; g < level.guests.length; g++) {
+  for (const g of guestOrder) {
     if (!placement[g]) el.bench.appendChild(tokenEl(g));
   }
 }
@@ -339,22 +340,47 @@ function renderSeats() {
   });
 }
 
+// Positions des nœuds sur le cercle (partagé entre le rendu et le clic).
+// L'angle dépend de l'ordre mélangé (guestOrder), pas de l'ordre du niveau.
+function graphPos() {
+  const W = el.graph.width, H = el.graph.height;
+  const cx = W / 2, cy = H / 2, R = Math.min(W, H) / 2 - 82;
+  const TAU = Math.PI * 2;
+  const n = level.guests.length;
+  const slot = new Array(n);
+  guestOrder.forEach((g, k) => { slot[g] = k; });
+  return level.guests.map((_, i) => {
+    const k = slot[i] != null ? slot[i] : i;
+    const a = -Math.PI / 2 + (TAU * k) / n;
+    return { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a), a, R };
+  });
+}
+
+// voisins d'un invité -> force du lien (Map voisin -> v)
+function relationsOf(g) {
+  const m = new Map();
+  for (const r of level.relations) {
+    if (r.a === g) m.set(r.b, r.v);
+    else if (r.b === g) m.set(r.a, r.v);
+  }
+  return m;
+}
+
 function renderGraph() {
   const W = el.graph.width, H = el.graph.height;
-  const cx = W / 2, cy = H / 2, R = Math.min(W, H) / 2 - 66;
-  const TAU = Math.PI * 2;
+  const cx = W / 2, cy = H / 2, TAU = Math.PI * 2;
   gtx.clearRect(0, 0, W, H);
-  const n = level.guests.length;
-  const pos = level.guests.map((_, i) => {
-    const a = -Math.PI / 2 + (TAU * i) / n;
-    return { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a), a };
-  });
-  // arêtes : couleur + épaisseur graduées selon la force, pastille de valeur au milieu
+  const pos = graphPos();
+  const R = pos.length ? pos[0].R : 0;
+  const sel = selected;
+  const relSel = sel == null ? null : relationsOf(sel);
+  // arêtes : couleur + épaisseur graduées selon la force (aucun nombre affiché)
   for (const r of level.relations) {
     const p = pos[r.a], q = pos[r.b];
     const conflit = sameTable(r.a, r.b) && r.v < 0;
     const amiMemeTable = sameTable(r.a, r.b) && r.v > 0;
     const mag = Math.abs(r.v);
+    const isRel = relSel !== null && (r.a === sel || r.b === sel);
     let color, width, dash;
     if (conflit) { color = '#e0a800'; width = 5; dash = []; }
     else if (r.v > 0) {
@@ -365,6 +391,14 @@ function renderGraph() {
       color = ['#e08a8a', '#d64545', '#a71d1d'][mag - 1];
       width = [2, 4, 6.5][mag - 1];
       dash = mag === 1 ? [7, 5] : [];
+    }
+    if (sel != null && !isRel) {
+      // sélection active : on atténue les liens qui ne concernent pas l'invité
+      gtx.globalAlpha = 0.13;
+      width = Math.max(1.5, width - 1);
+    } else {
+      gtx.globalAlpha = 1;
+      if (isRel) width += 2.5; // lien de l'invité sélectionné : plus épais
     }
     // courbe légère vers l'extérieur pour séparer les traits
     const mx = (p.x + q.x) / 2, my = (p.y + q.y) / 2;
@@ -380,37 +414,47 @@ function renderGraph() {
     gtx.lineWidth = width;
     gtx.lineCap = 'round';
     gtx.setLineDash(dash);
-    if (conflit || amiMemeTable) { gtx.shadowColor = conflit ? '#e0a800' : '#4c9a2a'; gtx.shadowBlur = 10; }
+    if (conflit || amiMemeTable || isRel) {
+      gtx.shadowColor = conflit ? '#e0a800' : color;
+      gtx.shadowBlur = isRel ? 14 : 10;
+    }
     gtx.stroke();
     gtx.shadowBlur = 0;
     gtx.setLineDash([]);
-    // pastille de force au milieu de l'arête (point à t=0.5 de la courbe)
-    const bx = 0.25 * p.x + 0.5 * ccx + 0.25 * q.x;
-    const by = 0.25 * p.y + 0.5 * ccy + 0.25 * q.y;
-    const label = (r.v > 0 ? '+' : '−') + mag;
-    gtx.font = 'bold 11px Georgia, serif';
-    const tw = gtx.measureText(label).width + 12;
-    gtx.beginPath();
-    if (gtx.roundRect) gtx.roundRect(bx - tw / 2, by - 9, tw, 18, 9);
-    else gtx.rect(bx - tw / 2, by - 9, tw, 18);
-    gtx.fillStyle = '#fffdf8'; gtx.fill();
-    gtx.lineWidth = 1.6; gtx.strokeStyle = color; gtx.stroke();
-    gtx.fillStyle = color; gtx.textAlign = 'center'; gtx.textBaseline = 'middle';
-    gtx.fillText(label, bx, by + 0.5);
+    gtx.globalAlpha = 1;
   }
-  // nœuds : tête de l'invité + nom à l'extérieur
+  // nœuds : tête de l'invité + nom à l'extérieur ; la sélection met en relief l'invité et ses relations
   pos.forEach((p, i) => {
-    const rr = 22;
+    const rr = 26;
+    const isSel = sel === i;
+    const vRel = relSel ? relSel.get(i) : undefined;
+    const dim = sel != null && !isSel && vRel === undefined;
+    gtx.globalAlpha = dim ? 0.28 : 1;
     drawFace(level.guests[i], p.x, p.y, rr - 1);
     gtx.beginPath(); gtx.arc(p.x, p.y, rr, 0, TAU);
-    gtx.lineWidth = placement[i] ? 3 : 2;
-    gtx.strokeStyle = placement[i] ? '#8aa87a' : '#d98e96';
+    if (isSel) {
+      gtx.lineWidth = 4.5; gtx.strokeStyle = '#c9a227';
+      gtx.shadowColor = '#c9a227'; gtx.shadowBlur = 16;
+    } else if (vRel !== undefined) {
+      gtx.lineWidth = 3.5; gtx.strokeStyle = vRel > 0 ? '#4c9a2a' : '#d64545';
+      gtx.shadowColor = gtx.strokeStyle; gtx.shadowBlur = 10;
+    } else {
+      gtx.lineWidth = placement[i] ? 3 : 2;
+      gtx.strokeStyle = placement[i] ? '#8aa87a' : '#d98e96';
+    }
     gtx.stroke();
-    const lr = R + 27;
-    gtx.font = '11px Georgia, serif';
-    gtx.fillStyle = '#6b5d4f';
-    gtx.textAlign = 'center'; gtx.textBaseline = 'middle';
-    gtx.fillText(level.guests[i], cx + lr * Math.cos(p.a), cy + lr * Math.sin(p.a));
+    gtx.shadowBlur = 0;
+    // nom ancré à l'extérieur du cercle : alignement selon l'angle pour
+    // que le texte s'éloigne toujours de la tête (jamais dessus)
+    const lr = R + 30;
+    const lx = cx + lr * Math.cos(p.a), ly = cy + lr * Math.sin(p.a);
+    const ca = Math.cos(p.a), sa = Math.sin(p.a);
+    gtx.textAlign = ca > 0.35 ? 'left' : ca < -0.35 ? 'right' : 'center';
+    gtx.textBaseline = sa > 0.35 ? 'top' : sa < -0.35 ? 'bottom' : 'middle';
+    gtx.font = (isSel || vRel !== undefined ? 'bold ' : '') + '11px Georgia, serif';
+    gtx.fillStyle = dim ? '#c0b3a0' : isSel ? '#8a6d1f' : '#6b5d4f';
+    gtx.fillText(level.guests[i], lx, ly);
+    gtx.globalAlpha = 1;
   });
 }
 
@@ -422,25 +466,6 @@ function renderHud() {
   el.amb.textContent = sc.ambiance + ' %';
   el.ambFill.style.width = sc.ambiance + '%';
   el.conflicts.textContent = sc.conflicts.length;
-  el.warnings.innerHTML = '';
-  sc.conflicts.forEach((c) => {
-    const li = document.createElement('li');
-    li.textContent = level.guests[c.a] + ' et ' + level.guests[c.b] +
-      ' se détestent' + (c.adjacent ? ' et sont côte à côte !' : ' et partagent la table ' + (seatOf(c.a).table + 1) + '.');
-    el.warnings.appendChild(li);
-  });
-  // conseils : amitiés fortes séparées
-  const rel = relMap();
-  const separated = [];
-  for (const r of level.relations) {
-    if (r.v >= 2 && !sameTable(r.a, r.b)) separated.push(r);
-  }
-  separated.slice(0, 3).forEach((r) => {
-    const li = document.createElement('li');
-    li.className = 'info';
-    li.textContent = level.guests[r.a] + ' et ' + level.guests[r.b] + ' sont proches : même table ?';
-    el.warnings.appendChild(li);
-  });
   return sc;
 }
 
@@ -468,6 +493,27 @@ function unplace(g) {
   placement[g] = null;
   renderAll();
 }
+
+// ---------- Sélection d'un invité (jeton ou tête du schéma) ----------
+function selectGuest(g) {
+  selected = (selected === g) ? null : g;
+  renderAll();
+  document.querySelectorAll('.token').forEach((t) => t.classList.toggle('selected', +t.dataset.guest === selected));
+}
+
+// clic sur une tête du schéma des relations -> sélectionne l'invité
+el.graph.addEventListener('click', (e) => {
+  const rect = el.graph.getBoundingClientRect();
+  const x = (e.clientX - rect.left) * (el.graph.width / rect.width);
+  const y = (e.clientY - rect.top) * (el.graph.height / rect.height);
+  let best = -1, bd = Infinity;
+  graphPos().forEach((p, i) => {
+    const d = Math.hypot(p.x - x, p.y - y);
+    if (d < bd) { bd = d; best = i; }
+  });
+  if (best >= 0 && bd <= 32) selectGuest(best);
+  else if (selected != null) selectGuest(selected); // clic à côté : désélectionne
+});
 
 // ---------- Drag & drop (pointer events) + mode clic ----------
 let drag = null; // { g, ghost, moved, fromSeat }
@@ -508,11 +554,9 @@ document.addEventListener('pointerup', (e) => {
     else renderAll();
   } else {
     // clic simple : sélection / placement
-    if (selected === d.g) { selected = null; renderAll(); return; }
     const seat = e.target.closest('.seat');
     if (seat) { place(d.g, +seat.dataset.table, +seat.dataset.seat); return; }
-    selected = d.g;
-    document.querySelectorAll('.token').forEach((t) => t.classList.toggle('selected', +t.dataset.guest === selected));
+    selectGuest(d.g);
   }
 });
 
@@ -522,6 +566,12 @@ function loadLevel(i) {
   level = PLAN_LEVELS[i];
   placement = level.guests.map(() => null);
   selected = null;
+  // ordre d'affichage mélangé : les invités n'apparaissent plus dans l'ordre du niveau
+  guestOrder = level.guests.map((_, g) => g);
+  for (let k = guestOrder.length - 1; k > 0; k--) {
+    const j = Math.floor(Math.random() * (k + 1));
+    const t = guestOrder[k]; guestOrder[k] = guestOrder[j]; guestOrder[j] = t;
+  }
   el.levelName.textContent = 'Niveau ' + (i + 1) + ' — ' + level.name;
   el.levelDesc.textContent = level.desc;
   renderTables();

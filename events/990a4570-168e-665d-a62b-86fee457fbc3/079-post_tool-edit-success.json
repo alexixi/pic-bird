@@ -1,0 +1,44 @@
+{
+  "seq": 79,
+  "received_at": "2026-11-24T14:05:44.737694+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "CuVtf6b7z",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/style.css",
+      "new_string": [
+        "#tablesPanel {",
+        "  flex: 1;",
+        "  min-width: 0;",
+        "  padding: 4px 8px;",
+        "  overflow-y: auto;",
+        "  display: flex;",
+        "  flex-direction: column;",
+        "}"
+      ],
+      "old_string": [
+        "#tablesPanel {",
+        "  flex: 1;",
+        "  padding: 4px 8px;",
+        "  overflow-y: auto;",
+        "  display: flex;",
+        "  flex-direction: column;",
+        "}"
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/style.css",
+      "lines_changed": 8,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

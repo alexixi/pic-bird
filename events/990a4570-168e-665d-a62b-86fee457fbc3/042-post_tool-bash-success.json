@@ -1,0 +1,48 @@
+{
+  "seq": 42,
+  "received_at": "2026-11-24T13:59:45.940089+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "P7nbVEmUj",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && node --check game.js && node /tmp/smoke.js && rm /tmp/smoke.js"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table && node --check game.js && node /tmp/smoke.js && rm /tmp/smoke.js",
+      "returncode": 1,
+      "stderr": [
+        "<anonymous_script>:518",
+        "    gtx.beginPath(); gtx.arc(p.x, p.y, rr, 0, TAU);",
+        "                                              ^",
+        "",
+        "ReferenceError: TAU is not defined",
+        "    at eval (eval at <anonymous> (/tmp/smoke.js:35:11), <anonymous>:518:47)",
+        "    at Array.forEach (<anonymous>)",
+        "    at renderGraph (eval at <anonymous> (/tmp/smoke.js:35:11), <anonymous>:511:7)",
+        "    at renderAll (eval at <anonymous> (/tmp/smoke.js:35:11), <anonymous>:573:3)",
+        "    at Object.loadLevel (eval at <anonymous> (/tmp/smoke.js:35:11), <anonymous>:670:3)",
+        "    at Object.<anonymous> (/tmp/smoke.js:38:5)",
+        "    at Module._compile (node:internal/modules/cjs/loader:1706:14)",
+        "    at Object..js (node:internal/modules/cjs/loader:1839:10)",
+        "    at Module.load (node:internal/modules/cjs/loader:1441:32)",
+        "    at Function._load (node:internal/modules/cjs/loader:1263:12)",
+        "",
+        "Node.js v22.22.0",
+        ""
+      ],
+      "stdout": "",
+      "timed_out": false,
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

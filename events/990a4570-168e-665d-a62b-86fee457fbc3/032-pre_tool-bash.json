@@ -1,0 +1,27 @@
+{
+  "seq": 32,
+  "received_at": "2026-11-24T13:58:20.783848+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "M0kk1gDEJ",
+    "tool_input": {
+      "timeout": 120,
+      "command": [
+        "node -e \"",
+        "const W=520,H=520,cx=W/2,cy=H/2,R=Math.min(W,H)/2-64,TAU=Math.PI*2;",
+        "for (const n of [8,12,16]) {",
+        "  const chord = 2*R*Math.sin(Math.PI/n);",
+        "  const namesAt = R+32;",
+        "  console.log('n='+n, 'R='+R, 'corde entre voisins='+chord.toFixed(1), 'tete diam=52', 'espace restant='+(chord-52).toFixed(1), 'nom max x='+(namesAt+22).toFixed(1)+' (canvas '+W+')');",
+        "}",
+        "\" 2>&1 || echo \"node indisponible\""
+      ]
+    }
+  }
+}

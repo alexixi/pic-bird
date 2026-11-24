@@ -1,0 +1,46 @@
+{
+  "seq": 15,
+  "received_at": "2026-11-24T13:58:00.675358+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "QJ2BhfoUL",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/game.js",
+      "old_string": [
+        "// ---------- Drag & drop (pointer events) + mode clic ----------",
+        "let drag = null; // { g, ghost, moved, fromSeat }"
+      ],
+      "new_string": [
+        "// ---------- Sélection d'un invité (jeton ou tête du schéma) ----------",
+        "function selectGuest(g) {",
+        "  selected = (selected === g) ? null : g;",
+        "  renderAll();",
+        "  document.querySelectorAll('.token').forEach((t) => t.classList.toggle('selected', +t.dataset.guest === selected));",
+        "}",
+        "",
+        "// clic sur une tête du schéma des relations -> sélectionne l'invité",
+        "el.graph.addEventListener('click', (e) => {",
+        "  const rect = el.graph.getBoundingClientRect();",
+        "  const x = (e.clientX - rect.left) * (el.graph.width / rect.width);",
+        "  const y = (e.clientY - rect.top) * (el.graph.height / rect.height);",
+        "  let best = -1, bd = Infinity;",
+        "  graphPos().forEach((p, i) => {",
+        "    const d = Math.hypot(p.x - x, p.y - y);",
+        "    if (d < bd) { bd = d; best = i; }",
+        "  });",
+        "  if (best >= 0 && bd <= 32) selectGuest(best);",
+        "  else if (selected != null) selectGuest(selected); // clic à côté : désélectionne",
+        "});",
+        "",
+        "// ---------- Drag & drop (pointer events) + mode clic ----------",
+        "let drag = null; // { g, ghost, moved, fromSeat }"
+      ]
+    }
+  }
+}
