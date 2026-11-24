@@ -1,0 +1,18 @@
+{
+  "seq": 99,
+  "received_at": "2026-11-24T14:08:19.726798+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "BDInUoAIr",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird && wc -l game.js index.html style.css && grep -n \"record\\|best\\|seuil\\|target\\|objectif\\|victoire\\|win\\|localStorage\\|save\" game.js index.html | head -30"
+    }
+  }
+}

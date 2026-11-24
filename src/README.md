@@ -226,12 +226,18 @@ réussite, « réussi ? ») pour que le hub puisse :
 - Plan de Table implémenté dans `src/js/plan-de-table/` avec 3 niveaux et
   progression locale par seuils d'ambiance.
 
-### Étape 4 — Hub et système de progression global (en cours)
+### Étape 4 — Hub et système de progression global (fait)
 - Page d'accueil `src/index.html` listant les jeux avec leur état
-  (verrouillé / en cours / réussi).
-- Définir les seuils de réussite de chaque jeu ; débloquer le jeu suivant quand
-  le seuil est atteint ; persister la progression globale dans `localStorage`.
-- Relier Catch Bird et Plan de Table au hub.
+  (verrouillé / en cours / réussi), servie depuis la racine de `src/`.
+- `src/js/progression.js` : liste des jeux du parcours, seuils de réussite
+  (Catch Bird : record ≥ 100 pts ; Plan de Table : 3/3 niveaux ; Parking Panic :
+  5/8 niveaux) et règle de déblocage (un jeu se débloque quand le précédent est
+  réussi) ; chaque jeu lit sa progression dans sa propre clé `localStorage`.
+- `src/js/main.js` + `src/css/style.css` : rendu du hub — thème sombre moderne
+  (fond animé, cartes en verre, barre de progression par jeu, badges d'état,
+  résumé du parcours dans le header, réinitialisation de la progression).
+- Catch Bird persiste désormais son record et son nombre de photos
+  (`picbird.catchBird`) pour que le hub affiche sa progression.
 
 ### Étape 5 — Troisième jeu (fait)
 - Parking Panic implémenté dans `src/js/parking-panic/` : 8 niveaux, 4 voitures

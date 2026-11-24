@@ -1,0 +1,18 @@
+{
+  "seq": 109,
+  "received_at": "2026-11-24T14:10:52.842176+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "9St61xBFs",
+    "tool_input": {
+      "timeout": 120,
+      "command": "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js && grep -n \"^const\\|^let\\|^var\" parking-panic/levels.js plan-de-table/levels.js && sed -n '870,880p' catch-bird/game.js"
+    }
+  }
+}

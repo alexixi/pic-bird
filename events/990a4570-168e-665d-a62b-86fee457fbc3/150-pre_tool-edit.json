@@ -1,0 +1,22 @@
+{
+  "seq": 150,
+  "received_at": "2026-11-24T14:19:31.420122+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "XvXJqMwUZ",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/index.html",
+      "old_string": "  <span class=\"brand\"><svg width=\"30\" height=\"20\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\" fill=\"none\" stroke=\"#c9a227\" stroke-width=\"2\"/><circle cx=\"19\" cy=\"11\" r=\"7\" fill=\"none\" stroke=\"#d98e96\" stroke-width=\"2\"/><path d=\"M15 0.5 l2.2 2.2 -2.2 2.2 -2.2 -2.2 z\" fill=\"#c9a227\"/></svg>Plan de Table</span>",
+      "new_string": [
+        "  <span class=\"brand\"><svg width=\"30\" height=\"20\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\" fill=\"none\" stroke=\"#c9a227\" stroke-width=\"2\"/><circle cx=\"19\" cy=\"11\" r=\"7\" fill=\"none\" stroke=\"#d98e96\" stroke-width=\"2\"/><path d=\"M15 0.5 l2.2 2.2 -2.2 2.2 -2.2 -2.2 z\" fill=\"#c9a227\"/></svg>Plan de Table</span>",
+        "  <a class=\"hubLink\" href=\"../../index.html\">← Hub</a>"
+      ]
+    }
+  }
+}

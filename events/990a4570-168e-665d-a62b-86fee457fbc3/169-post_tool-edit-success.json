@@ -1,0 +1,48 @@
+{
+  "seq": 169,
+  "received_at": "2026-11-24T14:20:18.786065+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "1r6S69c73",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/style.css",
+      "new_string": [
+        "#hud b { color: #f0c060; }",
+        "",
+        "#hud .hubLink {",
+        "  font-size: 13px;",
+        "  font-weight: 700;",
+        "  text-decoration: none;",
+        "  white-space: nowrap;",
+        "  color: #f0c060;",
+        "  background: #2e313a;",
+        "  border: 1px solid #a8741c;",
+        "  padding: 6px 14px;",
+        "  border-radius: 999px;",
+        "}",
+        "#hud .hubLink:hover { filter: brightness(1.15); }",
+        "",
+        ".box .btn.secondary {",
+        "  background: #2e313a;",
+        "  color: #f0c060;",
+        "  border: 1px solid #4a4d58;",
+        "}"
+      ],
+      "old_string": "#hud b { color: #f0c060; }"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/style.css",
+      "lines_changed": 20,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

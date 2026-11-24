@@ -1,0 +1,51 @@
+{
+  "seq": 96,
+  "received_at": "2026-11-24T14:08:07.049407+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "H4lECt6Bb",
+    "tool_input": {
+      "timeout": 120,
+      "command": "find /home/matheline/Documents/Semestre9/Agentique/pic-bird/src -type f | sort && echo --- && ls /home/matheline/Documents/Semestre9/Agentique/pic-bird"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "find /home/matheline/Documents/Semestre9/Agentique/pic-bird/src -type f | sort && echo --- && ls /home/matheline/Documents/Semestre9/Agentique/pic-bird",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/README.md",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird/game.js",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird/index.html",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird/style.css",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/engine.js",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/game.js",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/index.html",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/levels.js",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/render.js",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/style.css",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/traffic.js",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/game.js",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/index.html",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/levels.js",
+        "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/plan-de-table/style.css",
+        "---",
+        "AGENTS.md",
+        "README.md",
+        "events",
+        "src",
+        ""
+      ],
+      "timed_out": false,
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

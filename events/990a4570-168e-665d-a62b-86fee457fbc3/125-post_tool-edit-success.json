@@ -1,0 +1,45 @@
+{
+  "seq": 125,
+  "received_at": "2026-11-24T14:13:53.393290+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "3RusBfo5p",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird/game.js",
+      "new_string": [
+        "let photos = [];",
+        "let best = null;",
+        "",
+        "// ---------- Progression (localStorage) — lue par le hub Pic'Bird ----------",
+        "const SAVE_KEY = 'picbird.catchBird';",
+        "function loadProgress() {",
+        "  try { return JSON.parse(localStorage.getItem(SAVE_KEY)) || { best: 0, photos: 0 }; }",
+        "  catch (e) { return { best: 0, photos: 0 }; }",
+        "}",
+        "function storeProgress() {",
+        "  try { localStorage.setItem(SAVE_KEY, JSON.stringify({ best: best ? best.score : 0, photos: photos.length })); } catch (e) {}",
+        "}",
+        "const savedProgress = loadProgress();",
+        "if (savedProgress.best > 0) best = { score: savedProgress.best, data: null, when: null };"
+      ],
+      "old_string": [
+        "let photos = [];",
+        "let best = null;"
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird/game.js",
+      "lines_changed": 14,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "seq": 170,
+  "received_at": "2026-11-24T14:20:28.787137+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "OkaNJiHkd",
+    "tool_input": {
+      "timeout": 120,
+      "command": [
+        "cd /home/matheline/Documents/Semestre9/Agentique/pic-bird/src && grep -rn \"hubLink\\|Retour au hub\\|← Hub\" js/*/index.html && echo === && node -e \"",
+        "const fs = require('fs'), path = require('path');",
+        "let ok = true;",
+        "for (const game of ['catch-bird', 'plan-de-table', 'parking-panic']) {",
+        "  const f = path.join('js', game, 'index.html');",
+        "  const html = fs.readFileSync(f, 'utf8');",
+        "  const hrefs = [...html.matchAll(/href=\\\"([^\\\"]+)\\\"/g)].map((m) => m[1]).filter((h) => !h.startsWith('http'));",
+        "  for (const h of hrefs) {",
+        "    const target = path.join('js', game, h);",
+        "    const exists = fs.existsSync(target);",
+        "    console.log((exists ? 'OK  ' : 'KO  ') + ' ' + game + ' -> ' + h + (exists ? '' : '  (cible: ' + target + ')'));",
+        "    if (!exists) ok = false;",
+        "  }",
+        "}",
+        "// liens du hub",
+        "const hub = fs.readFileSync('index.html', 'utf8');",
+        "console.log('hub charge progression.js:', hub.includes('js/progression.js'), '| main.js:', hub.includes('js/main.js'), '| css:', hub.includes('css/style.css'));",
+        "process.exit(ok ? 0 : 1);",
+        "\" && echo \"LIENS OK\""
+      ]
+    }
+  }
+}

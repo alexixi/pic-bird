@@ -1,0 +1,38 @@
+{
+  "seq": 132,
+  "received_at": "2026-11-24T14:15:36.162593+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "heu4E7a6s",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/README.md",
+      "old_string": [
+        "### Étape 4 — Hub et système de progression global (en cours)",
+        "- Page d'accueil `src/index.html` listant les jeux avec leur état",
+        "  (verrouillé / en cours / réussi).",
+        "- Définir les seuils de réussite de chaque jeu ; débloquer le jeu suivant quand",
+        "  le seuil est atteint ; persister la progression globale dans `localStorage`.",
+        "- Relier Catch Bird et Plan de Table au hub."
+      ],
+      "new_string": [
+        "### Étape 4 — Hub et système de progression global (fait)",
+        "- Page d'accueil `src/index.html` listant les jeux avec leur état",
+        "  (verrouillé / en cours / réussi), servie depuis la racine de `src/`.",
+        "- `src/js/progression.js` : liste des jeux du parcours, seuils de réussite",
+        "  (Catch Bird : record ≥ 100 pts ; Plan de Table : 3/3 niveaux ; Parking Panic :",
+        "  5/8 niveaux) et règle de déblocage (un jeu se débloque quand le précédent est",
+        "  réussi) ; chaque jeu lit sa progression dans sa propre clé `localStorage`.",
+        "- `src/js/main.js` + `src/css/style.css` : rendu du hub (cartes de jeux, badges,",
+        "  liens, réinitialisation de la progression).",
+        "- Catch Bird persiste désormais son record et son nombre de photos",
+        "  (`picbird.catchBird`) pour que le hub affiche sa progression."
+      ]
+    }
+  }
+}

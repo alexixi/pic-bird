@@ -35,6 +35,25 @@ body {
 
 #hud b { color: #f0c060; }
 
+#hud .hubLink {
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #f0c060;
+  background: #2e313a;
+  border: 1px solid #a8741c;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+#hud .hubLink:hover { filter: brightness(1.15); }
+
+.box .btn.secondary {
+  background: #2e313a;
+  color: #f0c060;
+  border: 1px solid #4a4d58;
+}
+
 .gearWrap { display: flex; align-items: center; gap: 8px; font-size: 14px; }
 #hGear {
   min-width: 44px;

@@ -1,0 +1,30 @@
+{
+  "seq": 159,
+  "received_at": "2026-11-24T14:20:11.541934+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "vLwQ5aZ72",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird/index.html",
+      "new_string": [
+        "  <span class=\"brand\">Catch Bird</span>",
+        "  <a class=\"hubLink\" href=\"../../index.html\">← Hub</a>"
+      ],
+      "old_string": "  <span class=\"brand\">Catch Bird</span>"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird/index.html",
+      "lines_changed": 2,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

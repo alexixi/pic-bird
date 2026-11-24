@@ -1,0 +1,38 @@
+{
+  "seq": 167,
+  "received_at": "2026-11-24T14:20:18.561541+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "5EFGwn2Kx",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/index.html",
+      "new_string": [
+        "    <div class=\"row\">",
+        "      <a id=\"lockBack\" class=\"btn\" href=\"../plan-de-table/index.html\">Aller au Plan de Table</a>",
+        "      <button id=\"lockRefresh\" type=\"button\">Rafraîchir</button>",
+        "      <a class=\"btn secondary\" href=\"../../index.html\">← Hub</a>",
+        "    </div>"
+      ],
+      "old_string": [
+        "    <div class=\"row\">",
+        "      <a id=\"lockBack\" class=\"btn\" href=\"../plan-de-table/index.html\">Aller au Plan de Table</a>",
+        "      <button id=\"lockRefresh\" type=\"button\">Rafraîchir</button>",
+        "    </div>"
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/index.html",
+      "lines_changed": 5,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

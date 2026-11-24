@@ -1,0 +1,62 @@
+{
+  "seq": 116,
+  "received_at": "2026-11-24T14:12:42.161258+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.write_file",
+    "tool_call_id": "sZmsQ5HaG",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/index.html",
+      "content": [
+        "<!DOCTYPE html>",
+        "<html lang=\"fr\">",
+        "<head>",
+        "<meta charset=\"UTF-8\">",
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "<title>Pic'Bird — Les jeux</title>",
+        "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">",
+        "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>",
+        "<link href=\"https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;700&display=swap\" rel=\"stylesheet\">",
+        "<link rel=\"stylesheet\" href=\"css/style.css\">",
+        "</head>",
+        "<body>",
+        "",
+        "<header id=\"topbar\">",
+        "  <span class=\"brand\">",
+        "    <svg width=\"30\" height=\"24\" viewBox=\"0 0 64 52\" aria-hidden=\"true\"><path d=\"M10 40c-5-3-6-10-2-14 3-3 8-4 12-2l3-9 5 8c7 1 11 5 11 11 0 9-9 15-19 15-4 0-8-1-10-3z\" fill=\"#d98e96\" stroke=\"#c9a227\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/><circle cx=\"33\" cy=\"24\" r=\"2\" fill=\"#4a3f35\"/><path d=\"M41 22l8 3-8 4z\" fill=\"#e8a06a\"/></svg>",
+        "    Pic'Bird",
+        "  </span>",
+        "  <span class=\"tagline\">Le parcours des mini-jeux</span>",
+        "</header>",
+        "",
+        "<main id=\"hub\">",
+        "  <h1>Choisis ton jeu</h1>",
+        "  <p class=\"sub\">Réussis chaque jeu pour débloquer le suivant — ta progression est enregistrée dans ce navigateur.</p>",
+        "  <div id=\"gameList\"></div>",
+        "  <p class=\"foot\"><button id=\"resetProg\" type=\"button\">Réinitialiser la progression</button></p>",
+        "</main>",
+        "",
+        "<script src=\"js/plan-de-table/levels.js\"></script>",
+        "<script src=\"js/parking-panic/levels.js\"></script>",
+        "<script src=\"js/progression.js\"></script>",
+        "<script src=\"js/main.js\"></script>",
+        "</body>",
+        "</html>",
+        ""
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "bytes_written": 1464,
+      "file_existed": false,
+      "path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/index.html"
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

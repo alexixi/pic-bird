@@ -41,6 +41,34 @@ body {
 
 #hud b { color: #8a6d1f; }
 
+#hud .hubLink {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #7a5c14;
+  background: #fffdf7;
+  border: 1px solid #d4af37;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+#hud .hubLink:hover { filter: brightness(1.05); }
+
+.box .hubLink {
+  display: block;
+  width: fit-content;
+  margin: 14px auto 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #7a5c14;
+  background: #fffdf7;
+  border: 1px solid #e3d5b8;
+  padding: 8px 18px;
+  border-radius: 999px;
+}
+.box .hubLink:hover { filter: brightness(1.05); }
+
 .jaugeWrap { display: flex; align-items: center; gap: 8px; font-size: 14px; }
 
 .jauge {

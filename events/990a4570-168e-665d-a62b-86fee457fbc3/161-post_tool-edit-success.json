@@ -1,0 +1,61 @@
+{
+  "seq": 161,
+  "received_at": "2026-11-24T14:20:11.708186+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "V0uiT4Lnj",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird/style.css",
+      "new_string": [
+        "#hud .brand { font-weight: 700; letter-spacing: 1px; color: #ffd76a; }",
+        "#hud b { color: #ffd76a; font-variant-numeric: tabular-nums; }",
+        "#hud .record { margin-left: auto; }",
+        "",
+        "#hud .hubLink {",
+        "  pointer-events: auto; /* le HUD est pointer-events:none, le lien reste cliquable */",
+        "  font-size: 12.5px;",
+        "  font-weight: 600;",
+        "  text-decoration: none;",
+        "  white-space: nowrap;",
+        "  color: #ffd76a;",
+        "  border: 1px solid rgba(255, 215, 106, 0.6);",
+        "  padding: 4px 12px;",
+        "  border-radius: 999px;",
+        "}",
+        "#hud .hubLink:hover { background: rgba(255, 215, 106, 0.12); }",
+        "",
+        "#startBox .hubLink {",
+        "  display: block;",
+        "  width: fit-content;",
+        "  margin: 14px auto 0;",
+        "  font-size: 13px;",
+        "  text-decoration: none;",
+        "  color: #e8eef2;",
+        "  border: 1px solid rgba(255, 255, 255, 0.3);",
+        "  padding: 7px 16px;",
+        "  border-radius: 8px;",
+        "}",
+        "#startBox .hubLink:hover { background: rgba(255, 255, 255, 0.08); }"
+      ],
+      "old_string": [
+        "#hud .brand { font-weight: 700; letter-spacing: 1px; color: #ffd76a; }",
+        "#hud b { color: #ffd76a; font-variant-numeric: tabular-nums; }",
+        "#hud .record { margin-left: auto; }"
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/catch-bird/style.css",
+      "lines_changed": 29,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

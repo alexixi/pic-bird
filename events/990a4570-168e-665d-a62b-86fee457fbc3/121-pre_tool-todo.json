@@ -1,0 +1,43 @@
+{
+  "seq": 121,
+  "received_at": "2026-11-24T14:13:52.769364+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "vibe.todo",
+    "tool_call_id": "mgScoUMbM",
+    "tool_input": {
+      "action": "write",
+      "todos": [
+        {
+          "id": "1",
+          "content": "Créer src/js/progression.js (liste des jeux, règles de déblocage, lecture localStorage)",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "2",
+          "content": "Créer le hub : src/index.html + src/css/style.css + src/js/main.js",
+          "status": "completed",
+          "priority": "high"
+        },
+        {
+          "id": "3",
+          "content": "Persister best/photos de Catch Bird dans localStorage (clé picbird.catchBird)",
+          "status": "in_progress",
+          "priority": "high"
+        },
+        {
+          "id": "4",
+          "content": "Vérifier (node --check + smoke test du hub) et mettre à jour src/README.md étape 4",
+          "status": "pending",
+          "priority": "medium"
+        }
+      ]
+    }
+  }
+}

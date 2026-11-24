@@ -1,0 +1,34 @@
+{
+  "seq": 186,
+  "received_at": "2026-11-24T14:23:36.866398+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "73SSrTLnC",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/README.md",
+      "new_string": [
+        "- `src/js/main.js` + `src/css/style.css` : rendu du hub — thème sombre moderne",
+        "  (fond animé, cartes en verre, barre de progression par jeu, badges d'état,",
+        "  résumé du parcours dans le header, réinitialisation de la progression)."
+      ],
+      "old_string": [
+        "- `src/js/main.js` + `src/css/style.css` : rendu du hub (cartes de jeux, badges,",
+        "  liens, réinitialisation de la progression)."
+      ]
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/README.md",
+      "lines_changed": 3,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "seq": 162,
+  "received_at": "2026-11-24T14:20:17.619829+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "990a4570-168e-665d-a62b-86fee457fbc3",
+    "transcript_path": "/home/matheline/.vibe/logs/session/unified/990a4570-168e-665d-a62b-86fee457fbc3",
+    "cwd": "/home/matheline/Documents/Semestre9/Agentique/pic-bird",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.edit",
+    "tool_call_id": "0g0oB4I1J",
+    "tool_input": {
+      "file_path": "/home/matheline/Documents/Semestre9/Agentique/pic-bird/src/js/parking-panic/index.html",
+      "old_string": "<circle cx=\"26\" cy=\"17\" r=\"3\" fill=\"#2b2b30\"/></svg>Parking Panic</span>",
+      "new_string": [
+        "<circle cx=\"26\" cy=\"17\" r=\"3\" fill=\"#2b2b30\"/></svg>Parking Panic</span>",
+        "  <a class=\"hubLink\" href=\"../../index.html\">← Hub</a>"
+      ]
+    }
+  }
+}

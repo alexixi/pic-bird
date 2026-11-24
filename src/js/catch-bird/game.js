@@ -77,6 +77,18 @@ let birds = [];
 let seeds = [];
 let photos = [];
 let best = null;
+
+// ---------- Progression (localStorage) — lue par le hub Pic'Bird ----------
+const SAVE_KEY = 'picbird.catchBird';
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem(SAVE_KEY)) || { best: 0, photos: 0 }; }
+  catch (e) { return { best: 0, photos: 0 }; }
+}
+function storeProgress() {
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify({ best: best ? best.score : 0, photos: photos.length })); } catch (e) {}
+}
+const savedProgress = loadProgress();
+if (savedProgress.best > 0) best = { score: savedProgress.best, data: null, when: null };
 let spawnT = 0, rareT = 20;
 const mouse = { x: CW / 2, y: CH / 2, lx: CW / 2, ly: CH / 2, speed: 0 };
 const keys = {};
@@ -721,6 +733,7 @@ function takePhoto() {
   if (!best || res.total > best.score) best = entry;
   addThumb(entry);
   updateHUD();
+  storeProgress();
 }
 
 function addThumb(entry) {
